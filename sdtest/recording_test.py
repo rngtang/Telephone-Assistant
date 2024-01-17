@@ -1,6 +1,6 @@
 import sounddevice
 from scipy.io.wavfile import write
-sr = 44100
+sr = 48000
 seconds = 5
 
 print("Recording")
