@@ -15,4 +15,5 @@ print("Hello, how can I help you?")
 result = speech_recognizer.recognize_once().text
 # checks if it is a question
 q = any(i in result for i in question_words)
+print(result)
 print(q)
