@@ -10,7 +10,8 @@ deployment = "test"
 def main():
     client = QuestionAnsweringClient(endpoint, credential)
     with client:
-        question="What is the MPS?"
+        # question="What is the MPS?"
+        question = "Who works at the Colab."
         output = client.get_answers(
             question = question,
             project_name=knowledge_base_project,
