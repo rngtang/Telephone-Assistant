@@ -18,6 +18,7 @@ def main():
         )
     print("Q: {}".format(question))
     print("A: {}".format(output.answers[0].answer))
+    print("Confidence Score: {}".format(output.answers[0].confidence)) # add this line 
 
 if __name__ == '__main__':
     main()
