@@ -3,11 +3,11 @@
 import os
 import azure.cognitiveservices.speech as speechsdk
 
-# Settings
+# Settings for speech recognition
 speech_config = speechsdk.SpeechConfig(subscription=os.environ.get('COLAB_SPEECH_KEY'), region=os.environ.get('COLAB_SPEECH_REGION'))
 speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config)
 
-question_words = ["what", "who", "where", "when", "why", "how", "whose", "which", "?"]
+question_words = ["what", "who", "where", "when", "why", "how", "whose", "which", "question", "?"]
 
 print("Hello, how can I help you?")
 
