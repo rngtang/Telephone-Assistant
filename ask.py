@@ -43,10 +43,10 @@ if result.reason == speechsdk.ResultReason.RecognizedSpeech:
     print("Confidence Score: {}".format(output.answers[0].confidence)) 
 
     # # tries to speak the answer back
-    answer = output.answers[0].answer.text
-    speech_synthesis_result = speech_synthesizer.speak_text_async(answer).get()
+    tts = output.answers[0].answer
+    speech_synthesis_result = speech_synthesizer.speak_text_async(tts).get()
     if speech_synthesis_result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
-        print("Speech synthesized for text [{}]".format(answer))
+        print("Speech synthesized for text [{}]".format(tts))
 
     # tts error
     elif speech_synthesis_result.reason == speechsdk.ResultReason.Canceled:
