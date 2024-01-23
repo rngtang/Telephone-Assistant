@@ -25,9 +25,14 @@ speech_config.speech_synthesis_voice_name='en-US-AvaNeural'
 speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
 
 # identifies if its a question
+def isQuestion(phrase):
+    question_words = ["what", "who", "where", "when", "why", "how", "whose", "which", "question", "?", "thank"]
+    return any(i in phrase for i in question_words)
 
 # Uses the text from the user to use stuff
 def listen(userSpeech):
+    if (not isQuestion(userSpeech)): return False
+
     if userSpeech.reason == speechsdk.ResultReason.RecognizedSpeech:
         question = userSpeech.text
     answer(question)
@@ -74,9 +79,11 @@ def main():
         # if the user doesn't want to speak 
         if(userSpeech.text == ''):
             print("none")
+            speech_synthesizer.speak_text("Sorry, I couldn't understand you")
             return
         
-        listen(userSpeech)
+        if(not listen(userSpeech)):
+            speech_synthesizer.speak_text("Sorry, could you repeat that again?")
         
 if __name__ == '__main__':
     main()
