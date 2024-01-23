@@ -64,14 +64,6 @@ def main():
     print("Ask something about the Co-Lab.")
     speech_synthesizer.speak_text_async("Ask something about the Co-Lab.")
     
-    userSpeech = speech_recognizer.recognize_once()
-
-    # if the user doesn't want to speak 
-    if(userSpeech.text == ''):
-        print("none")
-        speech_synthesizer.speak_text("Sorry I could not understand you")
-        return
-    
     # Debug
     # answer("what is the colab?")
 
