@@ -47,8 +47,9 @@ if result.reason == speechsdk.ResultReason.RecognizedSpeech:
         # # tries to speak the answer back
         tts = output.answers[0].answer
         speech_synthesis_result = speech_synthesizer.speak_text_async(tts).get()
-        # if speech_synthesis_result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
-        #     print("Speech synthesized for text [{}]".format(tts))
+        if speech_synthesis_result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
+            # print("Speech synthesized for text [{}]".format(tts))
+            print("Finished!")
     except: 
         # tts error
         print("couldn't change text to speech.")
