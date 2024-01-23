@@ -31,7 +31,7 @@ def isQuestion(phrase):
 
 # Uses the text from the user to use stuff
 def listen(userSpeech):
-    if (not isQuestion(userSpeech)): return False
+    if (not isQuestion(userSpeech.text)): return False
 
     if userSpeech.reason == speechsdk.ResultReason.RecognizedSpeech:
         question = userSpeech.text
