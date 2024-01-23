@@ -41,21 +41,24 @@ if result.reason == speechsdk.ResultReason.RecognizedSpeech:
     # print("Q: {}".format(question))
     print("A: {}".format(output.answers[0].answer))
     print("Confidence Score: {}".format(output.answers[0].confidence)) 
+    print("Responding with answer...")
 
-    # # tries to speak the answer back
-    tts = output.answers[0].answer
-    speech_synthesis_result = speech_synthesizer.speak_text_async(tts).get()
-    if speech_synthesis_result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
-        print("Speech synthesized for text [{}]".format(tts))
-
-    # tts error
-    elif speech_synthesis_result.reason == speechsdk.ResultReason.Canceled:
-        cancellation_details = speech_synthesis_result.cancellation_details
-        print("Speech synthesis canceled: {}".format(cancellation_details.reason))
-        if cancellation_details.reason == speechsdk.CancellationReason.Error:
-            if cancellation_details.error_details:
-                print("Error details: {}".format(cancellation_details.error_details))
-                print("Did you set the speech resource key and region values?")
+    try: 
+        # # tries to speak the answer back
+        tts = output.answers[0].answer
+        speech_synthesis_result = speech_synthesizer.speak_text_async(tts).get()
+        # if speech_synthesis_result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
+        #     print("Speech synthesized for text [{}]".format(tts))
+    except: 
+        # tts error
+        print("couldn't change text to speech.")
+        if speech_synthesis_result.reason == speechsdk.ResultReason.Canceled:
+            cancellation_details = speech_synthesis_result.cancellation_details
+            print("Speech synthesis canceled: {}".format(cancellation_details.reason))
+            if cancellation_details.reason == speechsdk.CancellationReason.Error:
+                if cancellation_details.error_details:
+                    print("Error details: {}".format(cancellation_details.error_details))
+                    print("Did you set the speech resource key and region values?")
 
 # stt error
 elif result.reason == speechsdk.ResultReason.NoMatch:
