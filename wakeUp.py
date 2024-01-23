@@ -1,3 +1,5 @@
+import os
+
 # Azure imports
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.language.questionanswering import QuestionAnsweringClient
@@ -19,3 +21,7 @@ speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config)
 audio_config = speechsdk.audio.AudioOutputConfig(use_default_speaker=True)
 speech_config.speech_synthesis_voice_name='en-US-AvaNeural'
 speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
+
+
+speech_recognizer.start_keyword_recognition()
+print("Listening")
