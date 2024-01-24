@@ -31,7 +31,7 @@ def speech_recognize_keyword_locally_from_microphone():
     model = speechsdk.KeywordRecognitionModel("./1f4d77be-1956-4c35-8530-221b1af24f4c.table")
 
     # The phrase your keyword recognition model triggers on.
-    keyword = "Hello Robot"
+    keyword = "Hello Co-Lab"
 
     # Create a local keyword recognizer with the default microphone device for input.
     keyword_recognizer = speechsdk.KeywordRecognizer()
