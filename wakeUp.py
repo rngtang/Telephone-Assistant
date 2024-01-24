@@ -22,7 +22,40 @@ audio_config = speechsdk.audio.AudioOutputConfig(use_default_speaker=True)
 speech_config.speech_synthesis_voice_name='en-US-AvaNeural'
 speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
 
-keywordModel = speechsdk.KeywordRecognitionModel("./1f4d77be-1956-4c35-8530-221b1af24f4c.table")
+# Keyword recognizer configs
+model = speechsdk.KeywordRecognitionModel("./1f4d77be-1956-4c35-8530-221b1af24f4c.table")
+keyword = "Hey CoLab"
+keyword_recognizer = speechsdk.KeywordRecognizer()
 
-print("Listening")
-print(speech_recognizer.start_keyword_recognition_async(keywordModel))
+def recognized(event):
+    result = event.result
+
+    if(result.reason == speechsdk.ResultReason.RecognizedKeyword):
+        print("RECOGNIZED KEYWORD: {}".format(result.text))
+    
+def canceled(event):
+    result = event.result
+    
+    if (result.reason == speechsdk.ResultReason.Canceled):
+        print('CANCELED: {}'.format(result.cancellation_details.reason))
+        
+
+def recognize_word():
+
+    # Connects an event when the keyword is recongnized or when it is canceled
+    keyword_recognizer.recognized.connect(recognized)
+    keyword_recognizer.canceled.connect(canceled)
+
+    # Start keyword recognition
+    resultRecognize = keyword_recognizer.recognize_once_async(model)
+    print('Say something starting with "{}" followed by whatever you want...'.format(keyword))
+    result = resultRecognize.get()
+
+    # if(result.reason == speechsdk.ResultReason.RecognizedKeyword):
+
+def main():
+    recognize_word()
+    print("done")
+
+if __name__ == '__main__':
+    main()
