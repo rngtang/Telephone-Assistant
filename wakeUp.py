@@ -1,4 +1,5 @@
 import os
+import time
 
 # Azure imports
 from azure.core.credentials import AzureKeyCredential
@@ -25,22 +26,25 @@ speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, au
 # Keyword recognizer configs
 model = speechsdk.KeywordRecognitionModel("./1f4d77be-1956-4c35-8530-221b1af24f4c.table")
 keyword = "Hey CoLab"
-keyword_recognizer = speechsdk.KeywordRecognizer()
-
-def recognized(event):
-    result = event.result
-
-    if(result.reason == speechsdk.ResultReason.RecognizedKeyword):
-        print("RECOGNIZED KEYWORD: {}".format(result.text))
-    
-def canceled(event):
-    result = event.result
-    
-    if (result.reason == speechsdk.ResultReason.Canceled):
-        print('CANCELED: {}'.format(result.cancellation_details.reason))
         
 
 def recognize_word():
+
+    keyword_recognizer = speechsdk.KeywordRecognizer()
+
+    def recognized(event):
+        result = event.result
+
+        if(result.reason == speechsdk.ResultReason.RecognizedKeyword):
+            print("RECOGNIZED KEYWORD: {}".format(result.text))
+            userSpeech = speech_recognizer.recognize_once()
+            print(userSpeech)
+        
+    def canceled(event):
+        result = event.result
+        
+        if (result.reason == speechsdk.ResultReason.Canceled):
+            print('CANCELED: {}'.format(result.cancellation_details.reason))
 
     # Connects an event when the keyword is recongnized or when it is canceled
     keyword_recognizer.recognized.connect(recognized)
@@ -50,8 +54,12 @@ def recognize_word():
     resultRecognize = keyword_recognizer.recognize_once_async(model)
     print('Say something starting with "{}" followed by whatever you want...'.format(keyword))
     result = resultRecognize.get()
+    print(result)
 
-    # if(result.reason == speechsdk.ResultReason.RecognizedKeyword):
+    if (result.reason == speechsdk.ResultReason.RecognizedKeyword):
+        time.sleep(5)
+        speechsdk.AudioDataStream(result).detach_input()
+
 
 def main():
     recognize_word()
