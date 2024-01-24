@@ -1,3 +1,5 @@
+# https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/b4257370e1d799f0b8b64be9bf2a34cad8b1a251/samples/python/console/speech_sample.py#L290
+
 import os
 import time
 
@@ -23,14 +25,21 @@ audio_config = speechsdk.audio.AudioOutputConfig(use_default_speaker=True)
 speech_config.speech_synthesis_voice_name='en-US-AvaNeural'
 speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
 
-# Keyword recognizer configs
-# Creates an instance of a keyword recognition model. Update this to
-# point to the location of your keyword recognition model.
-model = speechsdk.KeywordRecognitionModel("./models/1f4d77be-1956-4c35-8530-221b1af24f4c.table")
-keyword = "Hey CoLab"
 
 # """performs keyword-triggered speech recognition with input microphone"""
 def speech_recognize_keyword_from_microphone():
+
+    #    """performs keyword-triggered speech recognition with input microphone"""
+    # speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region)
+
+    # Creates an instance of a keyword recognition model. Update this to
+    # point to the location of your keyword recognition model.
+    model = speechsdk.KeywordRecognitionModel("./models/1f4d77be-1956-4c35-8530-221b1af24f4c.table")
+
+    # The phrase your keyword recognition model triggers on.
+    keyword = "Hey CoLab"
+
+    speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config)
 
     done = False
 

@@ -28,7 +28,7 @@ def speech_recognize_keyword_locally_from_microphone():
 
     # Creates an instance of a keyword recognition model. Update this to
     # point to the location of your keyword recognition model.
-    model = speechsdk.KeywordRecognitionModel("./models/1f4d77be-1956-4c35-8530-221b1af24f4c.table")
+    model = speechsdk.KeywordRecognitionModel("../models/1f4d77be-1956-4c35-8530-221b1af24f4c.table")
 
     # The phrase your keyword recognition model triggers on.
     keyword = "Hey CoLab"
@@ -46,8 +46,8 @@ def speech_recognize_keyword_locally_from_microphone():
         result = evt.result
         if result.reason == speechsdk.ResultReason.RecognizedKeyword:
             print("RECOGNIZED KEYWORD: {}".format(result.text))
-            userSpeech = speech_recognizer.recognize_once()
-            print(userSpeech)
+            # userSpeech = speech_recognizer.recognize_once()
+            # print(userSpeech)
             
         nonlocal done
         done = True
@@ -78,6 +78,8 @@ def speech_recognize_keyword_locally_from_microphone():
         # save_future = result_stream.save_to_wav_file_async("AudioFromRecognizedKeyword.wav")
         print('Saving file...')
         # saved = save_future.get()
+    else:
+        print("Could not recognize keyword")
 
     # If active keyword recognition needs to be stopped before results, it can be done with
     #

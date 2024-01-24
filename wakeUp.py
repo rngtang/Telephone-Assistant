@@ -57,7 +57,7 @@ def recognize_word():
     print(result)
 
     if (result.reason == speechsdk.ResultReason.RecognizedKeyword):
-        time.sleep(5)
+        time.sleep(1)
         speechsdk.AudioDataStream(result).detach_input()
 
 
