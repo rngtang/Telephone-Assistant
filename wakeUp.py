@@ -24,7 +24,7 @@ speech_config.speech_synthesis_voice_name='en-US-AvaNeural'
 speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
 
 # Keyword recognizer configs
-model = speechsdk.KeywordRecognitionModel("./1f4d77be-1956-4c35-8530-221b1af24f4c.table")
+model = speechsdk.KeywordRecognitionModel("./models/1f4d77be-1956-4c35-8530-221b1af24f4c.table")
 keyword = "Hey CoLab"
         
 
