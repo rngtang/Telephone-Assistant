@@ -44,6 +44,7 @@ def answer(question):
         )
 
     # returns the answer
+    print("Q: {}".format(question))
     response(output.answers[0])
 
 def response(answer):
@@ -64,14 +65,6 @@ def main():
     print("Ask something about the Co-Lab.")
     speech_synthesizer.speak_text_async("Ask something about the Co-Lab.")
     
-    userSpeech = speech_recognizer.recognize_once()
-
-    # if the user doesn't want to speak 
-    if(userSpeech.text == ''):
-        print("none")
-        speech_synthesizer.speak_text("Sorry I could not understand you")
-        return
-    
     # Debug
     # answer("what is the colab?")
 
@@ -82,9 +75,11 @@ def main():
         # if the user doesn't want to speak 
         if(userSpeech.text == ''):
             print("No speech detected.")
+            speech_synthesizer.speak_text("Sorry, I couldn't understand you")
             return
         
-        listen(userSpeech)
+        if(not listen(userSpeech)):
+            speech_synthesizer.speak_text("Sorry, could you repeat that again?")
         
 if __name__ == '__main__':
     main()
