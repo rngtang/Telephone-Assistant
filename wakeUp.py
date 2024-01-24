@@ -22,7 +22,7 @@ audio_config = speechsdk.audio.AudioOutputConfig(use_default_speaker=True)
 speech_config.speech_synthesis_voice_name='en-US-AvaNeural'
 speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
 
+keywordModel = speechsdk.KeywordRecognitionModel("./1f4d77be-1956-4c35-8530-221b1af24f4c.table")
 
-
-speech_recognizer.start_keyword_recognition()
 print("Listening")
+print(speech_recognizer.start_keyword_recognition_async(keywordModel))
