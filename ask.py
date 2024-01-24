@@ -1,3 +1,5 @@
+# Restructured QnA program
+
 # ask a question (stt) and have it respond with the answer
 import os
 import time
