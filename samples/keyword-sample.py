@@ -1,3 +1,5 @@
+# line 517: https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/b4257370e1d799f0b8b64be9bf2a34cad8b1a251/samples/python/console/speech_sample.py#L522
+
 import os
 import time
 
@@ -66,11 +68,19 @@ def speech_recognize_keyword_locally_from_microphone():
     # Start keyword recognition.
     result_future = keyword_recognizer.recognize_once_async(model)
     print('Say something starting with "{}" followed by whatever you want...'.format(keyword))
-    result = result_future.get()
+
+    result = speech_recognizer.recognize_once()
+    # Checks result.
+
+    # try: 
+    #     result = result_future.get()
+    # except: 
+    #     print("wasn't able to .get")
 
     # Read result audio (incl. the keyword).
+        
     if result.reason == speechsdk.ResultReason.RecognizedKeyword:
-        time.sleep(5) # give some time so the stream is filled
+        time.sleep(2) # give some time so the stream is filled
         result_stream = speechsdk.AudioDataStream(result)
         result_stream.detach_input() # stop any more data from input getting to the stream
         print(result)
