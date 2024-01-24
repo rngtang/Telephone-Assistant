@@ -81,7 +81,7 @@ def main():
 
         # if the user doesn't want to speak 
         if(userSpeech.text == ''):
-            print("none")
+            print("No speech detected.")
             return
         
         listen(userSpeech)
