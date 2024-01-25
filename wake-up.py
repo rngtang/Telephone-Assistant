@@ -30,11 +30,10 @@ speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, au
 def speech_recognize_keyword_from_microphone():
 
     #    """performs keyword-triggered speech recognition with input microphone"""
-    # speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region)
 
     # Creates an instance of a keyword recognition model. Update this to
     # point to the location of your keyword recognition model.
-    model = speechsdk.KeywordRecognitionModel("./models/1f4d77be-1956-4c35-8530-221b1af24f4c.table")
+    model = speechsdk.KeywordRecognitionModel("./models/advanced.table")
 
     # The phrase your keyword recognition model triggers on.
     keyword = "Hey CoLab"
@@ -49,6 +48,7 @@ def speech_recognize_keyword_from_microphone():
         nonlocal done
         done = True
 
+    # Prints in real time what words it recognized
     def recognizing_cb(evt):
         # """callback for recognizing event"""
         if evt.result.reason == speechsdk.ResultReason.RecognizingKeyword:
@@ -56,6 +56,7 @@ def speech_recognize_keyword_from_microphone():
         elif evt.result.reason == speechsdk.ResultReason.RecognizingSpeech:
             print('RECOGNIZING: {}'.format(evt))
 
+    # Prints in the end what it recognized
     def recognized_cb(evt):
         # """callback for recognized event"""
         if evt.result.reason == speechsdk.ResultReason.RecognizedKeyword:
@@ -66,7 +67,7 @@ def speech_recognize_keyword_from_microphone():
             print('NOMATCH: {}'.format(evt))
 
     # Connect callbacks to the events fired by the speech recognizer
-    speech_recognizer.recognizing.connect(recognizing_cb)
+    # speech_recognizer.recognizing.connect(recognizing_cb)
     speech_recognizer.recognized.connect(recognized_cb)
     speech_recognizer.session_started.connect(lambda evt: print('SESSION STARTED: {}'.format(evt)))
     speech_recognizer.session_stopped.connect(lambda evt: print('SESSION STOPPED {}'.format(evt)))
