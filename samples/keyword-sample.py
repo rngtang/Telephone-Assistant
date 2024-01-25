@@ -48,8 +48,6 @@ def speech_recognize_keyword_locally_from_microphone():
         result = evt.result
         if result.reason == speechsdk.ResultReason.RecognizedKeyword:
             print("RECOGNIZED KEYWORD: {}".format(result.text))
-            # userSpeech = speech_recognizer.recognize_once()
-            # print(userSpeech)
             
         nonlocal done
         done = True
@@ -58,6 +56,7 @@ def speech_recognize_keyword_locally_from_microphone():
         result = evt.result
         if result.reason == speechsdk.ResultReason.Canceled:
             print('CANCELED: {}'.format(result.cancellation_details.reason))
+
         nonlocal done
         done = True
 
@@ -68,34 +67,33 @@ def speech_recognize_keyword_locally_from_microphone():
     # Start keyword recognition.
     result_future = keyword_recognizer.recognize_once_async(model)
     print('Say something starting with "{}" followed by whatever you want...'.format(keyword))
-
-    result = speech_recognizer.recognize_once()
-    # Checks result.
-
-    # try: 
-    #     result = result_future.get()
-    # except: 
-    #     print("wasn't able to .get")
+    try: 
+        result = result_future.get()
+    except: 
+        print("Error with getting result")
 
     # Read result audio (incl. the keyword).
-        
     if result.reason == speechsdk.ResultReason.RecognizedKeyword:
-        time.sleep(2) # give some time so the stream is filled
+        time.sleep(2)                                           # give some time so the stream is filled
         result_stream = speechsdk.AudioDataStream(result)
-        result_stream.detach_input() # stop any more data from input getting to the stream
-        print(result)
+        result_stream.detach_input()                            # stop any more data from input getting to the stream
+        # print('This is result: "{}" '.format(result))         # print the metadata on result
 
-        # save_future = result_stream.save_to_wav_file_async("AudioFromRecognizedKeyword.wav")
-        print('Saving file...')
-        # saved = save_future.get()
+        # try: 
+        #     save_future = result_stream.save_to_wav_file_async("keywordTest.wav")
+        #     print('Saving file...')
+        #     saved = save_future.get()
+        # except: 
+        #     print("Could not save result to .wav file")
+
     else:
         print("Could not recognize keyword")
 
     # If active keyword recognition needs to be stopped before results, it can be done with
-    #
-    #   stop_future = keyword_recognizer.stop_recognition_async()
-    #   print('Stopping...')
-    #   stopped = stop_future.get()
+    # stop_future = keyword_recognizer.stop_recognition_async()
+    # print('Stopping...')
+    # stopped = stop_future.get()
+    # print('Stopped: "{}" '.format(stopped))
 
 def main(): 
     print("hello world")
