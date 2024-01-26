@@ -33,7 +33,7 @@ def speech_recognize_keyword_from_microphone():
 
     # Creates an instance of a keyword recognition model. Update this to
     # point to the location of your keyword recognition model.
-    model = speechsdk.KeywordRecognitionModel("./models/advanced.table")
+    model = speechsdk.KeywordRecognitionModel("./models/high_accepts.table")
 
     # The phrase your keyword recognition model triggers on.
     keyword = "Hey CoLab"
