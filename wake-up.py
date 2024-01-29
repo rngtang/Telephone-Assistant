@@ -56,7 +56,7 @@ def speech_recognize_keyword_from_microphone():
         elif evt.result.reason == speechsdk.ResultReason.RecognizingSpeech:
             print('RECOGNIZING: {}'.format(evt))
 
-    # Prints in the end what it recognized
+    # Prints what it recognized
     def recognized_cb(evt):
         # """callback for recognized event"""
         if evt.result.reason == speechsdk.ResultReason.RecognizedKeyword:
