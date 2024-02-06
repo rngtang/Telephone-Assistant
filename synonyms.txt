@@ -1,0 +1,16 @@
+{
+  "value": [
+    {
+      "alterations": [
+        "Innovation Co Lab",
+        "Co Lab"
+      ]
+    },
+    {
+      "alterations": [
+        "Rubenstein Arts Center",
+        "Ruby"
+      ]
+    }
+  ]
+}
