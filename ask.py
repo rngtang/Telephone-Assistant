@@ -69,17 +69,19 @@ def main():
     # answer("what is the colab?")
 
     while True:
-        time.sleep(1)
+        time.sleep(2)
         userSpeech = speech_recognizer.recognize_once()
 
         # if the user doesn't want to speak 
         if(userSpeech.text == ''):
-            print("No speech detected.")
-            speech_synthesizer.speak_text("Sorry, I couldn't understand you")
+            print("Sorry, I couldn't understand you.")
+            speech_synthesizer.speak_text("Sorry, I couldn't understand you. No speech detected.")
             return
         
-        if(not listen(userSpeech)):
-            speech_synthesizer.speak_text("Sorry, could you repeat that again?")
+        
+        if (not listen(userSpeech)): 
+            print("Ask something about the Co-Lab.")
+            speech_synthesizer.speak_text_async("Ask something about the Co-Lab.")
         
 if __name__ == '__main__':
     main()
