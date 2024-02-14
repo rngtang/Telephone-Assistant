@@ -1,6 +1,11 @@
 from openai import OpenAI
 client = OpenAI()
 
+# knowledge_base = client.files.create(
+#     file=open("./formatted.pdf", "rb"),
+#     purpose='assistants'
+# )
+
 # This is a test to create an assistant from python. 
 # Don't run this program several times, otherwise you'll end up creating a bunch of assistants
 colab_assistant = client.beta.assistants.create(
