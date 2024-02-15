@@ -28,13 +28,11 @@ my_assistants = client.beta.assistants.list(
 for item in my_assistants.data:
       assistant_id = item.id
 
-
 assistant_files = client.beta.assistants.files.list(
   assistant_id=assistant_id
 )
 for item in assistant_files.data:
       file_id = item.id
-
 
 message_thread = client.beta.threads.create(
   messages=[
