@@ -1,11 +1,12 @@
 from openai import OpenAI
 import time
 import json
+import os
 import requests
 
 client = OpenAI()
 
-assistant_id = "asst_ohl8sJLMkCw6K6xN0iUrFuwJ"
+assistant_id = os.environ.get("ASSISTANT_ID")
 print("Hello, how can I help you?")
 
 # Creates a thread
@@ -13,8 +14,10 @@ message_thread = client.beta.threads.create()
 thread_id = message_thread.id
 url = 'https://shiftr-api.colab.duke.edu/publicCalendars/digitalSign/current/CoLab%20Studios/TEC'
 
+# parse the info
 def get_info(url):
     response = requests.get(url)
+    returning = []
     if response.status_code == 200:
         data = response.json()
         for item in data:
@@ -26,19 +29,12 @@ def get_info(url):
             expertise = item['expertise']
             netid = item['netid']
             clocked_in = item['clocked_in']
-    #     parameters_object = {
-    #         "location": location,
-    #         "user_name": user_name,
-    #         "status": status,
-    #         "start": start,
-    #         "end": end,
-    #         "expertise": expertise,
-    #         "netid": netid,
-    #         "clocked_in": clocked_in
-    #     }
-    #     print(parameters_object)
-    # else:
-    #     print(f"Failed to fetch data from {url}. Status code: {response.status_code}")
+
+            returning.append(user_name)
+
+
+# put the info in the function somehow -> function outline in add_function.py
+# https://medium.com/@ralfelfving/learn-function-calls-in-openai-assistants-api-519ecc7596ce 
 
 
 # create smaller subfunctions for use: https://cookbook.openai.com/examples/assistants_api_overview_python 
@@ -91,32 +87,36 @@ while True:
     print("Thinking...")
     while True:
         run_status = client.beta.threads.runs.retrieve(thread_id=thread_id, run_id=run_id)
+        # If there is a response
         if run_status.status == "completed":
             break
+        # If it requires to call a function
         elif run_status.status == "requires_action":
             try: 
                 tool_call = run_status.required_action.submit_tool_outputs.tool_calls[0]
-                print(tool_call)
-                print(tool_call.function)
+                # print(tool_call)
+                # print(tool_call.function)
                 name = tool_call.function.name
                 arguments = json.loads(tool_call.function.arguments)
 
                 print("Function Name:", name)
                 print("Function Arguments:", arguments)
 
+                if(name == "get_current_worker"):
+                    info = get_info(url)
+                else:
+                    print("Could not identify tool")
+                    break
+
                 function_run = client.beta.threads.runs.submit_tool_outputs(
                     thread_id=thread_id,
                     run_id=run_id,
-                    tool_outputs=[
-                        {
-                            "tool_call_id": tool_call.id,
-                            "output": json.dumps(arguments),
-                        }
-                    ],
+                    tool_outputs=info
                 )
-
+                
                 run = wait_on_run(function_run, message_thread)
-                print(get_response(message_thread))
+            
+                # print(get_response(message_thread))
 
                 break
             except: 

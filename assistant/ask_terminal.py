@@ -1,8 +1,9 @@
 from openai import OpenAI
 import time
+import os
 client = OpenAI()
 
-assistant_id = "asst_ohl8sJLMkCw6K6xN0iUrFuwJ"
+assistant_id = os.environ.get("ASSISTANT_ID")
 print("Hello, how can I help you?")
 
 # Creates a thread
