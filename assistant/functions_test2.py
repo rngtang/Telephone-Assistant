@@ -3,15 +3,12 @@ import time
 import os
 import requests
 
-# Variables
+# Global variables
 url = 'https://shiftr-api.colab.duke.edu/publicCalendars/digitalSign/current/CoLab%20Studios/TEC'
+assistant_id = os.environ.get("ASSISTANT_ID")
 
 # Sets up the client
 client = OpenAI()
-
-# Gets Assistant ID from the OS
-assistant_id = os.environ.get("ASSISTANT_ID")
-print("Hello, how can I help you?")
 
 # Creates a thread
 message_thread = client.beta.threads.create()
@@ -123,4 +120,5 @@ def main():
                 
 
 if __name__ == "__main__":
+    print("Hello, how can I help you?")
     main()
