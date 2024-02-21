@@ -81,7 +81,7 @@ def main():
 
         # Printes the status of the run. Ex: "in_progress", "requires_action", "completed"
         print(run.status)
-        speech_synthesizer.speak_text(run.status)
+        # speech_synthesizer.speak_text(run.status)
 
 
         # If it requires to call the API
@@ -120,10 +120,15 @@ def main():
             # If the model finishes formulating the answer, breaks the lop
             if run.status == "completed":
                 break
+            # If it times out 
+            elif run.status == "expired":
+                print("Run timed out:", run.last_error)
+                speech_synthesizer.speak_text("Sorry, the answer timed out.")
+                break
             # If for some reason it fails
             elif run.status == "failed":
                 print("Run failed:", run.last_error)
-                speech_synthesizer.speak_text("Sorry, the run failed.")
+                speech_synthesizer.speak_text("Sorry, the answer could not be generated.")
                 break
             time.sleep(1.5)
 
@@ -142,6 +147,7 @@ def main():
                         response = content.text.value 
                         print(f'\n{role}: {response}')
                         speech_synthesizer.speak_text((f'\n{role}: {response}'))
+                        speech_synthesizer.speak_text("What other questions do you have?")
             except: 
                 print("No return message")
         print("\n")
