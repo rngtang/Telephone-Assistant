@@ -31,7 +31,6 @@ get_current_worker = {
     },
 }
 
-
 updated_assistant = client.beta.assistants.update(
     assistant_id,
     tools=[

@@ -27,6 +27,8 @@ while True:
     )
 
     run_id = start_run.id
+    run_status = client.beta.threads.runs.retrieve(thread_id=thread_id, run_id=run_id)
+    print(run_status.status)
 
     # Waits until gets the response
     print("Thinking...")

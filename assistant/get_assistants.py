@@ -13,5 +13,3 @@ my_assistants = client.beta.assistants.list(
 )
 
 print(my_assistants.data)
-
-    
