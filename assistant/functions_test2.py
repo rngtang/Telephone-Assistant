@@ -73,7 +73,7 @@ def main():
                 # Appends to an output list
                 tool_outputs = []
                 tool_outputs.append({"tool_call_id":tool_calls.id, "output": workers})
-                print(tool_outputs)
+                # print(tool_outputs)
 
                 # Sends the the parameters with the tools
                 run = client.beta.threads.runs.submit_tool_outputs(
@@ -93,6 +93,10 @@ def main():
             print(run.status)
             # If the model finishes formulating the answer, breaks the lop
             if run.status == "completed":
+                break
+            # Times out sometimes 
+            elif run.status == "expired":
+                print("Run timed out:", run.last_error)
                 break
             # If for some reason it fails
             elif run.status == "failed":
