@@ -124,5 +124,10 @@ def main():
                 
 
 if __name__ == "__main__":
+    assistant_files = client.beta.assistants.files.list(
+        assistant_id=assistant_id
+    )
+    print(assistant_files)
+    
     print("Hello, how can I help you?")
     main()
