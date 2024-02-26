@@ -9,15 +9,17 @@ assistant_files = client.beta.assistants.files.list(
   assistant_id=assistant_id
 )
 
+file_to_delete = []
 for file in assistant_files:
     file_to_delete = file.id
 
 # delete old 
-deleted_assistant_file = client.beta.assistants.files.delete(
-    assistant_id=assistant_id,
-    file_id=file_to_delete
-)
-print("Delete status: ", deleted_assistant_file)
+if file_to_delete != []: 
+    deleted_assistant_file = client.beta.assistants.files.delete(
+        assistant_id=assistant_id,
+        file_id=file_to_delete
+    )
+    print("Delete status: ", deleted_assistant_file)
 
 # create new file
 new_file = client.files.create(
