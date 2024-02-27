@@ -15,7 +15,12 @@ Welcome to the Co-Lab's telephone assistant! This project is meant to serve as a
 2. OpenAI Assistants: used to generate answers to questions
 
 ## Testing Combined Project
-To test the combined project that uses both Azure and OpenAI together for a talking question-answering bot, use this command: 
+To test the combined project that uses both Azure and OpenAI together for a talking question-answering bot, use the follwoing commands:
+
+```
+source /home/colabdev/Desktop/telephone-assistant/openai-env/bin/activate
+```
+
 ```
 python /home/colabdev/Desktop/telephone-assistant/assistant/talk_functions.py
 ```
