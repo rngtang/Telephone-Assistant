@@ -22,11 +22,15 @@ if file_to_delete != []:
     print("Delete status: ", deleted_assistant_file)
 
 # create new file
+# new_file = client.files.create(
+#     file=open("../media/hello.pdf", "rb"),
+#     purpose='assistants'
+# )
+# print(new_file)
 new_file = client.files.create(
-    file=open("../media/hello.pdf", "rb"),
+    file=open("../media/formattedK.pdf", "rb"),
     purpose='assistants'
 )
-# print(new_file)
 
 new_file_id = new_file.id
 
