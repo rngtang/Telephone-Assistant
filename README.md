@@ -3,7 +3,6 @@
     * created update_files.py for files and update_assistant.py to update assistant description
 * Update knowledge base pdf to include more information -> such as FTEs, map with where are rooms, tools, etc. 
 * Add way to exit the bot/finish 
-    * 
 * Integrate with STT and TTS and wake-up word 
     * check out talk_functions.py, seems to do what it needs to kind of 
 * Document everything 
