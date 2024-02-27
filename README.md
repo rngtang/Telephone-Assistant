@@ -53,10 +53,12 @@ python /home/colabdev/Desktop/telephone-assistant/assistant/talk_functions.py
 ```
 
 ## How To Update the assistant
+There are several ways to update the Assistant. For example, we can update the knowledge base or the settings.
 ### Update the Knowledge Base
-To modify the assistant, one can change the description of the assistant and/or its functions, or one can change the file(s) the assistant uses as its knowledge base. These two options can be found in the files `update_assistant.py` and `update_files.py`.
+To update the knowledge base, you can follow the `update_files.py` template.
 
-### Update the assistant
+### Update the Assistant Settings
+To update the Assistant settings, you can follow the `update_assistant.py` template.
 
 ### Known Bugs 
 There are errors with the assistant recognizing when a function call is necessary. For example, if you ask, "Where is Lily?", the assistant with think Lily is a person (rather than the library) and call the function. 
