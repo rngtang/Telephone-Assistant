@@ -26,7 +26,7 @@ import time
 import dotenv
 from datetime import datetime
 from openai import OpenAI
-from functions import Functions
+from assistant.testing.functions import Functions
 dotenv.load_dotenv()
 OpenAI.api_key = os.getenv('OPENAI_API_KEY')
 ASSISTANT_ID = os.getenv('ASSISTANT_ID')
