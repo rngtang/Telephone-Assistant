@@ -14,25 +14,22 @@ Welcome to the Co-Lab's telephone assistant! This project is meant to serve as a
 1. Azure AI Speech: used for speech-to-text and text-to-speech interaction
 2. OpenAI Assistants: used to generate answers to questions
 
-## Activate the Virtual environment
-In order for the project to work, it is really important to activate the virtual environment. To do so, run the following command:
-```
-source /home/colabdev/Desktop/telephone-assistant/openai-env/bin/activate
-```
-
-## Testing Combined Project
-To test the combined project that uses both Azure and OpenAI together for a talking question-answering bot, use the follwoing commands:
-
-```
-python /home/colabdev/Desktop/telephone-assistant/assistant/talk_functions.py
-```
-
 ## Part 1: Azure AI Speech
-We originally planned to use Azure AI services for both STT/TTS and question answering. however, 
+The main functionality of Azure AI Speech to to be able to use the STT and TTS features that it provides. In this case, we are using STT to recognize what is the user asking and TTS for the assistant to answer the question.
+We originally planned to use Azure AI services for both STT/TTS and question answering. However, the capabilities of the Question Answering feature were not enough. As a result, for the the Question Answering part we are using OpenAI assistants.
 
 Documentation for the Speech SDK can be found here: https://azure.microsoft.com/en-us/products/ai-services/ai-speech/. 
 
 ## Part 2: OpenAI Assistants 
+As mentioned before, we are using OpenAI's custom assistant features to generate a more human-like conversation with the user. In order to do this, we are using the Retrieval and Functions tools that allow us to not only provide the assistant with information from a document, but also some real-time data, such as the current available employees. Currently, the assistant has a PDF document that constains all the necessary information about the Co-Lab. Furthermore, it also has the ability to call an expertal API when real-time data is required.
+
+### How It Works
+The following chart represents how the Co-Lab assistant pipeline works. To answer questions, the assistant first creates a thread, to which messages (questions) can be appended and a run (answer generation) can start. Using the different status of an assistant's run object, the assistant can then know whether it needs to function call (request data from an API) to add real-time information to its answer, such as who is currently on shift. Only after the run status is completed does the answer get printed. This question-answering cycle should continue until the user asks no more questions, though the exiting process is still being worked on.
+![Program flowchart](./assistant/media/Assistant%20flowchart.png)
+
+Documentation for OpenAI Assistants can be found here: https://platform.openai.com/docs/assistants/overview. 
+
+## Getting Started
 To test just the OpenAI Assistant without the use of TTS/STT, use this command: 
 ```
 python /home/colabdev/Desktop/telephone-assistant/assistant/functions_test2.py
@@ -40,11 +37,20 @@ python /home/colabdev/Desktop/telephone-assistant/assistant/functions_test2.py
 To modify the assistant, one can change the description of the assistant and/or its functions, or one can change the file(s) the assistant uses as its knowledge base. These two options can be found in the files `update_assistant.py` and `update_files.py`.
 
 <!-- ![Flowchart for the Run object lifecycle](image.png) -->
-### How It Works
-The following chart represents how the Co-Lab assistant pipeline works. To answer questions, the assistant first creates a thread, to which messages (questions) can be appended and a run (answer generation) can start. Using the different status of an assistant's run object, the assistant can then know whether it needs to function call (request data from an API) to add real-time information to its answer, such as who is currently on shift. Only after the run status is completed does the answer get printed. This question-answering cycle should continue until the user asks no more questions, though the exiting process is still being worked on.
-![Program flowchart](./assistant/media/Assistant%20flowchart.png)
+### Activate the Virtual environment
+In order for the project to work, it is really important to activate the virtual environment. To do so, run the following command:
+```
+source /home/colabdev/Desktop/telephone-assistant/openai-env/bin/activate
+```
 
-Documentation for OpenAI Assistants can be found here: https://platform.openai.com/docs/assistants/overview. 
+### Testing Combined Project
+To test the combined project that uses both Azure and OpenAI together for a talking question-answering bot, use the following commands:
+
+```
+python /home/colabdev/Desktop/telephone-assistant/assistant/talk_functions.py
+```
+
+## How to update knowledge base
 
 ### Known Bugs 
 There are errors with the assistant recognizing when a function call is necessary. For example, if you ask, "Where is Lily?", the assistant with think Lily is a person (rather than the library) and call the function. 
