@@ -124,9 +124,11 @@ def main():
                 role = message.role
                 for content in message.content:
                     if content.type == 'text':
+                        time.sleep(1)
                         response = content.text.value 
-
                         print(f'\n{role}: {response}')
+                        # problem: doesn't seem to say the first question from the user
+                        speech_synthesizer.speak_text_async(role).get()
                         speech_synthesizer.speak_text_async(response).get()
             except: 
                 print("No return message")
