@@ -61,6 +61,10 @@ def main():
         userSpeech = speech_recognizer.recognize_once()
         question = userSpeech.text
 
+        # If the user doesn't say anything, breaks the loop
+        if(question == ""):
+            break
+
         # speech_synthesizer.speak_text_async(question).get()
 
         # Adds messsage to the thread
