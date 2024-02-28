@@ -38,6 +38,7 @@ def getInfo(url):
             workers = workers + ", " + worker["user_name"]
     return workers[2:]
 
+# Submits the function output to the assistant
 def requiresAction(run, run_id):
     tool_calls = run.required_action.submit_tool_outputs.tool_calls[0]
     # print(tool_calls)

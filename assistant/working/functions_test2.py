@@ -38,7 +38,6 @@ def requiresAction(run, run_id):
 
     # Calls the API
     workers = getInfo(StudioUrl) if tool_calls.function.name == "get_current_worker" else getInfo(StudentDevsUrl)
-    # print(workers)
 
     # Appends to an output list
     tool_outputs = []
@@ -88,8 +87,6 @@ def main():
             run = client.beta.threads.runs.retrieve(thread_id=thread_id, run_id=run_id)
             print(run.status)
             if(run.status == "requires_action"):
-                # tool_call = run.required_action.submit_tool_outputs.tool_calls[0]
-                # print(tool_call)
                 print("Calling API")
                 requiresAction(run, run_id)
             # If the model finishes formulating the answer, breaks the lop
@@ -125,10 +122,6 @@ def main():
                 
 
 if __name__ == "__main__":
-    assistant_files = client.beta.assistants.files.list(
-        assistant_id=assistant_id
-    )
-    print(assistant_files)
     
     print("Hello, how can I help you?")
     main()
