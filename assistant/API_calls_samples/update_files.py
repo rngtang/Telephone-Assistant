@@ -28,7 +28,7 @@ if file_to_delete != []:
 # )
 # print(new_file)
 new_file = client.files.create(
-    file=open("../media/formattedK.pdf", "rb"),
+    file=open("../../media/formattedK.pdf", "rb"),
     purpose='assistants'
 )
 

@@ -1,8 +1,10 @@
 # to do
 * Create/finish way to update the knowledge base -> have it well documented and easily usable for anyone 
     * created update_files.py for files and update_assistant.py to update assistant description
-* Update knowledge base pdf to include more information -> such as FTEs, map with where are rooms, tools, etc. 
+* Update knowledge base pdf to include more information -> such as FTEs, map with where are rooms, tools, etc.
+    * just recently uploaded new file ? 
 * Add way to exit the bot/finish 
+    * auto times out for the complete one with speech
 * Integrate with STT and TTS and wake-up word 
     * check out talk_functions.py, seems to do what it needs to kind of 
 * Document everything 
@@ -14,7 +16,7 @@ Welcome to the Co-Lab's telephone assistant! This project is meant to serve as a
 1. Azure AI Speech: used for speech-to-text and text-to-speech interaction
 2. OpenAI Assistants: used to generate answers to questions
 
-To learn more about the creation/use process of these technologies, go down to Part 1 and Part 2 respectively (after Getting Started).
+To learn more about the creation/use process of these technologies, go down to "Part 1" and "Part 2" respectively (after Getting Started).
 
 ## Getting Started
 
@@ -32,7 +34,7 @@ Once both the speaker and microphone are ready, run the program using the follow
 ```
 python /home/colabdev/Desktop/telephone-assistant/assistant/working/talk_functions.py
 ```
-You should now be able to verbally ask questions and recieve answers about anything related to the Co-Lab!
+You should now be able to verbally ask questions and recieve answers about anything related to the Co-Lab! Please note that as the current program is being run on a free trial of OpenAI, the number of questions you can ask at one time is limited. 
 
 ### Optional: Testing just AzureAI Speech
 To test just the AzureAI Speech (speech-to-text and text-to-spech), make sure the microphone and speaker are both set up (as described above). Here, the Question Answering is implemented through AzureAI's Language service, not OpenAI. As a result, the answers generated are not very flexible or complete, as described in "Part 1: Azure AI Speech".
@@ -73,4 +75,4 @@ To update the knowledge base, you can follow the `update_files.py` template, fou
 To update the Assistant settings, you can follow the `update_assistant.py` template, found in `/home/colabdev/Desktop/telephone-assistant/assistant/API_calls_samples`.
 
 ## Known Bugs 
-Currently, there are errors with the assistant recognizing when a function call is necessary. For example, if you ask, "Where is Lily?", the assistant with think Lily is a person (rather than the library) and call the function. 
+Currently, there are errors with the assistant recognizing when a function call is necessary. For example, if you ask, "Where is Lily?", the assistant with think Lily is a person (rather than the library) and call the function. Additionally, the assistant sometimes gets confused between when to use one function versus the other (get_workers vs get_student_devs).
