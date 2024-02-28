@@ -6,6 +6,7 @@ import requests
 # Global variables
 StudioUrl = 'https://shiftr-api.colab.duke.edu/publicCalendars/digitalSign/current/CoLab%20Studios/TEC'
 StudentDevsUrl = 'https://shiftr-api.colab.duke.edu/publicCalendars/digitalSign/current/Colab%20Student%20Developer/TEC%20Office%20Hours'
+rootClasses = 'https://api.pathways.duke.edu/api/v1/signage_sync?location=1'
 assistant_id = os.environ.get("ASSISTANT_ID")
 
 # Sets up the client
@@ -14,6 +15,15 @@ client = OpenAI()
 # Creates a thread
 message_thread = client.beta.threads.create()
 thread_id = message_thread.id
+
+def getRoots():
+    response = requests.get(rootClasses)
+    classes = ""
+
+    if(response.status == 200):
+        data = response.json()
+        for c in data:
+            classes = classes + ", " + c["course_name"] + ": " + c["start"] 
 
 # Calls the API to get the current workers
 def getInfo(url):
