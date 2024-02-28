@@ -79,7 +79,7 @@ def speech_recognize_keyword_locally_from_microphone():
 
     # Read result audio (incl. the keyword).
     if result.reason == speechsdk.ResultReason.RecognizedKeyword:
-        # print('This is result: "{}" '.format(result))           # print the metadata on result
+        # print('This is result: "{}" '.format(result))
         
         # put code for what to do once it's listening 
         main()

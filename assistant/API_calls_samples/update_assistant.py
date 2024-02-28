@@ -11,11 +11,11 @@ my_updated_assistant = client.beta.assistants.update(
   tools=[{"type": "retrieval"}, 
          {"type": "function", "function": {
       "name": "get_current_worker", 
-      "description": "When asked about 'who is available at the Colab?' or if a person requests help to use hardware tools, get the name of the current worker that is passed as an array. If the parameter passed is empty, respond with 'No worker is available right now'"
+      "description": "When asked about 'who is available at the Colab?' or if a person requests help to use hardware tools, get the name of the current worker that is passed as an array. If the parameter passed is empty, respond with 'No worker is available right now'. Do not call on this function if asked about software or FTEs (Full Time Employees)."
       }},
         {"type": "function", "function": {
       "name": "get_current_student_devs", 
-      "description": "When asked about 'which student developer is available at the Colab?' or if a person requests help with software, get the name of the current worker and expertise. If the parameter passed is empty, respond with 'No worker is available right now'"
+      "description": "When asked about 'which student developer is available at the Colab?' or if a person requests help with software, get the name of the current worker and expertise. If the parameter passed is empty, respond with 'No worker is available right now'. Do not call on this function if asked about hardware/tools or FTEs (Full Time Employees)."
       }}],
   model="gpt-3.5-turbo-0125",
 )

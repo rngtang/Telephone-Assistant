@@ -1,16 +1,14 @@
 # to do
-* check out talk_functions2.py in the /assistants/testing folder !
-
-* Create/finish way to update the knowledge base -> have it well documented and easily usable for anyone 
-    * created update_files.py for files and update_assistant.py to update assistant description
+<!-- * Create/finish way to update the knowledge base -> have it well documented and easily usable for anyone  -->
 * Update knowledge base pdf to include more information -> such as FTEs, map with where are rooms, tools, etc.
-    * just recently uploaded new file ? 
-* Add way to exit the bot/finish 
-    * auto times out for the complete one with speech
+    * PROBLEM: can't seem to know who the FTEs are 
+<!-- * Add way to exit the bot/finish 
+    * auto times out for the complete one with speech -->
 * Integrate with STT and TTS and wake-up word 
     * check out talk_functions.py, seems to do what it needs to kind of 
-* Document everything 
-    * this readme lol
+    * wake-up word : check out wake_up.py !!!! 
+<!-- * Document everything 
+    * this readme lol -->
 
 
 # Co-Lab Telephone Assistant
@@ -77,4 +75,6 @@ To update the knowledge base, you can follow the `update_files.py` template, fou
 To update the Assistant settings, you can follow the `update_assistant.py` template, found in `/home/colabdev/Desktop/telephone-assistant/assistant/API_calls_samples`.
 
 ## Known Bugs 
-Currently, there are errors with the assistant recognizing when a function call is necessary. For example, if you ask, "Where is Lily?", the assistant with think Lily is a person (rather than the library) and call the function. Additionally, the assistant sometimes gets confused between when to use one function versus the other (get_workers vs get_student_devs).
+Currently, there are a few errors with the assistant recognizing when a function call is necessary. For example, if you ask, "Where is Lily?", the assistant with sometimes think Lily is a person (rather than a typo for the library) and call the function. Additionally, the assistant sometimes gets confused between when to use one function versus the other (get_workers vs get_student_devs).
+
+Furthermore, sometimes the function calls seem to conflict with knowledge inside the knowledge base PDF. We tried to store some information about FTEs and student devs on the PDF, but the assistant seems to want to function call whenever asked about any person, and as a result will get confused when asked questions about FTEs and student dev expertise. 

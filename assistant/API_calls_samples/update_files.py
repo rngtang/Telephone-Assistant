@@ -4,7 +4,6 @@ client = OpenAI()
 
 assistant_id = os.environ.get("ASSISTANT_ID")
 
-# then list all files associated with assistant
 assistant_files = client.beta.assistants.files.list(
   assistant_id=assistant_id
 )
@@ -21,20 +20,16 @@ if file_to_delete != []:
     )
     print("Delete status: ", deleted_assistant_file)
 
-# create new file
-# new_file = client.files.create(
-#     file=open("../media/hello.pdf", "rb"),
-#     purpose='assistants'
-# )
-# print(new_file)
+# create new
 new_file = client.files.create(
     file=open("../../media/formattedK.pdf", "rb"),
     purpose='assistants'
 )
+# print(new_file)
 
 new_file_id = new_file.id
 
-# then add new to assistant
+# add new to assistant
 assistant_file = client.beta.assistants.files.create(
   assistant_id=assistant_id,
   file_id=new_file_id
@@ -46,30 +41,3 @@ my_updated_assistant = client.beta.assistants.update(
 )
 
 print("Updated assistant:", my_updated_assistant)
-
-# How to add without overwriting: 
-    #     // Upload the file
-    #     const file = await openai.files.create({
-    #       file: fs.createReadStream(fileName),
-    #       purpose: "assistants",
-    #     });
-
-    #     // Retrieve existing file IDs from assistant.json to not overwrite
-    #     let existingFileIds = assistantDetails.file_ids || [];
-
-    #     // Update the assistant with the new file ID
-    #     await openai.beta.assistants.update(assistantId, {
-    #       file_ids: [...existingFileIds, file.id],
-    #     });
-
-    #     // Update local assistantDetails and save to assistant.json
-    #     assistantDetails.file_ids = [...existingFileIds, file.id];
-    #     await fsPromises.writeFile(
-    #       assistantFilePath,
-    #       JSON.stringify(assistantDetails, null, 2)
-    #     );
-
-    #     console.log("File uploaded and successfully added to assistant\n");
-    #   }
-
-
