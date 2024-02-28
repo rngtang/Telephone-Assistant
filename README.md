@@ -1,4 +1,6 @@
 # to do
+* check out talk_functions2.py in the /assistants/testing folder !
+
 * Create/finish way to update the knowledge base -> have it well documented and easily usable for anyone 
     * created update_files.py for files and update_assistant.py to update assistant description
 * Update knowledge base pdf to include more information -> such as FTEs, map with where are rooms, tools, etc.

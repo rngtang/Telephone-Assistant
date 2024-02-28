@@ -26,7 +26,7 @@ speech_config.speech_synthesis_voice_name='en-US-AvaNeural'
 speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
 
 def speech_recognize_keyword_locally_from_microphone():
-    model = speechsdk.KeywordRecognitionModel("./models/high_accepts.table")
+    model = speechsdk.KeywordRecognitionModel("../models/high_accepts.table")
     keyword = "Hey CoLab"
     keyword_recognizer = speechsdk.KeywordRecognizer()
     done = False
