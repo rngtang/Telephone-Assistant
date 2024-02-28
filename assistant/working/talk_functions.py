@@ -63,10 +63,11 @@ def main():
         question = userSpeech.text
 
         # If the user doesn't say anything, breaks the loop
+        time.sleep(1)
         if(question == ""):
+            speech_synthesizer.speak_text_async("Nothing asked. Exiting.").get()
+            print("Nothing asked. Exiting.")
             break
-
-        # speech_synthesizer.speak_text_async(question).get()
 
         # Adds messsage to the thread
         client.beta.threads.messages.create(
