@@ -20,10 +20,12 @@ def getRoots():
     response = requests.get(rootClasses)
     classes = ""
 
-    if(response.status == 200):
+    if(response.status_code == 200):
         data = response.json()
         for c in data:
             classes = classes + ", " + c["course_name"] + ": " + c["start"] 
+    
+    return classes
 
 # Calls the API to get the current workers
 def getInfo(url):
@@ -48,7 +50,12 @@ def requiresAction(run, run_id):
     print(tool_calls)
 
     # Calls the API
-    workers = getInfo(StudioUrl) if tool_calls.function.name == "get_current_worker" else getInfo(StudentDevsUrl)
+    if(tool_calls.function.name == "get_current_worker"):
+        workers = getInfo(StudioUrl)
+    elif(tool_calls.function.name == "get_current_student_devs"):
+        workers = getInfo(StudentDevsUrl)
+    else:
+        workers = getRoots()
 
     # Appends to an output list
     tool_outputs = []
@@ -133,11 +140,6 @@ def main():
                 
 
 if __name__ == "__main__":
-    # my_assistants = client.beta.assistants.list(
-    #     order="desc",
-    #     limit="20",
-    # )
-    # print(my_assistants)
         
     print("Hello, how can I help you?")
     main()
