@@ -3,12 +3,8 @@ import time
 import os
 import requests
 
-from azure.core.credentials import AzureKeyCredential
 import azure.cognitiveservices.speech as speechsdk
 
-# Azure AI imports and config
-endpoint = os.environ.get('COLAB_QNA_ENDPOINT')
-credential = AzureKeyCredential(os.environ.get('COLAB_QNA_KEY'))
 # STT configs
 speech_config = speechsdk.SpeechConfig(subscription=os.environ.get('COLAB_SPEECH_KEY'), region=os.environ.get('COLAB_SPEECH_REGION'))
 speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config)
@@ -44,7 +40,7 @@ def requiresAction(run, run_id):
     # print(tool_calls)
     workers = getInfo(StudioUrl) if tool_calls.function.name == "get_current_worker" else getInfo(StudentDevsUrl)
     tool_outputs = []
-    tool_outputs.append({"tool_call_id":tool_calls.id, "output": workers})
+    tool_outputs.append({"tool_call_id": tool_calls.id, "output": workers})
     # print(tool_outputs)
 
     run = client.beta.threads.runs.submit_tool_outputs(
@@ -57,13 +53,13 @@ def requiresAction(run, run_id):
 def main():
     while True:
         print("Ask me anything: ")
-        speech_synthesizer.speak_text_async("Ask me anything:")
+        speech_synthesizer.speak_text_async("Ask me anything:").get()
         # question = input("Ask me anything: ")
-        userSpeech = speech_recognizer.recognize_once()
+        # time.sleep(0.5)
+        userSpeech = speech_recognizer.recognize_once_async().get()
         question = userSpeech.text
 
         # If the user doesn't say anything, breaks the loop
-        time.sleep(1)
         if(question == ""):
             speech_synthesizer.speak_text_async("Nothing asked. Exiting.").get()
             print("Nothing asked. Exiting.")
@@ -80,10 +76,10 @@ def main():
         start_run = client.beta.threads.runs.create(
             thread_id=thread_id,
             assistant_id=assistant_id,
-            instructions="You are the assistant of Duke's Innovation Colab. Your main role is to assist students in answering their questions. Most of the students come for help to use tools like 3d printers, laser cutters, or software. All the information that you need is the document provided, or in the links of functions for function calls. You should avoid answering questions that don't have a relationship with the Colab or its facilities. If someone asks anything that is not related to the colab, you should respond that you are not able to answer their questions. Try to keep answers short"
+            instructions="You are the assistant of Duke's Innovation Colab. Your main role is to assist students in answering their questions. Most of the students come for help to use tools like 3d printers, laser cutters, or software. All the information that you need is the document provided, or in the links of functions for function calls. You should avoid answering questions that don't have a relationship with the Colab or its facilities. If someone asks anything that is not related to the colab, you should respond that you are not able to answer their questions. Try to keep answers short, around 100 words."
         )
 
-        time.sleep(2)
+        time.sleep(1)
         # Gets the current status
         run_id = start_run.id
         run = client.beta.threads.runs.retrieve(thread_id=thread_id, run_id=run_id)
@@ -116,7 +112,7 @@ def main():
                 speech_synthesizer.speak_text_async("Sorry, the run failed.")
                 print("Run failed:", run.last_error)
                 break
-            time.sleep(1.5)
+            time.sleep(1)
 
         # Retrives the messages from the thread
         messages = client.beta.threads.messages.list(
@@ -142,9 +138,12 @@ def main():
         print("\n")
 
 if __name__ == "__main__":
-    assistant_files = client.beta.assistants.files.list(
-        assistant_id=assistant_id
-    )
+    # my_assistants = client.beta.assistants.list(
+    #     order="desc",
+    #     limit="20",
+    # )
+
+    # print(my_assistants.data)
     
     print("Hello, how can I help you?")
     speech_synthesizer.speak_text_async("Hello, how can I help you?")

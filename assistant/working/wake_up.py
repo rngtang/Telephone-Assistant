@@ -3,12 +3,8 @@ import time
 import os
 import requests
 
-from azure.core.credentials import AzureKeyCredential
 import azure.cognitiveservices.speech as speechsdk
 
-# Azure AI imports and config
-endpoint = os.environ.get('COLAB_QNA_ENDPOINT')
-credential = AzureKeyCredential(os.environ.get('COLAB_QNA_KEY'))
 # STT configs
 speech_config = speechsdk.SpeechConfig(subscription=os.environ.get('COLAB_SPEECH_KEY'), region=os.environ.get('COLAB_SPEECH_REGION'))
 speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config)
@@ -21,6 +17,7 @@ speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, au
 StudioUrl = 'https://shiftr-api.colab.duke.edu/publicCalendars/digitalSign/current/CoLab%20Studios/TEC'
 StudentDevsUrl = 'https://shiftr-api.colab.duke.edu/publicCalendars/digitalSign/current/Colab%20Student%20Developer/TEC%20Office%20Hours'
 assistant_id = os.environ.get("ASSISTANT_ID")
+print(assistant_id)
 
 # Creates a thread
 client = OpenAI()
@@ -66,10 +63,8 @@ def speech_recognize_keyword_locally_from_microphone():
         nonlocal done
         done = True
 
-    # Connect callbacks to the events fired by the keyword recognizer.
     keyword_recognizer.recognized.connect(recognized_cb)
 
-    # Start keyword recognition.
     result_future = keyword_recognizer.recognize_once_async(model)
     print('Start by saying "{}"'.format(keyword))
     try: 
@@ -77,11 +72,9 @@ def speech_recognize_keyword_locally_from_microphone():
     except: 
         print("Error with getting result")
 
-    # Read result audio (incl. the keyword).
     if result.reason == speechsdk.ResultReason.RecognizedKeyword:
         # print('This is result: "{}" '.format(result))
         
-        # put code for what to do once it's listening 
         main()
 
     # If active keyword recognition needs to be stopped before results, it can be done with
@@ -94,12 +87,11 @@ def speech_recognize_keyword_locally_from_microphone():
 def main():
     while True:
         print("Ask me anything: ")
-        speech_synthesizer.speak_text_async("Ask me anything:")
-        userSpeech = speech_recognizer.recognize_once()
+        speech_synthesizer.speak_text_async("Ask me anything:").get()
+        userSpeech = speech_recognizer.recognize_once_async().get()
         question = userSpeech.text
 
         # If the user doesn't say anything, breaks the loop
-        time.sleep(1)
         if(question == ""):
             speech_synthesizer.speak_text_async("Nothing asked. Exiting.").get()
             print("Nothing asked. Exiting.")
@@ -116,7 +108,7 @@ def main():
         start_run = client.beta.threads.runs.create(
             thread_id=thread_id,
             assistant_id=assistant_id,
-            instructions="You are the assistant of Duke's Innovation Colab. Your main role is to assist students in answering their questions. Most of the students come for help to use tools like 3d printers, laser cutters, or software. All the information that you need is the document provided, or in the links of functions for function calls. You should avoid answering questions that don't have a relationship with the Colab or its facilities. If someone asks anything that is not related to the colab, you should respond that you are not able to answer their questions. Try to keep answers short"
+            instructions="You are the assistant of Duke's Innovation Colab. Your main role is to assist students in answering their questions. Most of the students come for help to use tools like 3d printers, laser cutters, or software. All the information that you need is the document provided, or in the links of functions for function calls. You should avoid answering questions that don't have a relationship with the Colab or its facilities. If someone asks anything that is not related to the colab, you should respond that you are not able to answer their questions. Try to keep answers short, around 100 words."
         )
 
         time.sleep(1)
@@ -149,6 +141,7 @@ def main():
             # If for some reason it fails
             elif run.status == "failed":
                 speech_synthesizer.speak_text_async("Sorry, the run failed.")
+                speech_synthesizer.speak_text_async(run.last_error.code)
                 print("Run failed:", run.last_error)
                 break
             time.sleep(1.5)
@@ -168,7 +161,7 @@ def main():
                         time.sleep(1)
                         response = content.text.value 
                         print(f'\n{role}: {response}')
-                        speech_synthesizer.speak_text_async(role).get()
+                        # speech_synthesizer.speak_text_async(role).get()
                         speech_synthesizer.speak_text_async(response).get()
             except: 
                 print("No return message")
