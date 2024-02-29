@@ -2,6 +2,7 @@
 <!-- * Create/finish way to update the knowledge base -> have it well documented and easily usable for anyone  -->
 * Update knowledge base pdf to include more information -> such as FTEs, map with where are rooms, tools, etc.
     * PROBLEM: can't seem to know who the FTEs are 
+    * PROBLEM: the programs with talking seem to sometimes interfere with the answers, and they don't seem to be able to access the file sometimes which is confusing and annoying. Try testing with telephone.py and wake_up.py and ask something like "what are grants" to see what i mean.
 <!-- * Add way to exit the bot/finish 
     * auto times out for the complete one with speech -->
 * Integrate with STT and TTS and wake-up word 

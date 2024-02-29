@@ -17,7 +17,7 @@ speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, au
 StudioUrl = 'https://shiftr-api.colab.duke.edu/publicCalendars/digitalSign/current/CoLab%20Studios/TEC'
 StudentDevsUrl = 'https://shiftr-api.colab.duke.edu/publicCalendars/digitalSign/current/Colab%20Student%20Developer/TEC%20Office%20Hours'
 assistant_id = os.environ.get("ASSISTANT_ID")
-print(assistant_id)
+# print(assistant_id)
 
 # Creates a thread
 client = OpenAI()
@@ -141,7 +141,6 @@ def main():
             # If for some reason it fails
             elif run.status == "failed":
                 speech_synthesizer.speak_text_async("Sorry, the run failed.")
-                speech_synthesizer.speak_text_async(run.last_error.code)
                 print("Run failed:", run.last_error)
                 break
             time.sleep(1.5)
@@ -158,19 +157,25 @@ def main():
                 role = message.role
                 for content in message.content:
                     if content.type == 'text':
-                        time.sleep(1)
                         response = content.text.value 
                         print(f'\n{role}: {response}')
-                        # speech_synthesizer.speak_text_async(role).get()
-                        speech_synthesizer.speak_text_async(response).get()
+                        time.sleep(1)
+                        # if (role == "assistant"): 
+                        try: 
+                            speech_synthesizer.speak_text_async(response).get()
+                        except: 
+                            print("can't speak lol")
             except: 
                 print("No return message")
         print("\n")
 
 if __name__ == "__main__":
-    assistant_files = client.beta.assistants.files.list(
-        assistant_id=assistant_id
+    my_assistants = client.beta.assistants.list(
+        order="desc",
+        limit="20",
     )
+
+    print(my_assistants.data)
     
     print("Waking up...")
     speech_synthesizer.speak_text_async("Waking up...")
