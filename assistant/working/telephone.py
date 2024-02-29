@@ -34,15 +34,20 @@ def getInfo(url):
             workers = workers + ", " + worker["user_name"]
     return workers[2:]
 
-# Submits the function output to the assistant
 def requiresAction(run, run_id):
+    # prints which functioned is called
     tool_calls = run.required_action.submit_tool_outputs.tool_calls[0]
-    # print(tool_calls)
+    print(tool_calls)
+
+    # Calls the API
     workers = getInfo(StudioUrl) if tool_calls.function.name == "get_current_worker" else getInfo(StudentDevsUrl)
+
+    # Appends to an output list
     tool_outputs = []
-    tool_outputs.append({"tool_call_id": tool_calls.id, "output": workers})
+    tool_outputs.append({"tool_call_id":tool_calls.id, "output": workers})
     # print(tool_outputs)
 
+    # Sends the the parameters with the tools
     run = client.beta.threads.runs.submit_tool_outputs(
         run_id=run_id,
         thread_id=thread_id,
@@ -54,8 +59,6 @@ def main():
     while True:
         print("Ask me anything: ")
         speech_synthesizer.speak_text_async("Ask me anything:").get()
-        # question = input("Ask me anything: ")
-        # time.sleep(0.5)
         userSpeech = speech_recognizer.recognize_once_async().get()
         question = userSpeech.text
 
@@ -130,9 +133,9 @@ def main():
                         response = content.text.value 
                         print(f'\n{role}: {response}')
                         # problem: doesn't seem to say the first question from the user
-                        if(role == "assistant"):
+                        # if(role == "assistant"):
                         # speech_synthesizer.speak_text_async(role).get()
-                            speech_synthesizer.speak_text_async(response).get()
+                        speech_synthesizer.speak_text_async(response).get()
             except: 
                 print("No return message")
         print("\n")
