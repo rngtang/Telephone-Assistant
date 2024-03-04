@@ -9,7 +9,7 @@
     <!-- * check out talk_functions.py, seems to do what it needs to kind of  -->
     * wake-up word : check out wake-up.py !!!! 
 <!-- * Document everything 
-    * this readme lol -->
+    * this readme lol --> 
 
 
 # Co-Lab Telephone Assistant

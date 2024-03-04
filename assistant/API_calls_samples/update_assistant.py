@@ -16,8 +16,11 @@ my_updated_assistant = client.beta.assistants.update(
         {"type": "function", "function": {
       "name": "get_current_student_devs", 
       "description": "When asked about 'which student developer is available at the Colab?' or if a person requests help with software, get the name of the current worker and expertise. If the parameter passed is empty, respond with 'No worker is available right now'. Do not call on this function if asked about hardware/tools or FTEs (Full Time Employees)."
-      }}],
-  model="gpt-3.5-turbo-0125",
+      }},
+        {"type": "function", "function": {
+      "name": "get_root_classes", 
+      "description": "When asked about root classes, like what root classes are coming, the next 5 root classes will be provided, so just respond with them"
+      }}]
 )
 
 print(my_updated_assistant)

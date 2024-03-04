@@ -140,6 +140,11 @@ def main():
                 
 
 if __name__ == "__main__":
-        
+    # my_assistants = client.beta.assistants.list(
+    #     order="desc",
+    #     limit="20",
+    # )
+    # print(my_assistants.data)
+
     print("Hello, how can I help you?")
     main()

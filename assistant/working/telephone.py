@@ -16,12 +16,24 @@ speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, au
 # OpenAI configs
 StudioUrl = 'https://shiftr-api.colab.duke.edu/publicCalendars/digitalSign/current/CoLab%20Studios/TEC'
 StudentDevsUrl = 'https://shiftr-api.colab.duke.edu/publicCalendars/digitalSign/current/Colab%20Student%20Developer/TEC%20Office%20Hours'
+rootClasses = 'https://api.pathways.duke.edu/api/v1/signage_sync?location=1'
 assistant_id = os.environ.get("ASSISTANT_ID")
 
 # Creates a thread
 client = OpenAI()
 message_thread = client.beta.threads.create()
 thread_id = message_thread.id
+
+def getRoots():
+    response = requests.get(rootClasses)
+    classes = ""
+
+    if(response.status_code == 200):
+        data = response.json()
+        for c in data:
+            classes = classes + ", " + c["course_name"] + ": " + c["start"] 
+    
+    return classes
 
 # Calls the API to get the current workers
 def getInfo(url):
@@ -40,7 +52,12 @@ def requiresAction(run, run_id):
     print(tool_calls)
 
     # Calls the API
-    workers = getInfo(StudioUrl) if tool_calls.function.name == "get_current_worker" else getInfo(StudentDevsUrl)
+    if(tool_calls.function.name == "get_current_worker"):
+        workers = getInfo(StudioUrl)
+    elif(tool_calls.function.name == "get_current_student_devs"):
+        workers = getInfo(StudentDevsUrl)
+    else:
+        workers = getRoots()
 
     # Appends to an output list
     tool_outputs = []
@@ -59,8 +76,10 @@ def main():
     while True:
         print("Ask me anything: ")
         speech_synthesizer.speak_text_async("Ask me anything:").get()
-        userSpeech = speech_recognizer.recognize_once_async().get()
+        # changed from recognize_once_async().get() to recognize_once()
+        userSpeech = speech_recognizer.recognize_once()
         question = userSpeech.text
+        # print(question)
 
         # If the user doesn't say anything, breaks the loop
         if(question == ""):
@@ -104,6 +123,7 @@ def main():
 
             # If the model finishes formulating the answer, breaks the lop
             if run.status == "completed":
+                print("REACHED COMPLETED")
                 break
             # Times out sometimes 
             elif run.status == "expired":
@@ -118,9 +138,12 @@ def main():
             time.sleep(1)
 
         # Retrives the messages from the thread
-        messages = client.beta.threads.messages.list(
-            thread_id=thread_id
-        )
+        try: 
+            messages = client.beta.threads.messages.list(
+                thread_id=thread_id
+            )
+        except:
+            print("could not retrieve message")
 
         # Prints the messages
         for i in reversed(range(0,2)):
@@ -139,12 +162,12 @@ def main():
         print("\n")
 
 if __name__ == "__main__":
-    # my_assistants = client.beta.assistants.list(
-    #     order="desc",
-    #     limit="20",
-    # )
+    my_assistants = client.beta.assistants.list(
+        order="desc",
+        limit="20",
+    )
 
-    # print(my_assistants.data)
+    print(my_assistants.data)
     
     print("Hello, how can I help you?")
     speech_synthesizer.speak_text_async("Hello, how can I help you?")
