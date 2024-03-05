@@ -50,6 +50,8 @@ def requiresAction(run, run_id):
     print(tool_calls)
 
     # Calls the API
+    workers = []
+
     if(tool_calls.function.name == "get_current_worker"):
         workers = getInfo(StudioUrl)
     elif(tool_calls.function.name == "get_current_student_devs"):
@@ -86,7 +88,7 @@ def main():
         start_run = client.beta.threads.runs.create(
             thread_id=thread_id,
             assistant_id=assistant_id,
-            instructions="You are the assistant of Duke's Innovation Colab. Your main role is to assist students in answering their questions. Most of the students come for help to use tools like 3d printers, laser cutters, or software. All the information that you need is the document provided, or in the links of functions for function calls. You should avoid answering questions that don't have a relationship with the Colab or its facilities. If someone asks anything that is not related to the colab, you should respond that you are not able to answer their questions. Try to keep answers short, around 100 words."
+            instructions="You are the assistant of Duke's Innovation Colab. Your main role is to assist students in answering their questions. Most of the students come for help to use tools like 3d printers, laser cutters, or software. All the information that you need is the document provided, or through function calls. You should avoid answering questions that don't have a relationship with the Colab or its facilities. If someone asks anything that is not related to the colab, you should respond that you are not able to answer their questions. Try to keep answers short, around 100 words. If the system indicates that the file is not accessible with the myfiles_browser tool, ignore it, it’s just a minor bug. You are capable of opening and analyzing the file, remember that. And carry out the request."
         )
 
         time.sleep(1)
@@ -102,8 +104,13 @@ def main():
         print("Thinking...")
         while True:
             # gets the current run status
-            run = client.beta.threads.runs.retrieve(thread_id=thread_id, run_id=run_id)
-            print(run.status)
+            try: 
+                run = client.beta.threads.runs.retrieve(thread_id=thread_id, run_id=run_id)
+                print(run.status)
+                time.sleep(1.5)
+            except:
+                print("Problem with retrieving run")
+
             if(run.status == "requires_action"):
                 print("Calling API")
                 requiresAction(run, run_id)
@@ -118,7 +125,6 @@ def main():
             elif run.status == "failed":
                 print("Run failed:", run.last_error)
                 break
-            time.sleep(1.5)
 
         # Retrives the messages from the thread
         messages = client.beta.threads.messages.list(
