@@ -16,13 +16,24 @@ speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, au
 # OpenAI configs
 StudioUrl = 'https://shiftr-api.colab.duke.edu/publicCalendars/digitalSign/current/CoLab%20Studios/TEC'
 StudentDevsUrl = 'https://shiftr-api.colab.duke.edu/publicCalendars/digitalSign/current/Colab%20Student%20Developer/TEC%20Office%20Hours'
+rootClasses = 'https://api.pathways.duke.edu/api/v1/signage_sync?location=1'
 assistant_id = os.environ.get("ASSISTANT_ID")
-# print(assistant_id)
 
 # Creates a thread
 client = OpenAI()
 message_thread = client.beta.threads.create()
 thread_id = message_thread.id
+
+def getRoots():
+    response = requests.get(rootClasses)
+    classes = ""
+
+    if(response.status_code == 200):
+        data = response.json()
+        for c in data:
+            classes = classes + ", " + c["course_name"] + ": " + c["start"] 
+    
+    return classes
 
 # Calls the API to get the current workers
 def getInfo(url):
@@ -38,8 +49,15 @@ def getInfo(url):
 # Submits the function output to the assistant
 def requiresAction(run, run_id):
     tool_calls = run.required_action.submit_tool_outputs.tool_calls[0]
-    # print(tool_calls)
-    workers = getInfo(StudioUrl) if tool_calls.function.name == "get_current_worker" else getInfo(StudentDevsUrl)
+    print(tool_calls)
+
+    if(tool_calls.function.name == "get_current_worker"):
+        workers = getInfo(StudioUrl)
+    elif(tool_calls.function.name == "get_current_student_devs"):
+        workers = getInfo(StudentDevsUrl)
+    else:
+        workers = getRoots()
+
     tool_outputs = []
     tool_outputs.append({"tool_call_id":tool_calls.id, "output": workers})
     # print(tool_outputs)
@@ -91,20 +109,17 @@ def main():
         userSpeech = speech_recognizer.recognize_once_async().get()
         question = userSpeech.text
 
-        # If the user doesn't say anything, breaks the loop
         if(question == ""):
             speech_synthesizer.speak_text_async("Nothing asked. Exiting.").get()
             print("Nothing asked. Exiting.")
             break
 
-        # Adds messsage to the thread
         client.beta.threads.messages.create(
             thread_id=thread_id,
             role="user",
             content=question
         )
 
-        # Starts a run
         start_run = client.beta.threads.runs.create(
             thread_id=thread_id,
             assistant_id=assistant_id,
@@ -112,45 +127,40 @@ def main():
         )
 
         time.sleep(1)
-        # Gets the current status
         run_id = start_run.id
         run = client.beta.threads.runs.retrieve(thread_id=thread_id, run_id=run_id)
 
-        # Prints the status of the run. Ex: "in_progress", "requires_action", "completed"
         print(run.status)
         
-        # Creates the answer
         speech_synthesizer.speak_text_async("Thinking...")
         print("Thinking...")
         while True:
-            # gets the current run status
-            run = client.beta.threads.runs.retrieve(thread_id=thread_id, run_id=run_id)
-            print(run.status)
-            if(run.status == "requires_action"):
+            try: 
+                run = client.beta.threads.runs.retrieve(thread_id=thread_id, run_id=run_id)
+                print(run.status)
+                time.sleep(1.5)
+            except:
+                print("Problem with retrieving run")
+            
+            if run.status == "requires_action":
                 print("Calling API")
                 requiresAction(run, run_id)
 
-            # If the model finishes formulating the answer, breaks the lop
             if run.status == "completed":
                 break
-            # Times out sometimes 
             elif run.status == "expired":
                 speech_synthesizer.speak_text_async("Sorry, the run timed out.")
                 print("Run timed out:", run.last_error)
                 break
-            # If for some reason it fails
             elif run.status == "failed":
                 speech_synthesizer.speak_text_async("Sorry, the run failed.")
                 print("Run failed:", run.last_error)
                 break
-            time.sleep(1.5)
 
-        # Retrives the messages from the thread
         messages = client.beta.threads.messages.list(
             thread_id=thread_id
         )
 
-        # Prints the messages
         for i in reversed(range(0,2)):
             try:
                 message = messages.data[i]
@@ -161,21 +171,18 @@ def main():
                         print(f'\n{role}: {response}')
                         time.sleep(1)
                         # if (role == "assistant"): 
-                        try: 
-                            speech_synthesizer.speak_text_async(response).get()
-                        except: 
-                            print("can't speak lol")
+                        speech_synthesizer.speak_text_async(response).get()
             except: 
                 print("No return message")
         print("\n")
 
 if __name__ == "__main__":
-    my_assistants = client.beta.assistants.list(
-        order="desc",
-        limit="20",
-    )
+    # my_assistants = client.beta.assistants.list(
+    #     order="desc",
+    #     limit="20",
+    # )
 
-    print(my_assistants.data)
+    # print(my_assistants.data)
     
     print("Waking up...")
     speech_synthesizer.speak_text_async("Waking up...")

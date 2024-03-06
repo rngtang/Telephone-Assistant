@@ -1,19 +1,8 @@
-# to do
-<!-- * Create/finish way to update the knowledge base -> have it well documented and easily usable for anyone  -->
-* Update knowledge base pdf to include more information -> such as FTEs, map with where are rooms, tools, etc.
-    * PROBLEM: can't seem to know who the FTEs are 
-    * PROBLEM: the programs with talking seem to sometimes interfere with the answers, and they don't seem to be able to access the file sometimes which is confusing and annoying. Try testing with telephone.py and wake_up.py and ask something like "what are grants" to see what i mean.
-<!-- * Add way to exit the bot/finish 
-    * auto times out for the complete one with speech -->
-* Integrate with STT and TTS and wake-up word 
-    <!-- * check out talk_functions.py, seems to do what it needs to kind of  -->
-    * wake-up word : check out wake-up.py !!!! 
-<!-- * Document everything 
-    * this readme lol --> 
-
 
 # Co-Lab Telephone Assistant
-Welcome to the Co-Lab's telephone assistant! This project is meant to serve as a conversational question-answering bot to which any student can ask questions about the Co-Lab, such as its facilities, tools, and workers. This project consists of two main parts:
+Welcome to the Co-Lab's Telephone Assistant! This project is meant to serve as a conversational question-answering bot to which any student can ask questions about the Co-Lab, such as its facilities, tools, workers, and upcoming classes. 
+
+This project consists of two main parts:
 1. Azure AI Speech: used for speech-to-text and text-to-speech interaction
 2. OpenAI Assistants: used to generate answers to questions
 
@@ -51,6 +40,15 @@ To test just the OpenAI Assistant using your terminal (text input), use this com
 python /home/colabdev/Desktop/telephone-assistant/assistant/working/functions_test2.py
 ```
 
+### Optional: Testing the Project with Wake-up Word
+Currently, this feature is still in development. It requires hardware (microphone and speaker) to be set up. 
+
+To test the combined project (STT/TTS and OpenAI Assistant) additionally integrated with a wake-up word activation, use this command: 
+```
+python /home/colabdev/Desktop/telephone-assistant/assistant/working/wake_up.py
+```
+The wake-up word is "Hey Colab". Before saying this phrase, the robot will be "awake", but will not respond to questions. 
+
 ## Part 1: Azure AI Speech
 The main functionalities of Azure AI Speech are its speech-to-text (STT) and Text-to-speech (TTS) features that the SDK provides. In this case, we are using STT to recognize what is the user asking and TTS for the assistant to verbally answer the question.
 
@@ -80,6 +78,7 @@ To update the knowledge base, you can follow the `update_files.py` template, fou
 To update the Assistant settings, you can follow the `update_assistant.py` template, found in `/home/colabdev/Desktop/telephone-assistant/assistant/API_calls_samples`.
 
 ## Known Bugs 
-Currently, there are a few errors with the assistant recognizing when a function call is necessary. For example, if you ask, "Where is Lily?", the assistant with sometimes think Lily is a person (rather than a typo for the library) and call the function. Additionally, the assistant sometimes gets confused between when to use one function versus the other (get_workers vs get_student_devs).
+* Currently, there are a few errors with the assistant recognizing when a function call is necessary. For example, if you ask, "Where is Lily?", the assistant with sometimes think Lily is a person (rather than a typo for the library) and call the function. Additionally, the assistant sometimes gets confused between when to use one function versus the other (get_workers vs get_student_devs).
+* Additionally, because we are using the model GPT-3.5-turbo-0125 (free), there is currently a limitation of 3 questions that can be asked before there is a 20 second cooldown. Trying to ask another question before the cooldown will result in the run failing. 
 
-Furthermore, sometimes the function calls seem to conflict with knowledge inside the knowledge base PDF. We tried to store some information about FTEs and student devs on the PDF, but the assistant seems to want to function call whenever asked about any person, and as a result will get confused when asked questions about FTEs and student dev expertise. This can cause it to fime out and/or fail to generate an answer. 
+<!-- Furthermore, sometimes the function calls seem to conflict with knowledge inside the knowledge base PDF. We tried to store some information about FTEs and student devs on the PDF, but the assistant seems to want to function call whenever asked about any person, and as a result will get confused when asked questions about FTEs and student dev expertise. This can cause it to fime out and/or fail to generate an answer.  -->

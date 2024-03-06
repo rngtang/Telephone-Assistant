@@ -115,9 +115,14 @@ def main():
         print("Thinking...")
         while True:
             # gets the current run status
-            run = client.beta.threads.runs.retrieve(thread_id=thread_id, run_id=run_id)
-            print(run.status)
-            if(run.status == "requires_action"):
+            try: 
+                run = client.beta.threads.runs.retrieve(thread_id=thread_id, run_id=run_id)
+                print(run.status)
+                time.sleep(1.5)
+            except:
+                print("Problem with retrieving run")
+
+            if run.status == "requires_action":
                 print("Calling API")
                 requiresAction(run, run_id)
 
@@ -135,7 +140,6 @@ def main():
                 speech_synthesizer.speak_text_async("Sorry, the run failed.")
                 print("Run failed:", run.last_error)
                 break
-            time.sleep(1)
 
         # Retrives the messages from the thread
         try: 
