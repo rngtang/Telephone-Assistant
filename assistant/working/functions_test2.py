@@ -7,10 +7,12 @@ import requests
 StudioUrl = 'https://shiftr-api.colab.duke.edu/publicCalendars/digitalSign/current/CoLab%20Studios/TEC'
 StudentDevsUrl = 'https://shiftr-api.colab.duke.edu/publicCalendars/digitalSign/current/Colab%20Student%20Developer/TEC%20Office%20Hours'
 rootClasses = 'https://api.pathways.duke.edu/api/v1/signage_sync?location=1'
-assistant_id = os.environ.get("ASSISTANT_ID")
+assistant_id = os.environ.get("ASSISTANT_ID_4") # To use GPT4 assistant
+# assistant_id = os.environ.get(" ASSISTANT_ID_3") # To use GPT3 assistant
 
 # Sets up the client
-client = OpenAI()
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY4"),) #To use the GPT4 model
+# client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY3"),) #To use the GPT3 model
 
 # Creates a thread
 message_thread = client.beta.threads.create()
