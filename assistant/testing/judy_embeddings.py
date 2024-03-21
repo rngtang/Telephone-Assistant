@@ -11,7 +11,7 @@ from langchain_openai import OpenAI
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY4"),) #To use the GPT4 model
 
 from PyPDF2 import PdfMerger, PdfReader
-filenames = ["../media/New Formatted K.pdf"]
+filenames = ["../media/New Formatted K.pdf", "./Upcoming_Roots_Classes.txt", "./Current_Studio_Workers.txt", "./Current_Student_Developers.txt"]
 merger = PdfMerger()
 for filename in filenames:
     merger.append(PdfReader(open(filename, 'rb')))
