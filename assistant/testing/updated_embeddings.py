@@ -12,8 +12,10 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_openai import OpenAI
 
+print("HELLO WORLD")
+
 # Loads document and splits it
-loader = PyPDFLoader("./../media/New Formatted K.pdf")
+loader = PyPDFLoader("../media/New Formatted K.pdf")
 pages = loader.load()
 
 # Splits it
@@ -35,6 +37,7 @@ print("SET UP DONE")
 qa_chain = RetrievalQA.from_chain_type(llm=OpenAI(openai_api_key=os.environ['OPENAI_API_KEY4']), retriever=vStore.as_retriever(), chain_type_kwargs={"prompt": prompt})
 
 # Question
-question = "Where is the colab?"
+question = "Who is currently on shift?"
 result = qa_chain.invoke({"query": question})
 result["result"]
+print(result)
