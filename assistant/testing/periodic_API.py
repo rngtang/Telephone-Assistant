@@ -29,17 +29,18 @@ def getInfo(url):
 
 def roots_job():
     classes = getRoots(rootClasses)
-    pdfkit.from_string(classes, "Upcoming_Roots_Classes.pdf")
+    pdfkit.from_string(str(classes), "Upcoming_Roots_Classes.pdf")
+    # try out pdfkit.from_url('http://google.com', 'out.pdf')
     print("Upcoming Roots Classes:", classes)
 
 def studev_job():
     info = getInfo(StudentDevsUrl)
-    pdfkit.from_string(info, "Current_Studio_Workers.pdf")
+    pdfkit.from_string(str(info), "Current_Studio_Workers.pdf")
     print("Upcoming Roots Classes:", info)
 
 def studio_job():
     info = getRoots(rootClasses)
-    pdfkit.from_string(info, "Current_Studio_Workers.pdf")
+    pdfkit.from_string(str(info), "Current_Studio_Workers.pdf")
     print("Curren Studio Workers:", info)
 
 # schedule.every().day.at("08:00").do(roots_job)
