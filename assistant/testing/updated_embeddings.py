@@ -28,6 +28,7 @@ vStore = Chroma.from_documents(documents=doc_texts, embedding=openAI_embeddings)
 
 # RAG prompt
 prompt = hub.pull("rlm/rag-prompt")
+# https://smith.langchain.com/hub/rlm/rag-prompt
 print("SET UP DONE")
 
 #Retrieval QA
