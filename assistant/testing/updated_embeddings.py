@@ -12,6 +12,11 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_openai import OpenAI
 
+from langchain_openai import ChatOpenAI
+
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY4"),) #To use the GPT4 model
+# Does this key do anything ? it's still gpt-3.5
+print(client)
 print("HELLO WORLD")
 
 # Loads document and splits it
@@ -34,7 +39,7 @@ prompt = hub.pull("rlm/rag-prompt")
 print("SET UP DONE")
 
 #Retrieval QA
-qa_chain = RetrievalQA.from_chain_type(llm=OpenAI(openai_api_key=os.environ['OPENAI_API_KEY4']), retriever=vStore.as_retriever(), chain_type_kwargs={"prompt": prompt})
+qa_chain = RetrievalQA.from_chain_type(llm=client, retriever=vStore.as_retriever(), chain_type_kwargs={"prompt": prompt})
 
 # Question
 question = "Who is currently on shift?"
