@@ -8,10 +8,19 @@ from langchain.chains import RetrievalQA
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_openai import OpenAI
+from langchain import hub
+from PyPDF2 import PdfMerger, PdfReader
+
+# Merges all documents together
+filenames = ["../files/New Formatted K.pdf", "../files/Upcoming_Roots_Classes.pdf", "../files/Current_Studio_Workers.pdf", "../files/Current_Student_Devs.pdf"]
+merger = PdfMerger()
+for filename in filenames:
+    merger.append(PdfReader(open(filename, 'rb')))
+merger.write("All_Info.pdf")
 
 # Loads document and splits it
-loader = PyPDFLoader("./../../assistant/media/New Formatted K.pdf")
-pages = loader.load_and_split()
+loader = PyPDFLoader("../files/All_Info.pdf")
+pages = loader.load()
 
 # print(len(pages))
 # print(pages[0].page_content)
@@ -26,7 +35,8 @@ client = OpenAI(openai_api_key=os.environ['OPENAI_API_KEY4'])
 
 # Creates to store the vectors
 vStore = Chroma.from_documents(doc_texts, openAI_embeddings)
-model = RetrievalQA.from_chain_type(llm=client, retriever=vStore.as_retriever())
+prompt = hub.pull("rngtang/colab-bot")
+model = RetrievalQA.from_chain_type(llm=client, retriever=vStore.as_retriever(), chain_type_kwargs={"prompt": prompt})
 print("Everything set up")
 
 # Question

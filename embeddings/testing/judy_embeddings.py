@@ -11,7 +11,7 @@ from langchain_openai import OpenAI
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY4"),) #To use the GPT4 model
 
 from PyPDF2 import PdfMerger, PdfReader
-filenames = ["../media/New Formatted K.pdf", "./Upcoming_Roots_Classes.txt", "./Current_Studio_Workers.txt", "./Current_Student_Developers.txt"]
+filenames = ["../media/New Formatted K.pdf", "./Upcoming_Roots_Classes.pdf", "./Current_Studio_Workers.pdf", "./Current_Student_Devs.pdf"]
 merger = PdfMerger()
 for filename in filenames:
     merger.append(PdfReader(open(filename, 'rb')))
@@ -31,6 +31,7 @@ openAI_embeddings = OpenAIEmbeddings(openai_api_key=os.environ['OPENAI_API_KEY4'
 from langchain_community.vectorstores import Chroma
 vStore = Chroma.from_documents(documents=doc_texts, embedding=openAI_embeddings)
 
+# https://smith.langchain.com/hub/rlm/rag-prompt
 from langchain import hub
 prompt = hub.pull("rlm/rag-prompt")
 
