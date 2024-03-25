@@ -37,15 +37,15 @@ def create_pdf(text, name):
 
 def roots_job():
     info = getRoots(rootClasses)
-    create_pdf(info, "Upcoming_Roots_Classes")
+    create_pdf(info, "../files/Upcoming_Roots_Classes")
 
 def studev_job():
     info = getInfo(StudentDevsUrl)
-    create_pdf(info, "Current_Student_Devs")
+    create_pdf(info, "../files/Current_Student_Devs")
 
 def studio_job():
     info = getInfo(StudioUrl)
-    create_pdf(info, "Current_Studio_Workers")
+    create_pdf(info, "../files/Current_Studio_Workers")
 
 # schedule.every().day.at("08:00").do(roots_job)
 schedule.every(1).minutes.do(roots_job)

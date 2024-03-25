@@ -12,11 +12,11 @@ from langchain import hub
 from PyPDF2 import PdfMerger, PdfReader
 
 # Merges all documents together
-filenames = ["../files/New Formatted K.pdf", "../files/Upcoming_Roots_Classes.pdf", "../files/Current_Studio_Workers.pdf", "../files/Current_Student_Devs.pdf"]
+filenames = ["../files/FormattedK.pdf", "../files/Upcoming_Roots_Classes.pdf", "../files/Current_Studio_Workers.pdf", "../files/Current_Student_Devs.pdf"]
 merger = PdfMerger()
 for filename in filenames:
     merger.append(PdfReader(open(filename, 'rb')))
-merger.write("All_Info.pdf")
+merger.write("../files/All_Info.pdf")
 
 # Loads document and splits it
 loader = PyPDFLoader("../files/All_Info.pdf")
