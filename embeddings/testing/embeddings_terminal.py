@@ -11,20 +11,12 @@ from langchain_openai import OpenAI
 from langchain import hub
 from PyPDF2 import PdfMerger, PdfReader
 
-# Merges all documents together
-filenames = ["../files/FormattedK.pdf", "../files/Upcoming_Roots_Classes.pdf", "../files/Current_Studio_Workers.pdf", "../files/Current_Student_Devs.pdf"]
-merger = PdfMerger()
-for filename in filenames:
-    merger.append(PdfReader(open(filename, 'rb')))
-merger.write("../files/All_Info.pdf")
-
+print("Loading information...")
 # Loads document and splits it
 loader = PyPDFLoader("../files/All_Info.pdf")
 pages = loader.load()
 
-# print(len(pages))
-# print(pages[0].page_content)
-
+print("Generating embeddings...")
 # Splits the document into smaller chunks
 char_text_splitter = CharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
 doc_texts = char_text_splitter.split_documents(pages)

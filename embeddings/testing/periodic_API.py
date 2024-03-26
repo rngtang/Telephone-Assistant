@@ -2,7 +2,8 @@ import requests
 import schedule
 import time
 from fpdf import FPDF
-from PyPDF2 import PdfFileMerger
+from PyPDF2 import PdfReader, PdfMerger
+
 
 StudioUrl = 'https://shiftr-api.colab.duke.edu/publicCalendars/digitalSign/current/CoLab%20Studios/TEC'
 StudentDevsUrl = 'https://shiftr-api.colab.duke.edu/publicCalendars/digitalSign/current/Colab%20Student%20Developer/TEC%20Office%20Hours'
@@ -28,30 +29,52 @@ def getInfo(url):
             workers = workers + ", " + worker["user_name"]
     return workers[2:]
 
-def create_pdf(text, name):
+def roots_job():
+    info = getRoots(rootClasses)
+    print(info)
+
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font('Arial', size=12)
-    pdf.write(5, text)
-    pdf.output(f'{name}.pdf')
-
-def roots_job():
-    info = getRoots(rootClasses)
-    create_pdf(info, "../files/Upcoming_Roots_Classes")
+    pdf.write(5, "These are the Upcoming Roots Classes: \n")
+    pdf.write(5, info)
+    pdf.output(f'../files/Upcoming_Roots_Classes.pdf')
 
 def studev_job():
     info = getInfo(StudentDevsUrl)
-    create_pdf(info, "../files/Current_Student_Devs")
+    print(info)
+
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font('Arial', size=12)
+    pdf.write(5, "These are the Current Student Developers (part-time help with software): \n")
+    pdf.write(5, info)
+    pdf.output(f'../files/Current_Student_Devs.pdf')
 
 def studio_job():
     info = getInfo(StudioUrl)
-    create_pdf(info, "../files/Current_Studio_Workers")
+    print(info)
 
-# schedule.every().day.at("08:00").do(roots_job)
-schedule.every(1).minutes.do(roots_job)
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font('Arial', size=12)
+    pdf.write(5, "These are the Current Studio Workers (part-time help with the studio and garage): \n")
+    pdf.write(5, info)
+    pdf.output(f'../files/Current_Studio_Workers.pdf')
+
+schedule.every().day.at("08:00").do(roots_job)
+# schedule.every(1).minutes.do(roots_job)
 schedule.every(1).minutes.do(studev_job)
 schedule.every(1).minutes.do(studio_job)
 
 while True:
     schedule.run_pending()
-    time.sleep(30)  # Check every minute
+    time.sleep(60)  # Check every minute
+
+    print("Collecting documents...")
+    # Merges all documents together
+    filenames = ["../files/FormattedK.pdf", "../files/Upcoming_Roots_Classes.pdf", "../files/Current_Studio_Workers.pdf", "../files/Current_Student_Devs.pdf"]
+    merger = PdfMerger()
+    for filename in filenames:
+        merger.append(PdfReader(open(filename, 'rb')))
+    merger.write("../files/All_Info.pdf")
