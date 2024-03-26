@@ -9,7 +9,6 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_openai import OpenAI
 from langchain import hub
-import schedule
 import azure.cognitiveservices.speech as speechsdk
 
 # STT configs
@@ -22,11 +21,12 @@ speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, au
 
 def parse_doc():
     print("Loading information...")
+    speech_synthesizer.speak_text_async("Loading information...")
+
     # Loads document and splits it
     loader = PyPDFLoader("../files/All_Info.pdf")
     pages = loader.load()
 
-    print("Generating embeddings...")
     # Splits the document into smaller chunks
     char_text_splitter = CharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
     doc_texts = char_text_splitter.split_documents(pages)
@@ -42,18 +42,18 @@ def get_answer(doc_texts):
     vStore = Chroma.from_documents(doc_texts, openAI_embeddings)
     prompt = hub.pull("rngtang/colab-bot")
     model = RetrievalQA.from_chain_type(llm=client, retriever=vStore.as_retriever(), chain_type_kwargs={"prompt": prompt})
-    print("Everything set up")
+
+    speech_synthesizer.speak_text_async("Model built")
+    print("Model built")
+    return model
 
 def main():
-    print("hello world")
-
     while True:
         print("Ask me anything: ")
         speech_synthesizer.speak_text_async("Ask me anything:").get()
-        # changed from recognize_once_async().get() to recognize_once()
         userSpeech = speech_recognizer.recognize_once()
         question = userSpeech.text
-        # print(question)
+        print("\nUser: " + question + '\n')
 
         # If the user doesn't say anything, breaks the loop
         if(question == ""):
@@ -61,22 +61,18 @@ def main():
             print("Nothing asked. Exiting.")
             break
         
-        try: 
-            doc_text = schedule.every(1).minutes.do(parse_doc)
-        except:
-            print("failed parsing")
-        model = get_answer(doc_text)
-        
-        print("Thinking")
-        speech_synthesizer.speak_text_async("Thinking").get()
+        print("Thinking...")
+        speech_synthesizer.speak_text_async("Thinking...").get()
         response = model.invoke(question)
 
         print("\nBot: " + response['result'] + '\n')
         speech_synthesizer.speak_text_async(response['result']).get()
 
-if __name__ == "__main__":    
-    # print("Hello, how can I help you?")
-    # speech_synthesizer.speak_text_async("Hello, how can I help you?")
+if __name__ == "__main__":
+
+    # could try and have the parsing scheduled too in order to only do when new info
+    doc_text = parse_doc() 
+    model = get_answer(doc_text)
 
     main()
 

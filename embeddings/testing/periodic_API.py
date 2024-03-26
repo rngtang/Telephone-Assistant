@@ -64,12 +64,12 @@ def studio_job():
 
 schedule.every().day.at("08:00").do(roots_job)
 # schedule.every(1).minutes.do(roots_job)
-schedule.every(1).minutes.do(studev_job)
-schedule.every(1).minutes.do(studio_job)
+schedule.every(20).minutes.do(studev_job)
+schedule.every(20).minutes.do(studio_job)
 
 while True:
     schedule.run_pending()
-    time.sleep(60)  # Check every minute
+    time.sleep(1200)  # Check every 20 minutes
 
     print("Collecting documents...")
     # Merges all documents together
