@@ -9,6 +9,7 @@ StudioUrl = 'https://shiftr-api.colab.duke.edu/publicCalendars/digitalSign/curre
 StudentDevsUrl = 'https://shiftr-api.colab.duke.edu/publicCalendars/digitalSign/current/Colab%20Student%20Developer/TEC%20Office%20Hours'
 rootClasses = 'https://api.pathways.duke.edu/api/v1/signage_sync?location=1'
 
+# Gets the next 5 root classes
 def getRoots(url):
     response = requests.get(url)
     classes = ""
@@ -19,6 +20,7 @@ def getRoots(url):
             classes = classes + ", " + c["course_name"] + ": " + c["start"] 
     return classes
 
+# Gets the current workers
 def getInfo(url):
     response = requests.get(url)
     workers = ""
@@ -29,6 +31,7 @@ def getInfo(url):
             workers = workers + ", " + worker["user_name"]
     return workers[2:]
 
+# Adds to the pdf the upcoming root classes
 def roots_job():
     info = getRoots(rootClasses)
     print(info)
@@ -40,6 +43,7 @@ def roots_job():
     pdf.write(5, info)
     pdf.output(f'../files/Upcoming_Roots_Classes.pdf')
 
+# Adds to the pdf the current student developers
 def studev_job():
     info = getInfo(StudentDevsUrl)
     print(info)
@@ -47,10 +51,11 @@ def studev_job():
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font('Arial', size=12)
-    pdf.write(5, "These are the Current Student Developers (part-time help with software): \n")
+    pdf.write(5, "Student developers can help anyone with software issues. These are the Current Student Developers (part-time help with software): \n")
     pdf.write(5, info)
     pdf.output(f'../files/Current_Student_Devs.pdf')
 
+# Adds to the pdf the current studio workers
 def studio_job():
     info = getInfo(StudioUrl)
     print(info)
@@ -58,23 +63,25 @@ def studio_job():
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font('Arial', size=12)
-    pdf.write(5, "These are the Current Studio Workers (part-time help with the studio and garage): \n")
+    pdf.write(5, "The studio workers can help anyone use the 3d printer, laser cutter, and other physical tools. These are the Current Studio Workers (part-time help with the studio and garage): \n")
     pdf.write(5, info)
     pdf.output(f'../files/Current_Studio_Workers.pdf')
 
-schedule.every().day.at("08:00").do(roots_job)
+# Schedules when to update the pdfs
+schedule.every().day.at("10:00").do(roots_job)
 # schedule.every(1).minutes.do(roots_job)
 schedule.every(20).minutes.do(studev_job)
 schedule.every(20).minutes.do(studio_job)
 
 while True:
+    print("Checking APIs")
     schedule.run_pending()
     time.sleep(1200)  # Check every 20 minutes
 
-    print("Collecting documents...")
+    # print("Collecting documents...")
     # Merges all documents together
-    filenames = ["../files/FormattedK.pdf", "../files/Upcoming_Roots_Classes.pdf", "../files/Current_Studio_Workers.pdf", "../files/Current_Student_Devs.pdf"]
+    filenames = ["/home/colabdev/Desktop/telephone-assistant/embeddings/files/FormattedK.pdf", "../files/Upcoming_Roots_Classes.pdf", "../files/Current_Studio_Workers.pdf", "../files/Current_Student_Devs.pdf"]
     merger = PdfMerger()
     for filename in filenames:
         merger.append(PdfReader(open(filename, 'rb')))
-    merger.write("../files/All_Info.pdf")
+    merger.write("/home/colabdev/Desktop/telephone-assistant/embeddings/files/All_Info.pdf")
