@@ -35,8 +35,8 @@ def parse_doc():
 
 def get_answer(doc_text):
     # OpenAI to use embeddings and creates the client
-    openAI_embeddings = OpenAIEmbeddings(openai_api_key=os.environ['OPENAI_API_KEY4'])
-    client = OpenAI(openai_api_key=os.environ['OPENAI_API_KEY4'])
+    openAI_embeddings = OpenAIEmbeddings(openai_api_key=os.environ['OPENAI_API_KEY'])
+    client = OpenAI(openai_api_key=os.environ['OPENAI_API_KEY'])
 
     # Creates to store the vectors
     vStore = Chroma.from_documents(doc_text, openAI_embeddings)

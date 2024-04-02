@@ -2,7 +2,7 @@
 # from langchain.text_splitter import CharacterTextSplitter
 import os
 from langchain_openai import OpenAI
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY4"),) #To use the GPT4 model
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"),) #To use the GPT4 model
 
 from langchain_community.document_loaders import PyPDFLoader
 # merger.write("All_Info.pdf")
@@ -16,7 +16,7 @@ text_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
 doc_texts = text_splitter.split_documents(pages)
 
 from langchain_openai import OpenAIEmbeddings
-openAI_embeddings = OpenAIEmbeddings(openai_api_key=os.environ['OPENAI_API_KEY4'])
+openAI_embeddings = OpenAIEmbeddings(openai_api_key=os.environ['OPENAI_API_KEY'])
 
 from langchain_community.vectorstores import Chroma
 vStore = Chroma.from_documents(documents=doc_texts, embedding=openAI_embeddings)
