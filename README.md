@@ -4,7 +4,7 @@ Welcome to the Co-Lab's Telephone Assistant! This project is meant to serve as a
 
 This project consists of two main parts:
 1. Azure AI Speech: used for speech-to-text and text-to-speech interaction
-2. OpenAI Assistants: used to generate answers to questions
+2. Question-answering bot: used to generate answers to questions
 
 To learn more about the creation/use process of these technologies, go down to "Part 1" and "Part 2" respectively (after Getting Started).
 
@@ -37,7 +37,7 @@ python /home/colabdev/Desktop/telephone-assistant/assistant/working/ask.py
 ### Optional: Testing just the OpenAI Assistant
 To test just the OpenAI Assistant using your terminal (text input), use this command: 
 ```
-python /home/colabdev/Desktop/telephone-assistant/assistant/working/functions_test2.py
+python /home/colabdev/Desktop/telephone-assistant/embeddings/testing/embeddings_terminal.py
 ```
 
 ### Optional: Testing the Project with Wake-up Word
@@ -58,10 +58,12 @@ We originally planned to use Azure AI services for both STT/TTS and question ans
 
 Documentation for the Speech SDK can be found here: https://azure.microsoft.com/en-us/products/ai-services/ai-speech/. 
 
-## Part 2: OpenAI Assistants 
-As mentioned before, we are using OpenAI's custom assistant features to generate a more human-like conversation with the user. To do this, we are using the Retrieval and Functions tools that allow us to not only provide the assistant with information from a document, but also some real-time data, such as the current available employees. 
+## Part 2: Question-answering bot
+As mentioned before, we are using a custom-made document-based question-answering bot. To do this, we are using vector-search to decrease latency and increse accuracy of the answers. As a result, we are using OpenAI as our LLM, ChromDB as our vector database, and Langchain as the frameword to build our bot.
 
-Currently, the assistant has a PDF document that constains all the necessary information about the Co-Lab. Furthermore, it also has the ability to call an external API when real-time data is required. 
+The following diagram shows how our bot works:
+![Program flowchart](./media/diagram-updated.png)
+
 
 ## How It Works
 The following chart represents how the Co-Lab assistant pipeline works. To answer questions, the assistant first creates a thread, to which messages (questions) can be appended and a run (answer generation) can start. Using the different status of an assistant's run object, the assistant can then know whether it needs to function call (request data from an API) to add real-time information to its answer, such as who is currently on shift. Only after the run status is completed does the answer get printed. This question-answering cycle should continue until the user asks no more questions, though the exiting process is still being worked on.
