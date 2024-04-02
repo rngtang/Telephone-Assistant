@@ -70,14 +70,9 @@ The following chart represents how the Co-Lab assistant pipeline works. To answe
 
 Documentation for OpenAI Assistants can be found here: https://platform.openai.com/docs/assistants/overview. 
 
-## How To Update the assistant
-There are several ways to update the Assistant. Two methods that we set up include updating the knowledge base or updating the Assistant's settings. 
-
 ### Update the Knowledge Base
-To update the knowledge base by adding new files, you can follow the `update_files.py` template, found in `/home/colabdev/Desktop/telephone-assistant/assistant/API_calls_samples`.
+Here comes the new stuff
 
-### Update the Assistant Settings
-To update the Assistant settings, such as chaging its description or changing its functions, you can follow the `update_assistant.py` template, found in `/home/colabdev/Desktop/telephone-assistant/assistant/API_calls_samples`.
 
 ## Known Bugs 
 * Currently, there are a few errors with the assistant recognizing when a function call is necessary. For example, if you ask, "Where is Lily?", the assistant with sometimes think Lily is a person (rather than a typo for the library) and call the function. Additionally, the assistant sometimes gets confused between when to use one function versus the other (get_workers vs get_student_devs).
