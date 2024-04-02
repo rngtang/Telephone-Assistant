@@ -5,7 +5,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
 from langchain.chains import RetrievalQA
 from langchain_community.document_loaders import PyPDFLoader
-# from langchain.memory import ConversationBufferMemory
+from langchain.memory import ConversationBufferMemory
 from langchain_openai import OpenAI
 from langchain import hub
 from langchain_community.callbacks import get_openai_callback
@@ -31,19 +31,18 @@ client = OpenAI(openai_api_key=os.environ['OPENAI_API_KEY4'], temperature=0)
 vStore = Chroma.from_documents(documents=doc_texts, embedding=openAI_embeddings)
 
 # prompt = hub.pull("rlm/rag-prompt")
-# prompt = hub.pull("rngtang/colab-bot")
-prompt = hub.pull("judipettutti/telephone")
+prompt = hub.pull("rngtang/colab-bot")  # Generates longer answers. IDK if that's better or not
+# prompt = hub.pull("judipettutti/telephone") # i accidently made this on our shared one oop: https://smith.langchain.com/hub/judipettutti/telephone/playground?organizationId=5ed40c29-8f7d-47af-ab9b-2c31f51d5ba3 
 
 model = RetrievalQA.from_chain_type(llm=client, 
                                     retriever=vStore.as_retriever(), 
                                     chain_type_kwargs={
                                         "prompt": prompt,
-                                        "verbose": True
-                                        # "memory": ConversationBufferMemory(input_key="question", memory_key="context"),
+                                        "verbose": True,
+                                        "memory": ConversationBufferMemory(input_key="question", memory_key="context")
                                     })
 print("Everything set up")
 
-# Question
 while True:
     question = input("Ask me anything: ")
     response = model.invoke(question)
