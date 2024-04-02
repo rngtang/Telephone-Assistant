@@ -51,6 +51,7 @@ def studev_job():
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font('Arial', size=12)
+    pdf.write(5, "These are the Student Developers currently available on shift: \n")
     pdf.write(5, "Student developers can help anyone with software issues. These are the Current Student Developers (part-time help with software): \n")
     pdf.write(5, info)
     pdf.output(f'../files/Current_Student_Devs.pdf')
@@ -63,6 +64,7 @@ def studio_job():
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font('Arial', size=12)
+    pdf.write(5, "These are the student worker(s) currently on shift at the TEC Workspace and/or Garage: \n")
     pdf.write(5, "The studio workers can help anyone use the 3d printer, laser cutter, and other physical tools. These are the Current Studio Workers (part-time help with the studio and garage): \n")
     pdf.write(5, info)
     pdf.output(f'../files/Current_Studio_Workers.pdf')
@@ -70,17 +72,17 @@ def studio_job():
 # Schedules when to update the pdfs
 schedule.every().day.at("10:00").do(roots_job)
 # schedule.every(1).minutes.do(roots_job)
-schedule.every(20).minutes.do(studev_job)
-schedule.every(20).minutes.do(studio_job)
+schedule.every(10).minutes.do(studev_job)
+schedule.every(10).minutes.do(studio_job)
 
 while True:
     print("Checking APIs")
     schedule.run_pending()
-    time.sleep(1200)  # Check every 20 minutes
+    time.sleep(600)  # Check every 10 minutes
 
-    # print("Collecting documents...")
+    print("Collecting documents...")
     # Merges all documents together
-    filenames = ["/home/colabdev/Desktop/telephone-assistant/embeddings/files/FormattedK.pdf", "../files/Upcoming_Roots_Classes.pdf", "../files/Current_Studio_Workers.pdf", "../files/Current_Student_Devs.pdf"]
+    filenames = ["/home/colabdev/Desktop/telephone-assistant/embeddings/files/NoQuestions.pdf", "../files/Upcoming_Roots_Classes.pdf", "../files/Current_Studio_Workers.pdf", "../files/Current_Student_Devs.pdf"]
     merger = PdfMerger()
     for filename in filenames:
         merger.append(PdfReader(open(filename, 'rb')))

@@ -1,0 +1,276 @@
+
+1
+What is the Co-Lab about?  
+The Innovation Co-Lab provides learning opportunities, open studios, equipment resources, and 
+mentorship to the Duke Community in support of teaching, learning, and researching with technology. 
+What is the Co-Lab? 
+The Innovation Co-Lab is a Duke Community resource for learning about, experimenting, and building 
+with technology. We believe that Serious Play can lead to surprising results and inspiring outcomes, and 
+we have built a program to encourage and support this mentality. This includes broadly accessible 
+learning opportunities through our Roots Program and Office Hours, four campus Studios with open 
+access to equipment and technology support, medical-caliber equipment and services supporting the 
+most sophisticated clinical and research needs, and deep mentorship and support opportunities for 
+prototyping your brilliant (or wild) ideas.  
+At the Innovation Co-Lab, we try to not only provide resources, mentorship, and support for student 
+creativity with technology, but also build a community and environment that supports this kind of work.  
+To that end, we have a living set of principles that help communicate that ethos: 
+The Co-Lab is for everyone at Duke, regardless of experience, field of study, background, race, gender, 
+sexual orientation, ability, disability, or neurodivergence. Everyone can make things and creativity isn’t 
+reserved for "creative people". Everything is an experiment. Play, flow, analyze, repeat. Don’t try to 
+create and analyze at the same time. Skills tend to transfer. Previous projects have a funny way of 
+informing unrelated future work. The value of “Hello world” can't be understated – 3d printed trinkets 
+often lead directly to published research. Ask a good question today. The work you do when you should 
+be working is the work you should be doing. Duke is a special place with extraordinary resources. Use 
+them all. There is great value in saying yes. 
+What locations does the Co-Lab have? 
+The Co-Lab makerspaces are found in three locations across campus: Technology Engagement Center 
+(West), Rubenstein Arts Center (Central) and Lilly Library (East). These makerspaces are open to all in 
+the Duke Community regardless of experience or interest. Additionally, the Co-Lab also houses the 
+Multimedia Project Studio, the perfect place to experience Virtual Reality. 
+What is the TEC studio? 
+What does the TEC Studio offer?  
+The TEC Studio is our flagship (main) location on West Campus. Generally, when people ask about the 
+Co-Lab, they mean TEC. This space features a large variety of resources ranging from hand tools to 
+digital fabrication equipment, meeting rooms and workspaces. 
+The many resources available at the TEC studio are supported by knowledgeable staff providing 
+expertise and consultation to meet your project or learning goals. The studio is open to all of the Duke 
+community regardless of background, experience, affiliation (student, staff, faculty), or use case 
+(personal and academic). The Co-Lab at the TEC is also the home to most of our Roots workshops and 
+technical office hours.   
+Where to Find the TEC Studio? 
+Telcom Building 2 Telcom Dr.  
+What are the TEC’s hours? 
+Open 24/7 (card access only after 5pm). All tools and equipment located in the Workspace are available 
+at all times regardless of staffing. All tools and equipment located in the Garage are only available during 
+staffed hours. Additional tools are available for reservation (see Reservations & Loans).  
+What meeting spaces does the TEC have? 
+TEC Conference Room  
+The TEC Conference Room (room 132) has tables and seats about 20. It is a Zoom room and has a large 
+TV so you can share your screen. The walls are whiteboard material so you can ideate or write notes on 
+the wall.  To reserve this room, please contact us at colab-ops@duke.edu. 
+TEC Project Room  
+The TEC Project Room (room 131) has one table and seats 6. It is a Zoom room and has a mounted TV 
+where you can share your screen. The walls are whiteboard material so you can ideate or write notes on 
+the wall. This room cannot be reserved ahead of time and must be reserved on the touchpad outside of 
+the room. 
+What is the layout of the TEC (Co-Lab)? 
+Where is the bathroom? The bathrooms are along the wall opposite the main entrance, past the Rotunda (central space). They 
+are further into the TEC than the Workshop and the large Conference Room, with the Men’s on the left 
+and the Women’s on the right (directions based on standing at the main entrance).  
+Where are the Printers?  All 3D printers can be found along the leftmost wall of the Workshop, where three rows of printers 
+make up the entire wall.  
+A regular paper printer can also be found near the Project Room OIT TEC 131, right near the entrance to 
+the Rotunda (central space). 
+Where is the Workshop?  The Workshop is directly straight from the main entrance. It contains workbenches, Desktops, and all 
+the physical tools and machines available for use, such as 3D Printers, the mill, waterjet, etc. This is 
+where Co-Lab workers can be found. Workers can help with tool questions and machinery use.  
+Where is the Conference Room?  The Conference Room is on the right side of the TEC building/Rotunda (based on standing at the main 
+entrance).  
+CNC Router Epilog Laser Cutter/Engraver  
+Manual Mill/Drill Power Tools. 
+What equipment can I reserve at the TEC? 
+The equipment below is available at the TEC through our reservation request form: 
+Ultimaker (although generally available at all times, printers can be reserved for projects) 
+Embroidery Machine  
+Revopoint Pop 2 3D Scanner 
+How do I reserve a tool?  
+For any reservation or question regarding reservations, you can go here: 
+https://duke.qualtrics.com/jfe/form/SV_1YsnM5UkCv2Lnwx  
+How do I get started?  
+Getting Started with 3D Printing 
+Send a job to the 3D printer with 3dprinteros 
+Get free 3D models with Thingiverse 
+What related workshops are there?  
+Self-Paced: Basic Laser Cutting Make a Sticker Basic 3D Printing 
+Instructor-Led: lllustrator for Laser Cutting Intro to Sewing Intro to 3D Modeling (CAD & CAM) 
+What are the Roots Workshops? 
+What is the Roots Program? 
+The Innovation Co-Lab's Roots Program is our series of technology learning experiences, including both 
+live and self-paced workshops. The program is free, non-credit, open to anyone at Duke (student, staff, 
+faculty). With a focus on technology and hands-on experiences, we offer a wide variety of workshops 
+ranging from intro to programing to designing and creating your own silicone molds to sewing your first 
+tote-bag and more. You can view, register, and access all of our learning experiences on Pathways – a 
+platform for discovering, managing, and tracking your co-curricular education at Duke. A few highlights 
+and upcoming opportunities are listed below, but be sure to visit Pathways for much more.  
+View all Co-Lab Opportunities on Pathways: FUNCTION 
+What are personalized classes?  
+Want to create a fun, educational tech experience for your group?  Don’t see a current class that fits the 
+bill? Let’s chat to come up with a personalized class that we can do for you! Personalized classes we’ve 
+done in the past include sticker-making, sewing plushies, and rapid prototyping.  We can't accommodate 
+Who are the Student Developers? 
+Check out our students' expertise below to find the best fit for your needs. For full time developers' 
+help, check out our Team's page (by appointment only).  
+Which Student Developers are currently available? 
+FUNCTION 
+What are the different student developer's expertise? 
+Kylie Greenwald: Software development(Python, Flask, Java), Databases (PostgreSQL), Front-end 
+development (HTML, CSS, JavaScript, React, Swift), Design (UI/UX, Figma), DevOps (Docker, Git) 
+Kelvin Bueno: Expertise: Front End development (HTML, CSS, JavaScript, react), Software development 
+(node.js, python), Databases (MongoDB) 
+Eileen Cai: Expertise: Front End Development (HTML, JavaScript, React.js), Software Development (Ruby, 
+Rails), Databases (Postgresql), DevOps (Docker, Git) 
+Judy Chen: Expertise: Software development (ruby, rails), Front End development, and devOps 
+Olivia Chen: Expertise: Front End development (HTML, CSS, JavaScript) and Software development (ruby 
+on rails) 
+Johnny Cortez: Expertise: Front End development (HTML, CSS, JavaScript, React), Design (UI, UX), 
+Software development (Java, Python) 
+Alice Hu: Expertise: Software development (python, java, ruby, rails), Front End development (HTML, 
+CSS, JavaScript), devOps 
+Hung Le: Expertise: Software development (Python), Databases (mySQL), DevOps (Docker, Git), Front 
+End development (HTML, CSS, JavaScript, React.js) 
+Raul Ng: Expertise: Hardware (Arduino), Software development (Ruby on Rails), Databases (mongoDB, 
+mySQL), DevOps (Docker, Git) 
+Alexander Pieroni: Expertise: Software dev (Python, C, React Native, Ruby, Rails), Databases (MongoDB, 
+PostgreSQL), Front-end dev (HTML, CSS, JS, Tailwind CSS, React, Typescript), Design (UI/UX, Figma), 
+DevOps (Docker, Git), Tools (Photogrammetry, ArcGIS, Metashape) 
+Alisha Zhang: Expertise: Front End development (HTML, CSS, JavaScript), Design (UI, UX), Software 
+development (Java, Python) 
+What are Grants? 
+Got an idea for a technology project, but need a little help? 
+Innovation Grants provide students with small seed funding and one-on-one mentorship to help you 
+develop your project, from zero to a fully realized idea.   
+The Innovation Grant program supports: 
+Individual or team-based extracurricular or personal projects  
+Projects stemming from a faculty-supported Independent Study  
+Pre-entrepreneurial projects from zero to prototype or proof-of-concept 
+How do I apply for grants? 
+Students will complete an application outlining a project involving innovative use of technology. This 
+could be a software project, hardware project, an art project, or something entirely different. As long as 
+there's a technology component, we want to hear about it. This application will include project timeline, 
+team members, resources required, technical/expert assistance required, as well as a budget request. 
+Budgets will be commensurate with project scope and complexity, experience, team size, materials cost, 
+and project duration.  
+What are the requirements for a grant? 
+Applications will be accepted on a rolling basis, and reviewed by the Co-Lab. Proposals will be evaluated 
+on the following criteria: 
+Right Team 
+Do you have the people on board to be able to carry out this project? What experience do the team 
+members bring to this project idea? Do you have a cross-functional team that can handle the various 
+aspects of this project? 
+Right Size  
+Is this project achievable with this team in a reasonable amount of time? Do you have specific goals and 
+milestones set that are realistic?    
+Right Budget 
+Is the Co-Lab seed fund the right fit for this project? Typically, we support projects that average under 
+$1000. Is the funding request appropriate and sufficient for the project idea? 
+Right Idea 
+Does this project serve as a good educational/learning experience for the team members? How does 
+this project improve the experience of the users who will interact with it? What are the 
+innovative/creative/challenging ideas being presented in this project?   
+After review, we will typically set up an introductory meeting to discuss the project. Applications can 
+either be accepted, returned for additional information or revisions, or declined. 
+What happens after acceptance? 
+Once a project is accepted, the team member(s) will meet with a representative from the Co-Lab to 
+establish a project plan at a Kickoff Meeting. We will discuss the budget and the best way to issue those 
+funds (sometimes we provide it all up front, other times we do not). We'll set up a regular schedule to 
+meet throughout the project timeline to overcome obstacles and celebrate successes. We’ll set up a 
+page for you on our site to provide project information, updates, photos, and more. Grant recipients will 
+Prototyping 
+We use rapid prototyping technologies including 3D printing, laser cutting, and more to generate 
+prototypes and iterate on designs. 
+Manufacturing 
+We help determine the optimal path to small scale manufacturing by helping with material selection, 
+sourcing, and manufacturing method selection. 
+How does DesignHub works? 
+DesignHub is a subsidized service provided to the Duke community by the Innovation Co-Lab. We will 
+absorb the cost of labor up to a maximum of 20 hours. Beyond this consultation time, the service is cost 
+recovery and you will be billed for time beyond the initial 20 hours as well as at-cost material charges for 
+any materials necessary to fabricate the prototypes (if fabrication is part of the project). We try to scope 
+our projects to stay well within the twenty hours of design and build time. Most projects will leverage 
+3D printing or other digital fabrication tools, and pricing for these tools can be viewed on the Bluesmith 
+page. 
+How do I get started with DesignHub?  
+If you have a problem and an idea for how to solve it, you're halfway there! Working through the list 
+below will help get your project moving. 
+Identify a Problem 
+The world is abound with problems. Even small optimizations can lead to drastic improvements in 
+performance. Pick a problem that is personal to you and we can help you solve it. 
+Work together to Solve the Problem  
+Our staff will help you turn your vision into a tangible outcome. Try to think of a few potential solutions. 
+Often the prototyping process will be iterative and adjustments will need to be made but we will look to 
+you as the subject matter expert that guides our work. Frame your problem and solution in terms of 
+working backwards from the desired outcome you would like to achieve.  
+How do I schedule a consultation with Design Hub?  
+Reach out to our team by emailing designhub@duke.edu or heading to our Booking Calendar to get 
+started. You will be introduced to your student designers who will work with you through the course of 
+your project. They will assess your idea in relation to the realities of design and building. You will serve 
+as the subject matter expert for the project and work in tandem with our design engineers. At this point 
+your work will begin and with any luck, together we will have solved a problem! 
+ 
+What is the Rubenstein Arts Center? 
+What does the Rubenstein Arts Center offer? 
+Our Co-Lab studio at the Rubenstein Arts Center (Ruby) is the best place for learners and makers who 
+love the intersectionality of Art and Tech. 
+What is Lilly Library? 
+What does Lilly Library offer?  
+The Co-Lab studio at Lilly library is the perfect place for First Year students to get started with 3D 
+printing. 
+Our Co-Lab studio at the Lilly Library (East Campus) is the smallest of our three (3) makerspaces here on 
+Duke Campus. It has 3D printers and tools to experiment with. The Co-Lab at Lilly is open for free and to 
+all, regardless of background, experience and affiliation (student, staff, faculty).  
+Where is the Lilly Studio?  
+Lilly Library 1348 Campus Dr. 
+What are Lilly Library’s Hours? 
+The Lilly Library hours:  
+Monday through Thursday: 9am-7pm  
+Friday: 9am-6pm  
+Saturday: closed  
+Sunday: 1pm-5pm 
+All tools are available while the library is open. 
+Equipment & tools found in the Lilly Studio 
+Ultimaker S3 
+Hand Tools  
+Tools at this location are available while the library is open. 
+What is Perkins/the Bostock Library? 
+What does Perkins/the Bostock Library offer?  
+Perkins/Bostock has the Multimedia Project Studio (MPS)  
+What is the Multimedia Project Studio (MPS)? 
+The MPS Studio is Duke's home for developing and experiencing Virtual Reality (VR), and Augmented 
+Reality (AR). 
+The MPS features resources for VR and game development, 3D modeling and object scanning, as well as 
+video and photo editing. The MPS is free and open to anyone at Duke, regardless of experience, 
+affiliation (student/staff/faculty), or field of study. Staff members are on hand to orient you to the space 
+and help you get started. 
+Where is the MPS? 
+You can find the MPS studio in Room 006 on the lower level of Perkins/Bostock Library, down the hall 
+from the Link. 
+Perkins Library 411 Chapel Dr. 
+When can I use the MPS equipment? 
+Side rooms and some resources are only available during staffed hours.  
+What is at the MPS? 
+Main Studio 
+High End PC VR workstations 
+VR Headsets (staffed hours only) iMacs 
+Dedicated VR Dev Suite (Reservable) 
+High End PC VR workstation VR/AR Headsets 
+VR Movement Suite (in progress) 
+High End PC VR workstation VR Treadmill 
+VR Exercise Bike (coming soon) 
+Software 
+Game engines: Unity, Unreal 3D Modeling: Maya, 3dsMax, Blender, Sketchup 
+Adobe Creative Suite: Premier, Photoshop, Illustrator 
+What equipment can I reserve at the MPS?  
+The equipment below is available through reservation or in consultation with our staff: 
+Quest1 VR headsets  
+Revopoint Pop 2 3D Scanner  
+Magic Leap 2 AR headset 
+What rooms can I reserve at the MPS?  
+VR Dev Suite VR Movement Suite 
+Visit the lab and talk to our consultants or email us for further inquiry 
+What other services does the MPS offer?  
+The MPS also offers services for faculty and groups: 
+VR Development for faculty-led projects (email us for more information) 
+Tours/VR experiences for Academic courses or other groups 
+Our studios are equipped with many tools and resources to allow users to create using 3D printing, laser 
+cutting, milling, soldering, and much more on the makerspace side as well as unity and adobe cloud 
+amongst others on the software side. We continuously improve our selections, so make sure to check 
+back on what we have to offer every now and again. 
+Request a Tour or Custom Workshop 
+How do I request a tour? 
+TEC Tour: This tour will be a short visit to our studio space and an introduction to our equipment, 
+including 3D printers, laser cutters, and more.  Additionally, we'll walk through our Bluesmith studio, 
+where we make precise parts out of high-quality materials for medical, research, and other professional 
+applications.   
+MPS Tour: This tour will show you around our VR studio. We'll introduce you to our equipment designed 
+specifically for creating VR experiences, including our computers, VR headsets, scanners, and more. 
+ 
