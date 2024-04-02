@@ -1,4 +1,3 @@
-
 # Co-Lab Telephone Assistant
 Welcome to the Co-Lab's Telephone Assistant! This project is meant to serve as a conversational question-answering bot to which any student can ask questions about the Co-Lab, such as its facilities, tools, workers, and upcoming classes. 
 
@@ -67,7 +66,7 @@ The following diagram shows how our bot works:
 
 ## How It Works
 The following chart represents how the Co-Lab assistant pipeline works. To answer questions, the assistant first creates a thread, to which messages (questions) can be appended and a run (answer generation) can start. Using the different status of an assistant's run object, the assistant can then know whether it needs to function call (request data from an API) to add real-time information to its answer, such as who is currently on shift. Only after the run status is completed does the answer get printed. This question-answering cycle should continue until the user asks no more questions, though the exiting process is still being worked on.
-![Program flowchart](./assistant/media/Assistant%20flowchart.png)
+![Program flowchart](./media/diagram-updated.png)
 
 Documentation for OpenAI Assistants can be found here: https://platform.openai.com/docs/assistants/overview. 
 
