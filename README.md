@@ -16,7 +16,7 @@ source /home/colabdev/Desktop/telephone-assistant/openai-env/bin/activate
 ```
 
 ### Testing Combined Project
-To test the combined project that uses both Azure and OpenAI together, first make sure a speaker is turned on and plugged into the Raspberry Pi. The microphone should already be attached to the Pi. When speaking to ask a question, make sure to hold up the Pi and talk directly into the microphone. 
+To test the combined project that uses both Azure and the Bot together, first make sure a speaker is turned on and plugged into the Raspberry Pi. The microphone should already be attached to the Pi. When speaking to ask a question, make sure to hold up the Pi and talk directly into the microphone. 
 
 Once both the speaker and microphone are ready, run the program using the following command:
 
@@ -33,8 +33,8 @@ To run the program, use the following command:
 python /home/colabdev/Desktop/telephone-assistant/assistant/working/ask.py
 ```
 
-### Optional: Testing just the OpenAI Assistant
-To test just the OpenAI Assistant using your terminal (text input), use this command: 
+### Optional: Testing just the question-answering Bot
+To test just the question-answering Bot using your terminal (text input), use this command: 
 ```
 python /home/colabdev/Desktop/telephone-assistant/embeddings/testing/embeddings_terminal.py
 ```
@@ -42,7 +42,7 @@ python /home/colabdev/Desktop/telephone-assistant/embeddings/testing/embeddings_
 ### Optional: Testing the Project with Wake-up Word
 Currently, this feature is still in development. It requires hardware (microphone and speaker) to be set up. 
 
-To test the combined project (STT/TTS and OpenAI Assistant) additionally integrated with a wake-up word activation, use this command: 
+To test the combined project (STT/TTS and question-answering Bot) additionally integrated with a wake-up word activation, use this command: 
 ```
 python /home/colabdev/Desktop/telephone-assistant/assistant/working/wake_up.py
 ```
@@ -53,7 +53,9 @@ The main functionalities of Azure AI Speech are its speech-to-text (STT) and Tex
 
 Additionally, we are also using the wake-up word function to have the telephone-assistant only start listening for questions once the wake-up word has been spoken. Currently, the wake-up word is set to "Hey Colab".
 
-We originally planned to use Azure AI services for both STT/TTS and question answering. However, the capabilities of the Question Answering feature were not enough. It could only detect question intent and then pair word-for-word an answer to a question as written in whichever PDF we gave. As a result, we moved to using OpenAI Assistants for generating answers to questions.
+We originally planned to use Azure AI services for both STT/TTS and question answering. However, the capabilities of the Question Answering feature were not enough. It could only detect question intent and then pair word-for-word an answer to a question as written in whichever PDF we gave. As a result, we moved to using OpenAI Assistants for generating answers to questions. However, OpenAI assistants where not cost efficient and had high latency. 
+
+After investigating other question-answering methods, we tried creating our own document-based question-answering bot using a vector database, OpenAI, and Langchain as our LLM application framework.
 
 Documentation for the Speech SDK can be found here: https://azure.microsoft.com/en-us/products/ai-services/ai-speech/. 
 
