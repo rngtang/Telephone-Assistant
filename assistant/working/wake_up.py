@@ -17,12 +17,10 @@ speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, au
 StudioUrl = 'https://shiftr-api.colab.duke.edu/publicCalendars/digitalSign/current/CoLab%20Studios/TEC'
 StudentDevsUrl = 'https://shiftr-api.colab.duke.edu/publicCalendars/digitalSign/current/Colab%20Student%20Developer/TEC%20Office%20Hours'
 rootClasses = 'https://api.pathways.duke.edu/api/v1/signage_sync?location=1'
-assistant_id = os.environ.get("ASSISTANT_ID_4") # To use GPT4 assistant
-# assistant_id = os.environ.get(" ASSISTANT_ID_3") # To use GPT3 assistant
+assistant_id = os.environ.get("ASSISTANT_ID") # To use GPT4 assistant
 
 # Sets up the client
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY4"),) #To use the GPT4 model
-# client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY3"),) #To use the GPT3 model
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"),) #To use the GPT4 model
 message_thread = client.beta.threads.create()
 thread_id = message_thread.id
 
@@ -72,7 +70,7 @@ def requiresAction(run, run_id):
     )
 
 def speech_recognize_keyword_locally_from_microphone():
-    model = speechsdk.KeywordRecognitionModel("../../models/high_accepts.table")
+    model = speechsdk.KeywordRecognitionModel("/home/colabdev/Desktop/telephone-assistant/models/high_accepts.table")
     keyword = "Hey CoLab"
     keyword_recognizer = speechsdk.KeywordRecognizer()
     done = False
@@ -184,7 +182,7 @@ if __name__ == "__main__":
         order="desc",
         limit="20",
     )
-    print(my_assistants.data)
+    # print(my_assistants.data)
     
     print("Waking up...")
     speech_synthesizer.speak_text_async("Waking up...")

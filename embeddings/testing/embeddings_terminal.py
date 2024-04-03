@@ -17,7 +17,7 @@ def count_tokens():
 
 # Loads the file
 print("Loading information...")
-loader = PyPDFLoader("../files/All_Info.pdf")
+loader = PyPDFLoader("/home/colabdev/Desktop/telephone-assistant/embeddings/files/All_Info.pdf")
 pages = loader.load()
 
 # Splits the document
@@ -41,7 +41,6 @@ model = RetrievalQA.from_chain_type(llm=client,
                                     retriever=vStore.as_retriever(), 
                                     chain_type_kwargs={
                                         "prompt": prompt,
-                                        # "verbose": True,
                                         "memory": ConversationBufferMemory(input_key="question", memory_key="context")
                                     })
 print("Everything set up")

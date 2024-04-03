@@ -10,7 +10,7 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain_openai import OpenAI
 
 # Loads document and splits it
-loader = PyPDFLoader("./../media/New Formatted K.pdf")
+loader = PyPDFLoader("/home/colabdev/Desktop/telephone-assistant/embeddings/files/All_Info.pdf")
 pages = loader.load_and_split()
 
 # print(len(pages))

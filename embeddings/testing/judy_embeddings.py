@@ -6,7 +6,7 @@ client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"),) #To use the GPT4 mode
 
 from langchain_community.document_loaders import PyPDFLoader
 # merger.write("All_Info.pdf")
-loader = PyPDFLoader("../files/All_Info.pdf")
+loader = PyPDFLoader("/home/colabdev/Desktop/telephone-assistant/embeddings/files/All_Info.pdf")
 pages = loader.load()
 
 print("finished loading")

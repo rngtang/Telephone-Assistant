@@ -18,6 +18,40 @@ audio_config = speechsdk.audio.AudioOutputConfig(use_default_speaker=True)
 speech_config.speech_synthesis_voice_name='en-US-AvaNeural'
 speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
 
+# recognizes wake-up word: "Hey CoLab"
+def speech_recognize_keyword_locally_from_microphone():
+    model = speechsdk.KeywordRecognitionModel("/home/colabdev/Desktop/telephone-assistant/models/high_accepts.table")
+    keyword = "Hey CoLab"
+    keyword_recognizer = speechsdk.KeywordRecognizer()
+    done = False
+
+    def recognized_cb(evt):
+        result = evt.result
+        if result.reason == speechsdk.ResultReason.RecognizedKeyword:
+            print("RECOGNIZED KEYWORD: {}".format(result.text))
+        nonlocal done
+        done = True
+
+    keyword_recognizer.recognized.connect(recognized_cb)
+
+    result_future = keyword_recognizer.recognize_once_async(model)
+    print('Start by saying "{}"'.format(keyword))
+    try: 
+        result = result_future.get()
+    except: 
+        print("Error with getting result")
+
+    if result.reason == speechsdk.ResultReason.RecognizedKeyword:
+        
+        main()
+
+    # If active keyword recognition needs to be stopped before results, it can be done with
+    stop_future = keyword_recognizer.stop_recognition_async()
+    print('Stopping...')
+    stopped = stop_future.get()
+    print('Stopped: "{}" '.format(stopped))
+
+
 # Loads and divides the text into smaller chunks
 def parse_doc():
     print("Loading information...")
@@ -58,6 +92,7 @@ def get_answer(doc_text):
     print("Model built")
     return model
 
+
 # Asks and answers the questions
 def main():
     while True:
@@ -83,11 +118,13 @@ def main():
         print("\nBot: " + response['result'] + '\n')
         speech_synthesizer.speak_text_async(response['result']).get()
 
+
 if __name__ == "__main__":
 
+    # parse doc
     doc_text = parse_doc() 
     model = get_answer(doc_text)
 
-    main()
-
+    # wait for wake-up word
+    speech_recognize_keyword_locally_from_microphone() # <- calls on main from inside there
 
