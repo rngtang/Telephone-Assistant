@@ -26,7 +26,7 @@ python /home/colabdev/Desktop/telephone-assistant/assistant/working/telephone.py
 You should now be able to verbally ask questions and recieve answers about anything related to the Co-Lab! Please note that as the current program is being run on a free trial of OpenAI, the number of questions you can ask at one time is limited. 
 
 ### Optional: Testing just AzureAI Speech
-To test just the AzureAI Speech (speech-to-text and text-to-spech), make sure the microphone and speaker are both set up (as described above). Here, the Question Answering is implemented through AzureAI's Language service, not OpenAI. As a result, the answers generated are not very flexible or complete, as described in "Part 1: Azure AI Speech".
+To test just the AzureAI Speech (speech-to-text and text-to-spech), make sure the microphone and speaker are both set up (as described above). Here, the Question Answering is implemented through AzureAI's Language service, not the Bot. As a result, the answers generated are not very flexible or complete, as described in "Part 1: Azure AI Speech".
 
 To run the program, use the following command: 
 ```
@@ -63,12 +63,12 @@ Documentation for the Speech SDK can be found here: https://azure.microsoft.com/
 As mentioned before, we are using a custom-made document-based question-answering bot. To do this, we are using vector-search to decrease latency and increse accuracy of the answers. As a result, we are using OpenAI as our LLM, ChromDB as our vector database, and Langchain as the frameword to build our bot.
 
 The following diagram shows how our bot works:
-![Program flowchart](./media/diagram-updated.png)
+![Program flowchart](./media/bot-diagram.png)
 
 
 ## How It Works
-The following chart represents how the Co-Lab assistant pipeline works. To answer questions, the assistant first creates a thread, to which messages (questions) can be appended and a run (answer generation) can start. Using the different status of an assistant's run object, the assistant can then know whether it needs to function call (request data from an API) to add real-time information to its answer, such as who is currently on shift. Only after the run status is completed does the answer get printed. This question-answering cycle should continue until the user asks no more questions, though the exiting process is still being worked on.
-![Program flowchart](./media/diagram-updated.png)
+The following chart represents how the Co-Lab assistant pipeline works. To answer questions, the question is converted into a vector. Then, it uses vector search to find a part of the text that has a close relationship with the questions. After that, it is passed to our LLM (OpenAI) to generate the answers. Finally, the answer is returned and the process is repeated.
+![Program flowchart](./media/diagram.png)
 
 Documentation for OpenAI Assistants can be found here: https://platform.openai.com/docs/assistants/overview. 
 
