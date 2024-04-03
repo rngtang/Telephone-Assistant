@@ -1,12 +1,12 @@
 import os
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import OpenAIEmbeddings
-# from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
-# from langchain.chains import VectorDBQA
 from langchain.chains import RetrievalQA
 from langchain_community.document_loaders import PyPDFLoader
-from langchain.text_splitter import CharacterTextSplitter
+from langchain.memory import ConversationBufferMemory
+# from langchain.text_splitter import CharacterTextSplitter
 from langchain_openai import OpenAI
 from langchain import hub
 import azure.cognitiveservices.speech as speechsdk
@@ -28,7 +28,7 @@ def parse_doc():
     pages = loader.load()
 
     # Splits the document into smaller chunks
-    char_text_splitter = CharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
+    char_text_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
     doc_texts = char_text_splitter.split_documents(pages)
 
     return doc_texts
@@ -36,12 +36,18 @@ def parse_doc():
 def get_answer(doc_text):
     # OpenAI to use embeddings and creates the client
     openAI_embeddings = OpenAIEmbeddings(openai_api_key=os.environ['OPENAI_API_KEY'])
-    client = OpenAI(openai_api_key=os.environ['OPENAI_API_KEY'])
+    client = OpenAI(openai_api_key=os.environ['OPENAI_API_KEY'], temperature=0)
 
     # Creates to store the vectors
     vStore = Chroma.from_documents(doc_text, openAI_embeddings)
+
+    # Gets prompt and retrieves model
     prompt = hub.pull("rngtang/colab-bot")
-    model = RetrievalQA.from_chain_type(llm=client, retriever=vStore.as_retriever(), chain_type_kwargs={"prompt": prompt})
+    model = RetrievalQA.from_chain_type(llm=client, 
+                                        retriever=vStore.as_retriever(), 
+                                        chain_type_kwargs={"prompt": prompt, 
+                                                           "memory": ConversationBufferMemory(input_key="question", memory_key="context")
+                                        })
 
     speech_synthesizer.speak_text_async("Model built")
     print("Model built")
@@ -70,7 +76,6 @@ def main():
 
 if __name__ == "__main__":
 
-    # could try and have the parsing scheduled too in order to only do when new info
     doc_text = parse_doc() 
     model = get_answer(doc_text)
 

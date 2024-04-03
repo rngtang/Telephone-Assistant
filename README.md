@@ -21,7 +21,7 @@ To test the combined project that uses both Azure and the Bot together, first ma
 Once both the speaker and microphone are ready, run the program using the following command:
 
 ```
-python /home/colabdev/Desktop/telephone-assistant/assistant/working/telephone.py
+python /home/colabdev/Desktop/telephone-assistant/embeddings/testing/stt_embeddings.py
 ```
 You should now be able to verbally ask questions and recieve answers about anything related to the Co-Lab! Please note that as the current program is being run on a free trial of OpenAI, the number of questions you can ask at one time is limited. 
 
@@ -51,7 +51,7 @@ The wake-up word is "Hey Colab". Before saying this phrase, the robot will be "a
 ## Part 1: Azure AI Speech
 The main functionalities of Azure AI Speech are its speech-to-text (STT) and Text-to-speech (TTS) features that the SDK provides. In this case, we are using STT to recognize what is the user asking and TTS for the assistant to verbally answer the question.
 
-Additionally, we are also using the wake-up word function to have the telephone-assistant only start listening for questions once the wake-up word has been spoken. Currently, the wake-up word is set to "Hey Colab".
+<!-- Additionally, we are also using the wake-up word function to have the telephone-assistant only start listening for questions once the wake-up word has been spoken. Currently, the wake-up word is set to "Hey Colab". -->
 
 We originally planned to use Azure AI services for both STT/TTS and question answering. However, the capabilities of the Question Answering feature were not enough. It could only detect question intent and then pair word-for-word an answer to a question as written in whichever PDF we gave. As a result, we moved to using OpenAI Assistants for generating answers to questions. However, OpenAI assistants where not cost efficient and had high latency. 
 
@@ -60,17 +60,21 @@ After investigating other question-answering methods, we tried creating our own 
 Documentation for the Speech SDK can be found here: https://azure.microsoft.com/en-us/products/ai-services/ai-speech/. 
 
 ## Part 2: Question-answering bot
-As mentioned before, we are using a custom-made document-based question-answering bot. To do this, we are using vector-search to decrease latency and increse accuracy of the answers. As a result, we are using OpenAI as our LLM, ChromDB as our vector database, and Langchain as the frameword to build our bot.
+As mentioned before, we are now using a custom-made document-based question-answering bot. To do this, we implement a vector-search to decrease the latency and increse the accuracy of answers. We are using OpenAI as our LLM, ChromDB as our vector database, and Langchain as the framework to build our bot.
+
+By having our OpenAI 
 
 The following diagram shows how our bot works:
 ![Program flowchart](./media/bot-diagram.png)
+
+An introduction to LangChain and its complete possible functionalities can be found here: https://python.langchain.com/docs/get_started/introduction.  
 
 
 ## How It Works
 The following chart represents how the Co-Lab assistant pipeline works. To answer questions, the question is converted into a vector. Then, it uses vector search to find a part of the text that has a close relationship with the questions. After that, it is passed to our LLM (OpenAI) to generate the answers. Finally, the answer is returned and the process is repeated.
 ![Program flowchart](./media/diagram.png)
 
-Documentation for OpenAI Assistants can be found here: https://platform.openai.com/docs/assistants/overview. 
+Documentation for using OpenAI Embeddings can be found here: https://platform.openai.com/docs/guides/embeddings/use-cases.
 
 ### Update the Knowledge Base
 Here comes the new stuff

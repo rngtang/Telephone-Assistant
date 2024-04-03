@@ -30,7 +30,6 @@ openAI_embeddings = OpenAIEmbeddings(openai_api_key=os.environ['OPENAI_API_KEY']
 client = OpenAI(openai_api_key=os.environ['OPENAI_API_KEY'], temperature=0)
 
 # Sets up the vector db
-# only real change i made was adding labels ?? 
 vStore = Chroma.from_documents(documents=doc_texts, embedding=openAI_embeddings)
 
 # Sets up the prompt
