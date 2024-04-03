@@ -77,7 +77,6 @@ Here comes the new stuff
 
 
 ## Known Bugs 
-* Currently, there are a few errors with the assistant recognizing when a function call is necessary. For example, if you ask, "Where is Lily?", the assistant with sometimes think Lily is a person (rather than a typo for the library) and call the function. Additionally, the assistant sometimes gets confused between when to use one function versus the other (get_workers vs get_student_devs).
-* Additionally, because we are using the model GPT-3.5-turbo-0125 (free), there is currently a limitation of 3 questions that can be asked before there is a 20 second cooldown. Trying to ask another question before the cooldown will result in the run failing. 
+* There are no known bugs, for now...
 
 <!-- Furthermore, sometimes the function calls seem to conflict with knowledge inside the knowledge base PDF. We tried to store some information about FTEs and student devs on the PDF, but the assistant seems to want to function call whenever asked about any person, and as a result will get confused when asked questions about FTEs and student dev expertise. This can cause it to fime out and/or fail to generate an answer.  -->
