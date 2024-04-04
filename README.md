@@ -67,7 +67,7 @@ Currently, as laid out in the LangChain Retrieval interface, all of the external
 /home/colabdev/Desktop/telephone-assistant/embeddings/files/All_Info.pdf
 ```
 
-This PDF is constantly being regenerated through another script in order to contain current information about which student workers are on shift and what the first five upcoming Roots classes are.
+This PDF is constantly being regenerated every 30 minutes through Cron on the Raspberry Pi in order to append current information about which student workers are on shift and what the first five upcoming Roots classes are.
 
 ## Known Bugs
 
