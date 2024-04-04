@@ -36,7 +36,7 @@ You should now be able to verbally ask questions and recieve answers about anyth
 
 This following chart represents how the Co-Lab assistant pipeline works. First, the question is translated from speech to text and converted into a vector. Then, a vector search is used to find a part of the text that has a close relationship with the questions, which is labeled context. The context and question are sent to our large language model (OpenAI), which generates an answer. Finally, the answer is returned and the process is repeated.
 
-![Program flowchart](./media/diagram.png)
+[<img src="./media/diagram.png" width="800" alt="Program flowchart"/>](./media/diagram.png)
 
 ## Part 1: Azure AI Speech
 
@@ -46,17 +46,17 @@ We originally planned to use Azure AI services for both STT/TTS and question-ans
 
 As a result, we moved to using OpenAI Assistants for generating answers to questions. However, OpenAI Assistants where not cost efficient and had high latency. After investigating other question-answering methods, we decided to use AzureAI just for speech, and moved to creating our own document-based question-answering bot using a vector database, OpenAI, and Langchain as our LLM application framework.
 
-Documentation for the Speech SDK can be found here: https://azure.microsoft.com/en-us/products/ai-services/ai-speech/.
+Documentation for the Speech SDK can be found here: <https://azure.microsoft.com/en-us/products/ai-services/ai-speech/>.
 
 ## Part 2: Question-Answering Bot
 
-As mentioned before, we are now building our own document-based question-answering bot rather than just using an OpenAI Assistant. To do this, we implement a vector-search to decrease the latency and increse the accuracy of answers. We are using OpenAI as our large language model (LLM), ChromDB as our vector database, and Langchain Retrieval as the overall framework to build our bot.
+As mentioned before, we are now building our own document-based question-answering bot rather than just using an OpenAI Assistant. To do this, we implement a vector-search to decrease the latency and increse the accuracy of answers. We are using OpenAI as our large language model (LLM), ChromDB as our vector database, and LangChain Retrieval as the overall framework to build our bot.
 
 By using our OpenAI model as just a LLM and having embeddings be pre-generated and stored in a database, we significantly decrease the usage of our OpenAI model and subsequently its costs. LangChain integrates these embeddings to make a Retrieval Augmented Generation (RAG) application, which we use as our question-answering bot.
 
 The following diagram shows how the bot works:
 
-[<img src="./media/diagram.png" width="800" alt="Bot Diagram"/>](./media/diagram.png)
+[<img src="./media/bot-diagram.png" width="800" alt="LangChain framework"/>](./media/bot-diagram.png)
 
 In addition, this is the prompt we are currently using:
 
@@ -64,7 +64,7 @@ In addition, this is the prompt we are currently using:
 
 <!-- ![QA-Bot Prompt](./media/prompt.png =100x20) -->
 
-An introduction to LangChain and its complete possible functionalities can be found here: https://python.langchain.com/docs/get_started/introduction. Specifically, we are using LangChain's retrieval module.
+An introduction to LangChain and its complete possible functionalities can be found here: <https://python.langchain.com/docs/get_started/introduction>. Specifically, we are using LangChain's retrieval module.
 
 ## Updating the Knowledge Base
 
