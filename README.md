@@ -12,7 +12,7 @@ To learn more about the creation/use process of these technologies, go down to "
 
 ## Getting Started
 
-Before starting, it is really important to mention that this project **will not work** if you don't have an Azure Language services and OpenAI API key in your OS.
+Before starting, it is really important to mention that this project requires the use of Azure Language Services and OpenAI key in your OS in order to work. If you don't have one, then this project **will not work**.
 
 ### Activate the Virtual Environment
 
