@@ -34,28 +34,35 @@ You should now be able to verbally ask questions and recieve answers about anyth
 
 ### How Does the Question-Answering Work?
 
-This following chart represents how the Co-Lab assistant pipeline works. First, the question is translated from speech to text and then converted into a vector. Then, a vector search is used to find a part of the text that has a close relationship with the questions, which is labeled 'Context'. Next, the context is sent to our large language model (OpenAI), which generates an answer. Finally, the answer is returned and the process is repeated.
+This following chart represents how the Co-Lab assistant pipeline works. First, the question is translated from speech to text and converted into a vector. Then, a vector search is used to find a part of the text that has a close relationship with the questions, which is labeled context. The context and question are sent to our large language model (OpenAI), which generates an answer. Finally, the answer is returned and the process is repeated.
 
 ![Program flowchart](./media/diagram.png)
 
 ## Part 1: Azure AI Speech
 
-The main functionalities of Azure AI Speech are its speech-to-text (STT) and Text-to-speech (TTS) features that the SDK provides. In this case, we are using STT to recognize what is the user asking and TTS for the assistant to verbally answer the question.
+The main functionalities of Azure AI Speech that we are using are its speech-to-text (STT) and Text-to-speech (TTS). In this case, we are using STT to recognize what is the user asking and TTS for the assistant to verbally answer the question.
 
-We originally planned to use Azure AI services for both STT/TTS and question answering. However, the capabilities of the Question Answering feature were not enough. It could only detect question intent and then pair word-for-word an answer to a question as written in whichever PDF we gave. As a result, we moved to using OpenAI Assistants for generating answers to questions. However, OpenAI assistants where not cost efficient and had high latency.
+We originally planned to use Azure AI services for both STT/TTS and question-answering. However, the capabilities of its built in Question Answering feature were not enough. It could only detect question intent and then pair word-for-word an answer to a question as written in whichever PDF we gave.
 
-After investigating other question-answering methods, we tried creating our own document-based question-answering bot using a vector database, OpenAI, and Langchain as our LLM application framework.
+As a result, we moved to using OpenAI Assistants for generating answers to questions. However, OpenAI Assistants where not cost efficient and had high latency. After investigating other question-answering methods, we decided to use AzureAI just for speech, and moved to creating our own document-based question-answering bot using a vector database, OpenAI, and Langchain as our LLM application framework.
 
 Documentation for the Speech SDK can be found here: https://azure.microsoft.com/en-us/products/ai-services/ai-speech/.
 
 ## Part 2: Question-Answering Bot
 
-As mentioned before, we are now using a custom-made document-based question-answering bot. To do this, we implement a vector-search to decrease the latency and increse the accuracy of answers. We are using OpenAI as our large language model (LLM), ChromDB as our vector database, and Langchain Retrieval as the overall framework to build our bot.
+As mentioned before, we are now building our own document-based question-answering bot rather than just using an OpenAI Assistant. To do this, we implement a vector-search to decrease the latency and increse the accuracy of answers. We are using OpenAI as our large language model (LLM), ChromDB as our vector database, and Langchain Retrieval as the overall framework to build our bot.
 
 By using our OpenAI model as just a LLM and having embeddings be pre-generated and stored in a database, we significantly decrease the usage of our OpenAI model and subsequently its costs. LangChain integrates these embeddings to make a Retrieval Augmented Generation (RAG) application, which we use as our question-answering bot.
 
 The following diagram shows how the bot works:
-![Program flowchart](./media/bot-diagram.png)
+
+[<img src="./media/diagram.png" width="800" alt="Bot Diagram"/>](./media/diagram.png)
+
+In addition, this is the prompt we are currently using:
+
+[<img src="./media/prompt.png" width="800" alt="QA-Bot Prompt"/>](./media/prompt.png)
+
+<!-- ![QA-Bot Prompt](./media/prompt.png =100x20) -->
 
 An introduction to LangChain and its complete possible functionalities can be found here: https://python.langchain.com/docs/get_started/introduction. Specifically, we are using LangChain's retrieval module.
 
