@@ -68,11 +68,7 @@ An introduction to LangChain and its complete possible functionalities can be fo
 
 ## Updating the Knowledge Base
 
-Currently, as laid out in the LangChain Retrieval interface, all of the external context the bot uses to generate answers comes from one PDF file:
-
-```bash
-/home/colabdev/Desktop/telephone-assistant/embeddings/files/All_Info.pdf
-```
+Currently, as laid out in the LangChain Retrieval interface, all of the external context the bot uses to generate answers comes from one PDF file: "~/Desktop/telephone-assistant/embeddings/files/All_Info.pdf"
 
 This PDF is constantly being regenerated every 15 minutes through Cron on the Raspberry Pi. This will ensure the knowledge base contains current information about which student workers are on shift and what the first five upcoming Roots classes are.
 
@@ -111,7 +107,7 @@ Currently, this feature is still in development. It requires the external hardwa
 To test the combined project (STT/TTS and question-answering Bot) additionally integrated with a wake-up word activation, use this command:
 
 ```bash
-python /home/colabdev/Desktop/telephone-assistant/assistant/working/wake_up.py
+python /home/colabdev/Desktop/telephone-assistant/embeddings/testing/wu_stt_embeddings.py
 ```
 
 The wake-up word is "Hey Colab". Before saying this phrase, the robot will be "awake", but will not respond to questions.

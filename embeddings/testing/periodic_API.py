@@ -48,10 +48,10 @@ def main():
     get("These are the Upcoming Roots Classes: \n", roots, "Upcoming_Roots.pdf")
 
     dev = getInfo(StudentDevsUrl)
-    get("Student developers can help anyone with software issues. These are the Current Student Developers (part-time help with software): \n", dev, "Current_Student_Devs.pdf")
+    get("Student developers can help anyone with software issues. \n These are the Current Student Developers (part-time help with software): \n", dev, "Current_Student_Devs.pdf")
 
     studio = getInfo(StudioUrl)
-    get("The studio workers can help anyone use the 3d printer, laser cutter, and other physical tools. These are the Current Studio Workers (part-time help with the studio and garage): \n", studio, "Current_Studio_Workers.pdf")
+    get("The studio workers can help anyone use the 3d printer, laser cutter, and other physical tools. \n These are the Current Studio Workers (part-time help with the studio and garage): \n", studio, "Current_Studio_Workers.pdf")
 
 
     print("Collecting documents...")
