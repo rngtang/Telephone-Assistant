@@ -12,6 +12,8 @@ To learn more about the creation/use process of these technologies, go down to "
 
 ## Getting Started
 
+Before starting, it is really important to mention that this project **will not work** if you don't have an Azure Language services and OpenAI API key in your OS.
+
 ### Activate the Virtual Environment
 
 In order for the project to work, it is necessary to activate the virtual environment. To do so, you will need to cd into the directory that contains the project. You can do so by running the following commandsrun the following commands:
