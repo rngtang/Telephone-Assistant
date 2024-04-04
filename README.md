@@ -58,11 +58,7 @@ The following diagram shows how the bot works:
 
 [<img src="./media/bot-diagram.png" width="800" alt="LangChain framework"/>](./media/bot-diagram.png)
 
-In addition, this is the prompt we are currently using:
-
-[<img src="./media/prompt.png" width="800" alt="QA-Bot Prompt"/>](./media/prompt.png)
-
-<!-- ![QA-Bot Prompt](./media/prompt.png =100x20) -->
+In addition, this is the prompt we are currently using: <https://smith.langchain.com/hub/rngtang/colab-bot?organizationId=5ed40c29-8f7d-47af-ab9b-2c31f51d5ba3>.
 
 An introduction to LangChain and its complete possible functionalities can be found here: <https://python.langchain.com/docs/get_started/introduction>. Specifically, we are using LangChain's retrieval module.
 
