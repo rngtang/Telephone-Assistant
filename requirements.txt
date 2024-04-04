@@ -1,2 +1,6 @@
 azure-cognitiveservices-speech
 azure-ai-language-questionanswering
+langchain_community 
+langchain
+langchain_openai
+pypdf

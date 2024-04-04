@@ -14,10 +14,15 @@ To learn more about the creation/use process of these technologies, go down to "
 
 ### Activate the Virtual Environment
 
-In order for the project to work, it is necessary to activate the virtual environment. To do so, run the following command:
+In order for the project to work, it is necessary to activate the virtual environment. To do so, you will need to cd into the directory that contains the project. You can do so by running the following commandsrun the following commands:
 
+This command is used to enter the directory where the project is. The location of the project may vary depeding on where you cloned it.
 ```bash
-source /home/colabdev/Desktop/telephone-assistant/openai-env/bin/activate
+cd /telephone-assistant
+```
+The following command activates the virtual environment
+```bash
+source openai-env/bin/activate
 ```
 
 ### Testing Combined Project
@@ -27,7 +32,7 @@ To test the combined project that uses both Azure and the question-answering bot
 Once both the speaker and microphone are ready, run the program using the following command:
 
 ```bash
-python /home/colabdev/Desktop/telephone-assistant/embeddings/testing/stt_embeddings.py
+python embeddings/testing/stt_embeddings.py
 ```
 
 You should now be able to verbally ask questions and recieve answers about anything related to the Co-Lab!
@@ -85,7 +90,7 @@ Here, the Question Answering is implemented through AzureAI's Language service, 
 To run the program, use the following command:
 
 ```bash
-python /home/colabdev/Desktop/telephone-assistant/assistant/working/ask.py
+python assistant/working/ask.py
 ```
 
 ### Testing Just the Question-Answering Bot
@@ -93,7 +98,7 @@ python /home/colabdev/Desktop/telephone-assistant/assistant/working/ask.py
 To test just the question-answering Bot using your terminal (text input), use this command:
 
 ```bash
-python /home/colabdev/Desktop/telephone-assistant/embeddings/testing/embeddings_terminal.py
+python /embeddings/testing/embeddings_terminal.py
 ```
 
 ### Additional: Testing the Project with Wake-up Word
@@ -103,7 +108,7 @@ Currently, this feature is still in development. It requires the external hardwa
 To test the combined project (STT/TTS and question-answering Bot) additionally integrated with a wake-up word activation, use this command:
 
 ```bash
-python /home/colabdev/Desktop/telephone-assistant/embeddings/testing/wu_stt_embeddings.py
+python embeddings/testing/wu_stt_embeddings.py
 ```
 
 The wake-up word is "Hey Colab". Before saying this phrase, the robot will be "awake", but will not respond to questions.

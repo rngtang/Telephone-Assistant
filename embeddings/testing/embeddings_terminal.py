@@ -17,7 +17,7 @@ def count_tokens():
 
 # Loads the file
 print("Loading information...")
-loader = PyPDFLoader("/home/colabdev/Desktop/telephone-assistant/embeddings/files/All_Info.pdf")
+loader = PyPDFLoader("./embeddings/files/All_Info.pdf")
 pages = loader.load()
 
 # Splits the document
