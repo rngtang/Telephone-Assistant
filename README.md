@@ -27,9 +27,10 @@ source openai-env/bin/activate
 
 ### Install requirements
 To make sure the program runs as expected, run the following command to install the requirements
-```
-pip install -r requirements.txt
+
 ```bash
+pip install -r requirements.txt
+```
 
 ### Testing Combined Project
 
