@@ -25,6 +25,12 @@ The following command activates the virtual environment
 source openai-env/bin/activate
 ```
 
+### Install requirements
+To make sure the program runs as expected, run the following command to install the requirements
+```
+pip install -r requirements.txt
+```bash
+
 ### Testing Combined Project
 
 To test the combined project that uses both Azure and the question-answering bot together, first make sure a speaker is turned on and plugged into the Raspberry Pi. The microphone should already be attached to the Pi. When speaking to ask a question, make sure to hold up the Pi and talk directly into the microphone.
