@@ -33,8 +33,7 @@ client = OpenAI(openai_api_key=os.environ['OPENAI_API_KEY'], temperature=0)
 vStore = Chroma.from_documents(documents=doc_texts, embedding=openAI_embeddings)
 
 # Sets up the prompt
-prompt = hub.pull("rngtang/colab-bot")  # Generates longer answers. IDK if that's better or not
-# prompt = hub.pull("judipettutti/telephone") # i accidently made this on our shared one oop: https://smith.langchain.com/hub/judipettutti/telephone/playground?organizationId=5ed40c29-8f7d-47af-ab9b-2c31f51d5ba3 
+prompt = hub.pull("rngtang/colab-bot")
 
 # Sets up the chain
 model = RetrievalQA.from_chain_type(llm=client, 

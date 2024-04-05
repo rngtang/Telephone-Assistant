@@ -20,7 +20,7 @@ speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, au
 
 # recognizes wake-up word: "Hey CoLab"
 def speech_recognize_keyword_locally_from_microphone():
-    model = speechsdk.KeywordRecognitionModel("/home/colabdev/Desktop/telephone-assistant/models/high_accepts.table")
+    keyword_model = speechsdk.KeywordRecognitionModel("/home/colabdev/Desktop/telephone-assistant/models/high_accepts.table")
     keyword = "Hey CoLab"
     keyword_recognizer = speechsdk.KeywordRecognizer()
     done = False
@@ -34,15 +34,15 @@ def speech_recognize_keyword_locally_from_microphone():
 
     keyword_recognizer.recognized.connect(recognized_cb)
 
-    result_future = keyword_recognizer.recognize_once_async(model)
+    result_future = keyword_recognizer.recognize_once_async(keyword_model)
     print('Start by saying "{}"'.format(keyword))
     try: 
         result = result_future.get()
     except: 
         print("Error with getting result")
 
+    # If the word is recognized, then it goes to main
     if result.reason == speechsdk.ResultReason.RecognizedKeyword:
-        
         main()
 
     # If active keyword recognition needs to be stopped before results, it can be done with
@@ -68,7 +68,7 @@ def parse_doc():
     return doc_texts
 
 # Sets up up the Bot
-def get_answer(doc_text):
+def bot_setup(doc_text):
 
     print("Building model...")
     speech_synthesizer.speak_text_async("Building model...")
@@ -123,7 +123,7 @@ if __name__ == "__main__":
 
     # parse doc
     doc_text = parse_doc() 
-    model = get_answer(doc_text)
+    model = bot_setup(doc_text)
 
     # wait for wake-up word
     speech_recognize_keyword_locally_from_microphone() # <- calls on main from inside there

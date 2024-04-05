@@ -19,3 +19,9 @@ Raul Ng Tang, Hung Le, Alex Pieroni, Bella Motsco
 Ev Dries, Alejandro Assael
 Collecting documents...
 Finished!
+Checking APIs
+, Raspberry Pi Hack Lab: Make It Think: 2024-04-05T13:30:00.000-04:00, Digitized Embroidery: 2024-04-08T13:30:00.000-04:00, Create a Website: Interactivity with Javascript: 2024-04-09T10:00:00.000-04:00, Unix Terminal Customization and Setup: 2024-04-09T13:30:00.000-04:00, Preparing a Web Project: 2024-04-16T10:00:00.000-04:00
+Kylie Greenwald, Alisha Zhang, Olivia Chen, Raul Ng Tang, Jonathan Reyes
+Alanna Manfredini
+Collecting documents...
+Finished!

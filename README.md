@@ -12,17 +12,17 @@ To learn more about the creation/use process of these technologies, go down to "
 
 ## Getting Started
 
-Before starting, it is really important to mention that this project requires the use of Azure Language Services and OpenAI key in your OS in order to work. If you don't have one, then this project **will not work**.
+Before starting, it is really important to mention that this project requires the use of Azure Language Services and OpenAI API key in your OS in order to work. If you don't have one, then this project **will not work**.
 
 ### Activate the Virtual Environment
 
 In order for the project to work, it is necessary to activate the virtual environment. To do so, you will need to cd into the directory that contains the project. You can do so by running the following commandsrun the following commands:
 
-This command is used to enter the directory where the project is. The location of the project may vary depeding on where you cloned it.
+This command is used to enter the directory where the project is. The location of the project may vary depending on where you cloned it.
 ```bash
 cd /telephone-assistant
 ```
-The following command activates the virtual environment
+The following command activates the virtual environment:
 ```bash
 source openai-env/bin/activate
 ```
