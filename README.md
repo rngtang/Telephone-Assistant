@@ -86,18 +86,19 @@ Currently, as laid out in the LangChain Retrieval interface, all of the external
 
 By using Cron on the Co-Lab Raspberry Pi, we've schedule for this script to be continuously run every hour. The output of this script gets piped to "/embeddings/log.txt". This will ensure the knowledge base contains current information about which student workers are on shift and what the first five upcoming Roots classes are.
 
-
-If you would like to add this into your device's own cron, you can do so using the following command:
+If you would like to add this job into your device's own cron, you can do so with the following commands. First, in a terminal, open cron:
 
 ```bash
 crontab -e
 ```
 
-From here, paste this line into a line, replacing "your-path-here" with your actual absolute 
+From here, paste the following command, replacing "your-path-here" with your actual absolute path to the project directory:
 
 ```bash
 0 * * * * "your-path-here"/telephone-assistant/openai-env/bin/python "your-path-here"/telephone-assistant/embeddings/testing/periodic_API.py >> "your-path-here"/telephone-assistant/embeddings/log.txt
 ```
+
+Finally, save and exit the cron editor. Now, cron should be automatically running the "periodic_API.py" script every hour.
 
 ## Known Bugs
 
