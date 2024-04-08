@@ -16,19 +16,21 @@ Before starting, it is really important to mention that this project requires th
 
 ### Activate the Virtual Environment
 
-In order for the project to work, it is necessary to activate the virtual environment. To do so, you will need to cd into the directory that contains the project. You can do so by running the following commandsrun the following commands:
+In order for the project to work, it is necessary to activate the virtual environment. To do so, you will need to move into the directory that contains the project. The location of the project may vary depending on where you cloned it. You can do so by running the following commands:
 
-This command is used to enter the directory where the project is. The location of the project may vary depending on where you cloned it.
 ```bash
 cd /telephone-assistant
 ```
+
 The following command activates the virtual environment:
+
 ```bash
 source openai-env/bin/activate
 ```
 
-### Install requirements
-To make sure the program runs as expected, run the following command to install the requirements
+### Install Requirements
+
+Next, to confirm the program can execute as expected, run the following command to install the requirements: 
 
 ```bash
 pip install -r requirements.txt
@@ -78,9 +80,9 @@ An introduction to LangChain and its complete possible functionalities can be fo
 
 ## Updating the Knowledge Base
 
-Currently, as laid out in the LangChain Retrieval interface, all of the external context the bot uses to generate answers comes from one PDF file: "~/Desktop/telephone-assistant/embeddings/files/All_Info.pdf"
+Currently, as laid out in the LangChain Retrieval interface, all of the external context the bot uses to generate answers comes from one PDF file: "telephone-assistant/embeddings/files/All_Info.pdf"
 
-This PDF is constantly being regenerated every 15 minutes through Cron on the Raspberry Pi. This will ensure the knowledge base contains current information about which student workers are on shift and what the first five upcoming Roots classes are.
+This PDF is constantly being regenerated every 15 minutes through Cron on the Co-Lab Raspberry Pi. This will ensure the knowledge base contains current information about which student workers are on shift and what the first five upcoming Roots classes are.
 
 ## Known Bugs
 

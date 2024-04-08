@@ -55,14 +55,14 @@ def main():
 
 
     print("Collecting documents...")
-    filenames = [base_dir + "No_Questions.pdf", base_dir + "Upcoming_Roots.pdf", base_dir + "Current_Studio_Workers.pdf", base_dir + "Current_Student_Devs.pdf"]
+    filenames = ["../files/No_Questions.pdf", "../files/Upcoming_Roots.pdf", "../files/Current_Studio_Workers.pdf", "../files/Current_Student_Devs.pdf"]
     
     merger = PdfMerger()
     for filename in filenames:
         read = PdfReader(filename)
         merger.append(read)
     
-    merger.write(base_dir + "All_Info.pdf")
+    merger.write("../files/All_Info.pdf")
     merger.close()
 
 
