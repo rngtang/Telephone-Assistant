@@ -16,13 +16,15 @@ Before starting, it is really important to mention that this project requires th
 
 ### Activate the Virtual Environment
 
-In order for the project to work, it is necessary to activate the virtual environment. To do so, you will need to move into the directory that contains the project. The location of the project may vary depending on where you cloned it. You can do so by running the following commands:
+In order for the project to work, it is necessary to both activate the virtual environment and be inside the project directory. The location of the project may vary depending on where you cloned it, but you must move into the directory that contains the project.
+
+You can move into the project directory by running the following command:
 
 ```bash
 cd /telephone-assistant
 ```
 
-The following command activates the virtual environment:
+From here, activate the virtual environment:
 
 ```bash
 source openai-env/bin/activate
