@@ -14,7 +14,7 @@ To learn more about the creation/use process of these technologies, go down to "
 
 Before starting, it is really important to mention that this project requires the use of Azure Language Services and OpenAI API key in your OS in order to work. If you don't have one, then this project **will not work**.
 
-### Activate the Virtual Environment
+### Set Up the Virtual Environment
 
 In order for the project to work, it is necessary to both activate the virtual environment and be inside the project directory. The location of the project may vary depending on where you cloned it, but you must move into the directory that contains the project.
 
@@ -24,7 +24,7 @@ You can move into the project directory by running the following command:
 cd /telephone-assistant
 ```
 
-From here, activate the virtual environment:
+From here, all commands will be run in this project directory. Activate the virtual environment using this command:
 
 ```bash
 source openai-env/bin/activate
@@ -32,7 +32,7 @@ source openai-env/bin/activate
 
 ### Install Requirements
 
-Next, to confirm the program can execute as expected, run the following command to install the requirements: 
+Next, to confirm the program can execute as expected, run the following command to install the requirements:
 
 ```bash
 pip install -r requirements.txt
@@ -82,9 +82,22 @@ An introduction to LangChain and its complete possible functionalities can be fo
 
 ## Updating the Knowledge Base
 
-Currently, as laid out in the LangChain Retrieval interface, all of the external context the bot uses to generate answers comes from one PDF file: "telephone-assistant/embeddings/files/All_Info.pdf"
+Currently, as laid out in the LangChain Retrieval interface, all of the external context the bot uses to generate answers comes from one PDF file: "/embeddings/files/All_Info.pdf". This PDF is regenerated through the python script "/embeddings/testing/periodic_API.py".
 
-This PDF is constantly being regenerated every 15 minutes through Cron on the Co-Lab Raspberry Pi. This will ensure the knowledge base contains current information about which student workers are on shift and what the first five upcoming Roots classes are.
+By using Cron on the Co-Lab Raspberry Pi, we've schedule for this script to be continuously run every hour. The output of this script gets piped to "/embeddings/log.txt". This will ensure the knowledge base contains current information about which student workers are on shift and what the first five upcoming Roots classes are.
+
+
+If you would like to add this into your device's own cron, you can do so using the following command:
+
+```bash
+crontab -e
+```
+
+From here, paste this line into a line, replacing "your-path-here" with your actual absolute 
+
+```bash
+0 * * * * "your-path-here"/telephone-assistant/openai-env/bin/python "your-path-here"/telephone-assistant/embeddings/testing/periodic_API.py >> "your-path-here"/telephone-assistant/embeddings/log.txt
+```
 
 ## Known Bugs
 
@@ -103,7 +116,7 @@ Here, the Question Answering is implemented through AzureAI's Language service, 
 To run the program, use the following command:
 
 ```bash
-python assistant/working/ask.py
+python /assistant/working/ask.py
 ```
 
 ### Testing Just the Question-Answering Bot
