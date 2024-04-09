@@ -13,7 +13,7 @@ def say_hello():
 
 def pressed(btn):
     if btn.pressed_time:
-        if btn.pressed_time + timedelta(seconds=0.6) > datetime.now():
+        if (btn.pressed_time + timedelta(seconds=0.6) > datetime.now()):
             print("pressed twice")
         else:
             print("too slow") # debug

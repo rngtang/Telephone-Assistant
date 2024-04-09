@@ -55,7 +55,7 @@ def get_answer(doc_text):
 # Asks and answers the questions
 def main():
 
-    second_state = 0
+    # second_state = 0
     # Waits until you press the button
     print("Press button when ready.")
 
@@ -70,14 +70,16 @@ def main():
     
     while True:
         # Asks for a question
+        time.sleep(1)
 
-        # second_state = button_state
-        # if second_state == (not button_state):
-        #     print("Button pressed, exiting.")
-        #     break
-    
+        second_state =  GPIO.input(button_pin)
+
         question = input("Ask me anything: " + '\n')
-        
+    
+        if second_state == False:
+            print("Exiting.")
+            break
+
         print("\nUser: " + question + '\n')
         
         # Generates the answer
@@ -86,9 +88,8 @@ def main():
 
         # Returns the answer
         print("\nBot: " + response['result'] + '\n')
-        
-        time.sleep(0.1)
-        
+
+
 if __name__ == "__main__":
     # Initializes the vectors and LLM
     doc_text = parse_doc() 
