@@ -31,7 +31,7 @@ def parse_doc():
     speech_synthesizer.speak_text_async("Loading information...")
 
     # Loads document and splits it
-    loader = PyPDFLoader("../embeddings/files/All_Info.pdf")
+    loader = PyPDFLoader("./embeddings/files/All_Info.pdf")
     pages = loader.load()
 
     # Splits the document into smaller chunks
