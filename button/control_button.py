@@ -13,7 +13,7 @@ from langchain import hub
 import azure.cognitiveservices.speech as speechsdk
 
 # Initializes the button
-button_pin = 2
+button_pin = 17
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(button_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
@@ -21,7 +21,7 @@ def parse_doc():
     print("Loading information...")
 
     # Loads document and splits it
-    loader = PyPDFLoader("./embeddings/files/All_Info.pdf")
+    loader = PyPDFLoader("../embeddings/files/All_Info.pdf")
     pages = loader.load()
 
     # Splits the document into smaller chunks
@@ -54,27 +54,41 @@ def get_answer(doc_text):
 
 # Asks and answers the questions
 def main():
+
+    second_state = 0
     # Waits until you press the button
-    print("press button when ready")
+    print("Press button when ready.")
+
     while True:
         button_state = GPIO.input(button_pin)
         if button_state == False:
+            # print(button_state)
             print('Button pressed, continuing...')
+
             break
-    time.sleep(0.1)
-
-    # Asks for a question
-    question = input("Ask me anything: ")
-    print("\nUser: " + question + '\n')
+        time.sleep(0.1)
     
-    # Generates the answer
-    print("Thinking...")
-    response = model.invoke(question)
+    while True:
+        # Asks for a question
 
-    # Returns the answer
-    print("\nBot: " + response['result'] + '\n')
+        # second_state = button_state
+        # if second_state == (not button_state):
+        #     print("Button pressed, exiting.")
+        #     break
+    
+        question = input("Ask me anything: " + '\n')
+        
+        print("\nUser: " + question + '\n')
+        
+        # Generates the answer
+        print("Thinking...")
+        response = model.invoke(question)
 
-
+        # Returns the answer
+        print("\nBot: " + response['result'] + '\n')
+        
+        time.sleep(0.1)
+        
 if __name__ == "__main__":
     # Initializes the vectors and LLM
     doc_text = parse_doc() 

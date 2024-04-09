@@ -21,7 +21,7 @@ speech_config.speech_synthesis_voice_name='en-US-AvaNeural'
 speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
 
 # Initializes the button
-button_pin = 2
+button_pin = 17
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(button_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
@@ -31,7 +31,7 @@ def parse_doc():
     speech_synthesizer.speak_text_async("Loading information...")
 
     # Loads document and splits it
-    loader = PyPDFLoader("./embeddings/files/All_Info.pdf")
+    loader = PyPDFLoader("../embeddings/files/All_Info.pdf")
     pages = loader.load()
 
     # Splits the document into smaller chunks
