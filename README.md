@@ -24,7 +24,7 @@ You can move into the project directory by running the following command:
 cd /telephone-assistant
 ```
 
-From here, all commands will be run in this project directory. Activate the virtual environment using this command:
+From here, all commands will be run in this project directory. Activate the virtual environment:
 
 ```bash
 source openai-env/bin/activate
@@ -32,7 +32,7 @@ source openai-env/bin/activate
 
 ### Install Requirements
 
-Next, to confirm the program can execute as expected, run the following command to install the requirements:
+Next, to confirm the program can execute as expected, run the following command to install required packages:
 
 ```bash
 pip install -r requirements.txt
@@ -40,7 +40,7 @@ pip install -r requirements.txt
 
 ### Testing Combined Project
 
-To test the combined project that uses both Azure and the question-answering bot together, first make sure a speaker is turned on and plugged into the Raspberry Pi. The microphone should already be attached to the Pi. When speaking to ask a question, make sure to hold up the Pi and talk directly into the microphone.
+To test the combined project (using both Azure and the question-answering bot together), first confirm a speaker is turned on and plugged into the Raspberry Pi. The microphone should already be attached to the Pi. When speaking to ask a question, make sure to hold up the Pi and talk directly into the microphone.
 
 Once both the speaker and microphone are ready, run the program using the following command:
 
@@ -48,17 +48,17 @@ Once both the speaker and microphone are ready, run the program using the follow
 python embeddings/testing/stt_embeddings.py
 ```
 
-You should now be able to verbally ask questions and recieve answers about anything related to the Co-Lab!
+You should now be able to ask questions and recieve answers about anything related to the Co-Lab!
 
 ### How Does the Question-Answering Work?
 
-This following chart represents how the Co-Lab assistant pipeline works. First, the question is translated from speech to text and converted into a vector. Then, a vector search is used to find a part of the text that has a close relationship with the questions, which is labeled context. The context and question are sent to our large language model (OpenAI), which generates an answer. Finally, the answer is returned and the process is repeated.
+This following chart represents how the Co-Lab assistant pipeline works. First, the question is translated from Speech-To-Text (STT) and converted into a vector. Then, a vector search is used to find a part of the text that has a close relationship with the questions, which is then labeled as context. The context and question are sent to the large language model (OpenAI), which generates an answer. Finally, the answer is returned and the process is repeated.
 
 [<img src="./media/diagram.png" width="800" alt="Program flowchart"/>](./media/diagram.png)
 
-## Part 1: Azure AI Speech
+## Part 1: Azure AI Speech (Previous Testing)
 
-The main functionalities of Azure AI Speech that we are using are its speech-to-text (STT) and Text-to-speech (TTS). In this case, we are using STT to recognize what is the user asking and TTS for the assistant to verbally answer the question.
+The main functionalities of Azure AI Speech that we are using are its Speech-To-Text (STT) and Text-To-Speech (TTS). In this case, we are using STT to recognize what the user is asking and TTS for the assistant to verbally answer the question.
 
 We originally planned to use Azure AI services for both STT/TTS and question-answering. However, the capabilities of its built in Question Answering feature were not enough. It could only detect question intent and then pair word-for-word an answer to a question as written in whichever PDF we gave.
 
@@ -78,7 +78,7 @@ The following diagram shows how the bot works:
 
 In addition, this is the prompt we are currently using: <https://smith.langchain.com/hub/rngtang/colab-bot?organizationId=5ed40c29-8f7d-47af-ab9b-2c31f51d5ba3>.
 
-An introduction to LangChain and its complete possible functionalities can be found here: <https://python.langchain.com/docs/get_started/introduction>. Specifically, we are using LangChain's retrieval module.
+Finally, an introduction to LangChain and its complete possible functionalities can be found here: <https://python.langchain.com/docs/get_started/introduction>. Specifically, we are using LangChain's retrieval module.
 
 ## Updating the Knowledge Base
 
@@ -110,9 +110,9 @@ Here is how to test each component (Azure speech and OpenAI embeddings) separate
 
 ### Testing Just AzureAI Speech
 
-To test just the AzureAI Speech (speech-to-text and text-to-speech), make sure the microphone and speaker are both set up (as described above in "Testing Combined Project").
+To test just the AzureAI Speech (STT and TTS), make sure the microphone and speaker are both set up as described above in "Testing Combined Project".
 
-Here, the Question Answering is implemented through AzureAI's Language service, not the Bot. As a result, the answers generated are not very flexible or complete, as described in "Part 1: Azure AI Speech".
+Here, the Question Answering is implemented through AzureAI's Language service, not our created Bot. As a result, the answers generated are not very flexible or complete, as described in "Part 1: Azure AI Speech".
 
 To run the program, use the following command:
 
@@ -122,7 +122,7 @@ python /assistant/working/ask.py
 
 ### Testing Just the Question-Answering Bot
 
-To test just the question-answering Bot using your terminal (text input), use this command:
+To test just the Question-Answering Bot using your terminal (text input), use this command:
 
 ```bash
 python /embeddings/testing/embeddings_terminal.py
@@ -132,7 +132,7 @@ python /embeddings/testing/embeddings_terminal.py
 
 Currently, this feature is still in development. It requires the external hardware (microphone and speaker) to be set up.
 
-To test the combined project (STT/TTS and question-answering Bot) additionally integrated with a wake-up word activation, use this command:
+To test the combined project (STT/TTS and Question-Answering Bot) additionally integrated with a wake-up word activation, use this command:
 
 ```bash
 python embeddings/testing/wu_stt_embeddings.py
