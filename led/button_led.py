@@ -64,7 +64,7 @@ def get_answer(doc_text):
                                         chain_type_kwargs={"prompt": prompt, 
                                                            "memory": ConversationBufferMemory(input_key="question", memory_key="context")
                                         })
-    print("Model built")
+    print("Model built.")
     return model
 
 # Asks and answers the questions
@@ -77,7 +77,7 @@ def main():
         button_state = GPIO.input(button_pin)
         if button_state == False:
             # print(button_state)
-            print('Button pressed, continuing...')
+            print('Button pressed!')
 
             break
         time.sleep(0.1)
@@ -86,23 +86,25 @@ def main():
     
     while True:
         # Asks for a question
-        time.sleep(1)
+        
         counter = 0
-        print("start")
+        print("Hold button to exit.")
 
         GPIO.output(green_pin, GPIO.HIGH)
         GPIO.output(yellow_pin, GPIO.LOW)
         # print("Ask me anything: " + '\n')
-        question = input("Ask me anything: " + '\n')
+
+        time.sleep(3)
 
         if GPIO.input(button_pin) == 0: # if button is held
             counter += 1
             time.sleep(0.2)
             if counter == 1 and GPIO.input(button_pin) == 0:
                 GPIO.cleanup() # turn all LEDs off 
-                print("Leaving")
+                print("Leaving...")
                 break 
-
+        
+        question = input("Ask me anything: " + '\n')
         # question = input()
 
         print("\nUser: " + question + '\n')

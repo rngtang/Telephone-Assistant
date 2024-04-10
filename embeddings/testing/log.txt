@@ -107,3 +107,38 @@ Checking APIs
 Eileen Cai, Raul Ng Tang, Johnny Cortez
 Celine Wang, Alanna Manfredini
 Collecting documents...
+Checking APIs
+, Digitized Embroidery: 2024-04-15T13:30:00.000-04:00, Preparing a Web Project: 2024-04-16T10:00:00.000-04:00, Build a Computer: 2024-04-16T13:30:00.000-04:00, Introduction to Git: 2024-04-17T10:00:00.000-04:00, Flask Family Feud: 2024-04-17T13:30:00.000-04:00
+Eileen Cai, Raul Ng Tang, Johnny Cortez
+Celine Wang, Alanna Manfredini
+Collecting documents...
+Checking APIs
+, Digitized Embroidery: 2024-04-15T13:30:00.000-04:00, Preparing a Web Project: 2024-04-16T10:00:00.000-04:00, Build a Computer: 2024-04-16T13:30:00.000-04:00, Introduction to Git: 2024-04-17T10:00:00.000-04:00, Flask Family Feud: 2024-04-17T13:30:00.000-04:00
+Eileen Cai, Raul Ng Tang, Johnny Cortez
+Alanna Manfredini, undefined undefined
+Collecting documents...
+Checking APIs
+, Digitized Embroidery: 2024-04-15T13:30:00.000-04:00, Preparing a Web Project: 2024-04-16T10:00:00.000-04:00, Build a Computer: 2024-04-16T13:30:00.000-04:00, Introduction to Git: 2024-04-17T10:00:00.000-04:00, Flask Family Feud: 2024-04-17T13:30:00.000-04:00
+Johnny Cortez
+Alanna Manfredini, undefined undefined
+Collecting documents...
+Checking APIs
+, Digitized Embroidery: 2024-04-15T13:30:00.000-04:00, Preparing a Web Project: 2024-04-16T10:00:00.000-04:00, Build a Computer: 2024-04-16T13:30:00.000-04:00, Introduction to Git: 2024-04-17T10:00:00.000-04:00, Flask Family Feud: 2024-04-17T13:30:00.000-04:00
+Johnny Cortez, Judy Chen
+undefined undefined, Connor Shovlin
+Collecting documents...
+Checking APIs
+, Digitized Embroidery: 2024-04-15T13:30:00.000-04:00, Preparing a Web Project: 2024-04-16T10:00:00.000-04:00, Build a Computer: 2024-04-16T13:30:00.000-04:00, Introduction to Git: 2024-04-17T10:00:00.000-04:00, Flask Family Feud: 2024-04-17T13:30:00.000-04:00
+Johnny Cortez, Judy Chen
+undefined undefined, Connor Shovlin
+Collecting documents...
+Checking APIs
+, Digitized Embroidery: 2024-04-15T13:30:00.000-04:00, Preparing a Web Project: 2024-04-16T10:00:00.000-04:00, Build a Computer: 2024-04-16T13:30:00.000-04:00, Introduction to Git: 2024-04-17T10:00:00.000-04:00, Flask Family Feud: 2024-04-17T13:30:00.000-04:00
+Johnny Cortez, Judy Chen
+undefined undefined, Connor Shovlin
+Collecting documents...
+Checking APIs
+, Digitized Embroidery: 2024-04-15T13:30:00.000-04:00, Preparing a Web Project: 2024-04-16T10:00:00.000-04:00, Build a Computer: 2024-04-16T13:30:00.000-04:00, Introduction to Git: 2024-04-17T10:00:00.000-04:00, Flask Family Feud: 2024-04-17T13:30:00.000-04:00
+Johnny Cortez, Judy Chen
+undefined undefined, Connor Shovlin
+Collecting documents...

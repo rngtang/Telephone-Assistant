@@ -125,7 +125,7 @@ python ./assistant/working/ask.py
 To test just the Question-Answering Bot using your terminal (text input), use this command:
 
 ```bash
-python ./led/on_button.py
+python ./led/button_led.py
 ```
 
 ### Additional: Testing the Project with Wake-up Word
@@ -135,7 +135,17 @@ This requires the external hardware (microphone and speaker) to be set up.
 To test the combined project (STT/TTS and Question-Answering Bot) integrated with a wake-up word activation rather thn a button, use this command:
 
 ```bash
-python embeddings/testing/wu_stt_embeddings.py
+python ./embeddings/testing/wu_stt_embeddings.py
 ```
 
 The wake-up word is "Hey Colab". Before saying this phrase, the robot will be "awake", but will not respond to questions.
+
+### Additional: Surprise!
+
+For something fun, try running:
+
+```bash
+python ./led/surprise.py
+```
+
+This will need hardware (microphone and speaker) to be set up.
