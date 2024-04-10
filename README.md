@@ -78,6 +78,12 @@ The following diagram shows how the bot works:
 
 In addition, this is the prompt we are currently using: <https://smith.langchain.com/hub/rngtang/colab-bot?organizationId=5ed40c29-8f7d-47af-ab9b-2c31f51d5ba3>.
 
+Currently, we are also testing some hardware additions that visually represent the Question-Answering proc*ess, such as a button to start the Bot and some LEDs to represent which stage of answering the Bot is currently is. When running led_stt.py (the complete project), this is what each LED represents:
+
+* Red: The Bot has finished set-up and is waiting for the user to start (press the button).
+* Yellow: The Bot is thinking (generating an answer) OR currently responding with an answer.
+* Green: The Bot listening for a question.
+
 Finally, an introduction to LangChain and its complete possible functionalities can be found here: <https://python.langchain.com/docs/get_started/introduction>. Specifically, we are using LangChain's retrieval module.
 
 ## Updating the Knowledge Base

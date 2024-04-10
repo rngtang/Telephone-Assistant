@@ -46,7 +46,7 @@ GPIO.output(green_pin, GPIO.LOW)
 # Loads and divides the text into smaller chunks
 def parse_doc():
     print("Loading information...")
-    speech_synthesizer.speak_text_async("Loading information...")
+    # speech_synthesizer.speak_text_async("Loading information...")
 
     # Loads document and splits it
     loader = PyPDFLoader("./embeddings/files/All_Info.pdf")
@@ -62,7 +62,7 @@ def parse_doc():
 def get_answer(doc_text):
 
     print("Building model...")
-    speech_synthesizer.speak_text_async("Building model...")
+    # speech_synthesizer.speak_text_async("Building model...")
 
     # OpenAI to use embeddings and creates the client
     openAI_embeddings = OpenAIEmbeddings(openai_api_key=os.environ['OPENAI_API_KEY'])
@@ -94,8 +94,8 @@ def main():
         my_sound = pygame.mixer.Sound('./led/fun/{n}.wav'.format(n=n))
 
         GPIO.output(red_pin, GPIO.HIGH)
-        speech_synthesizer.speak_text_async("Press the button when ready.")
-        print("Press the button when ready.")
+        speech_synthesizer.speak_text_async("Press the button.")
+        print("Press the button.")
         
         while True:
             button_state = GPIO.input(button_pin)
@@ -107,8 +107,8 @@ def main():
 
         while True:
             # Asks for a question
-            print("Ask me anything: ")
-            speech_synthesizer.speak_text_async("Ask me anything:").get()
+            print("Ask anything: ")
+            speech_synthesizer.speak_text_async("Ask anything:").get()
             GPIO.output(red_pin ,GPIO.LOW)
             GPIO.output(yellow_pin ,GPIO.LOW)
             GPIO.output(green_pin, GPIO.HIGH)
@@ -136,8 +136,8 @@ def main():
 
 if __name__ == "__main__":
 
-    speech_synthesizer.speak_text_async("Hello! Welcome to the Co-Lab Telephone Assistant.")
-    print("Hello! Welcome to the Co-Lab Telephone Assistant.")
+    speech_synthesizer.speak_text_async("Hello! Welcome.")
+    print("Hello! Welcome.")
 
     time.sleep(0.5)
 
