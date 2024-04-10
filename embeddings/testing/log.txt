@@ -72,3 +72,38 @@ Checking APIs
 Jonathan Reyes, Raul Ng Tang, Alex Pieroni, Alice Hu, Bella Motsco
 
 Collecting documents...
+Checking APIs
+, Digitized Embroidery: 2024-04-15T13:30:00.000-04:00, Preparing a Web Project: 2024-04-16T10:00:00.000-04:00, Build a Computer: 2024-04-16T13:30:00.000-04:00, Introduction to Git: 2024-04-17T10:00:00.000-04:00, Flask Family Feud: 2024-04-17T13:30:00.000-04:00
+Raul Ng Tang, Alex Pieroni, Alice Hu, Bella Motsco, Johnny Cortez, Kelvin Bueno Gonzalez
+Celine Wang
+Collecting documents...
+Checking APIs
+, Digitized Embroidery: 2024-04-15T13:30:00.000-04:00, Preparing a Web Project: 2024-04-16T10:00:00.000-04:00, Build a Computer: 2024-04-16T13:30:00.000-04:00, Introduction to Git: 2024-04-17T10:00:00.000-04:00, Flask Family Feud: 2024-04-17T13:30:00.000-04:00
+Bella Motsco
+Alejandro Assael
+Collecting documents...
+Checking APIs
+, Digitized Embroidery: 2024-04-15T13:30:00.000-04:00, Preparing a Web Project: 2024-04-16T10:00:00.000-04:00, Build a Computer: 2024-04-16T13:30:00.000-04:00, Introduction to Git: 2024-04-17T10:00:00.000-04:00, Flask Family Feud: 2024-04-17T13:30:00.000-04:00
+Raul Ng Tang, Kelvin Bueno Gonzalez
+undefined undefined
+Collecting documents...
+Checking APIs
+, Digitized Embroidery: 2024-04-15T13:30:00.000-04:00, Preparing a Web Project: 2024-04-16T10:00:00.000-04:00, Build a Computer: 2024-04-16T13:30:00.000-04:00, Introduction to Git: 2024-04-17T10:00:00.000-04:00, Flask Family Feud: 2024-04-17T13:30:00.000-04:00
+Alex Pieroni, Eileen Cai, Raul Ng Tang, Jonathan Reyes
+Celine Wang, Alanna Manfredini
+Collecting documents...
+Checking APIs
+, Digitized Embroidery: 2024-04-15T13:30:00.000-04:00, Preparing a Web Project: 2024-04-16T10:00:00.000-04:00, Build a Computer: 2024-04-16T13:30:00.000-04:00, Introduction to Git: 2024-04-17T10:00:00.000-04:00, Flask Family Feud: 2024-04-17T13:30:00.000-04:00
+Alex Pieroni, Eileen Cai, Raul Ng Tang, Jonathan Reyes
+Celine Wang, Alanna Manfredini
+Collecting documents...
+Checking APIs
+, Digitized Embroidery: 2024-04-15T13:30:00.000-04:00, Preparing a Web Project: 2024-04-16T10:00:00.000-04:00, Build a Computer: 2024-04-16T13:30:00.000-04:00, Introduction to Git: 2024-04-17T10:00:00.000-04:00, Flask Family Feud: 2024-04-17T13:30:00.000-04:00
+Alex Pieroni, Eileen Cai, Raul Ng Tang, Jonathan Reyes, Johnny Cortez
+Celine Wang, Alanna Manfredini
+Collecting documents...
+Checking APIs
+, Digitized Embroidery: 2024-04-15T13:30:00.000-04:00, Preparing a Web Project: 2024-04-16T10:00:00.000-04:00, Build a Computer: 2024-04-16T13:30:00.000-04:00, Introduction to Git: 2024-04-17T10:00:00.000-04:00, Flask Family Feud: 2024-04-17T13:30:00.000-04:00
+Eileen Cai, Raul Ng Tang, Johnny Cortez
+Celine Wang, Alanna Manfredini
+Collecting documents...

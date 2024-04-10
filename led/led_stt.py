@@ -76,8 +76,8 @@ def get_answer(doc_text):
                                                            "memory": ConversationBufferMemory(input_key="question", memory_key="context")
                                         })
 
-    speech_synthesizer.speak_text_async("Model built")
-    print("Model built")
+    speech_synthesizer.speak_text_async("Model built.")
+    print("Model built.")
     return model
 
 # Asks and answers the questions
@@ -86,7 +86,8 @@ def main():
     while True:
         # Waits until you press the button
         GPIO.output(red_pin, GPIO.HIGH)
-        print("press button when ready")
+        speech_synthesizer.speak_text_async("Press the button when ready.")
+        print("Press the button when ready.")
         while True:
             button_state = GPIO.input(button_pin)
             if button_state == False:
@@ -95,7 +96,6 @@ def main():
         time.sleep(0.1)
 
         while True:
-            second_state =  GPIO.input(button_pin)
             # Asks for a question
             print("Ask me anything: ")
             speech_synthesizer.speak_text_async("Ask me anything:").get()
@@ -109,8 +109,9 @@ def main():
             GPIO.output(green_pin, GPIO.LOW)
             # If the user doesn't say anything, breaks the loop
             if(question == ""):
-                speech_synthesizer.speak_text_async("Nothing asked. Exiting.").get()
                 print("Nothing asked. Exiting.")
+                speech_synthesizer.speak_text_async("Nothing asked. Exiting.").get()
+                time.sleep(1)
                 break
             
             # Generates the answer
@@ -124,9 +125,19 @@ def main():
             speech_synthesizer.speak_text_async(response['result']).get()
 
 if __name__ == "__main__":
+
+    speech_synthesizer.speak_text_async("Hello! Welcome to the Co-Lab Telephone Assistant.")
+    print("Hello! Welcome to the Co-Lab Telephone Assistant.")
+
+    time.sleep(0.5)
+
     # Initializes the vectors and LLM
     doc_text = parse_doc() 
     model = get_answer(doc_text)
     
     # Calls main
-    main()
+    try:
+        main()
+    
+    except KeyboardInterrupt:
+        GPIO.cleanup() 

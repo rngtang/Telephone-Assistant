@@ -45,7 +45,7 @@ To test the combined project (using both Azure and the question-answering bot to
 Once both the speaker and microphone are ready, run the program using the following command:
 
 ```bash
-python embeddings/testing/stt_embeddings.py
+python ./led/led_stt.py
 ```
 
 You should now be able to ask questions and recieve answers about anything related to the Co-Lab!
@@ -117,7 +117,7 @@ Here, the Question Answering is implemented through AzureAI's Language service, 
 To run the program, use the following command:
 
 ```bash
-python /assistant/working/ask.py
+python ./assistant/working/ask.py
 ```
 
 ### Testing Just the Question-Answering Bot
@@ -125,14 +125,14 @@ python /assistant/working/ask.py
 To test just the Question-Answering Bot using your terminal (text input), use this command:
 
 ```bash
-python /embeddings/testing/embeddings_terminal.py
+python ./led/on_button.py
 ```
 
 ### Additional: Testing the Project with Wake-up Word
 
-Currently, this feature is still in development. It requires the external hardware (microphone and speaker) to be set up.
+This requires the external hardware (microphone and speaker) to be set up.
 
-To test the combined project (STT/TTS and Question-Answering Bot) additionally integrated with a wake-up word activation, use this command:
+To test the combined project (STT/TTS and Question-Answering Bot) integrated with a wake-up word activation rather thn a button, use this command:
 
 ```bash
 python embeddings/testing/wu_stt_embeddings.py

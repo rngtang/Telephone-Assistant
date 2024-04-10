@@ -1,6 +1,6 @@
 import time
-import RPi.GPIO as GPIO
 import os
+import RPi.GPIO as GPIO
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -10,7 +10,6 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain.memory import ConversationBufferMemory
 from langchain_openai import OpenAI
 from langchain import hub
-import azure.cognitiveservices.speech as speechsdk
 
 # Initializes the button
 button_pin = 17
@@ -27,11 +26,12 @@ GPIO.setup(red_pin, GPIO.OUT)
 GPIO.setup(yellow_pin, GPIO.OUT)
 GPIO.setup(green_pin, GPIO.OUT)
 
-# Sets led on
+# Sets all leds off
 GPIO.output(red_pin, GPIO.LOW)
 GPIO.output(yellow_pin, GPIO.LOW)
 GPIO.output(green_pin, GPIO.LOW)
 
+# Divides the file into smaller chunks
 def parse_doc():
     print("Loading information...")
 
@@ -69,9 +69,8 @@ def get_answer(doc_text):
 
 # Asks and answers the questions
 def main():
-    GPIO.output(red_pin, GPIO.HIGH)
-    # second_state = 0
     # Waits until you press the button
+    GPIO.output(red_pin, GPIO.HIGH)
     print("Press button when ready.")
 
     while True:
@@ -82,21 +81,29 @@ def main():
 
             break
         time.sleep(0.1)
+    GPIO.output(red_pin ,GPIO.LOW)
+
     
     while True:
         # Asks for a question
         time.sleep(1)
+        counter = 0
+        print("start")
 
-        second_state =  GPIO.input(button_pin)
         GPIO.output(green_pin, GPIO.HIGH)
-        GPIO.output(red_pin ,GPIO.LOW)
         GPIO.output(yellow_pin, GPIO.LOW)
-
+        # print("Ask me anything: " + '\n')
         question = input("Ask me anything: " + '\n')
-    
-        if second_state == False:
-            print("Exiting.")
-            break
+
+        if GPIO.input(button_pin) == 0: # if button is held
+            counter += 1
+            time.sleep(0.2)
+            if counter == 1 and GPIO.input(button_pin) == 0:
+                GPIO.cleanup() # turn all LEDs off 
+                print("Leaving")
+                break 
+
+        # question = input()
 
         print("\nUser: " + question + '\n')
         
@@ -116,6 +123,10 @@ if __name__ == "__main__":
     model = get_answer(doc_text)
     
     # Calls main
-    main()
+    try:
+        main()
+    
+    except KeyboardInterrupt:
+        GPIO.cleanup() 
 
 
