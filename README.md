@@ -48,7 +48,7 @@ Once both the speaker and microphone are ready, run the program using the follow
 python ./led/led_stt.py
 ```
 
-You should now be able to ask questions and recieve answers about anything related to the Co-Lab!
+You should now be able to ask questions and recieve answers about anything related to the Co-Lab! 
 
 ### How Does the Question-Answering Work?
 
@@ -83,6 +83,8 @@ Currently, we are also testing some hardware additions that visually represent t
 * Red: The Bot has finished set-up and is waiting for the user to start (press the button).
 * Yellow: The Bot is thinking (generating an answer) OR currently responding with an answer.
 * Green: The Bot listening for a question.
+
+Pressing the button quickly will start the Bot, and holding the button will have it exit.
 
 Finally, an introduction to LangChain and its complete possible functionalities can be found here: <https://python.langchain.com/docs/get_started/introduction>. Specifically, we are using LangChain's retrieval module.
 

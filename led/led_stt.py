@@ -84,17 +84,28 @@ def get_answer(doc_text):
 
 # Asks and answers the questions
 def main():
+    counter = 0
+
     while True:
         # Waits until you press the button
         GPIO.output(red_pin, GPIO.HIGH)
         speech_synthesizer.speak_text_async("Press the button when ready.")
         print("Press the button when ready.")
+
         while True:
             button_state = GPIO.input(button_pin)
             if button_state == False:
                 print('Button pressed, continuing...')
                 break
         time.sleep(0.1)
+
+        if GPIO.input(button_pin) == 0:  # exit if button is held
+            counter += 1
+            time.sleep(0.5)
+            if counter == 1 and GPIO.input(button_pin) == 0:
+                GPIO.cleanup() 
+                print("Button held, leaving...")
+                break 
 
         while True:
             # Asks for a question
@@ -113,7 +124,6 @@ def main():
             if(question == ""):
                 print("Nothing asked. Exiting.")
                 speech_synthesizer.speak_text_async("Nothing asked. Exiting.").get()
-                GPIO.cleanup()
                 time.sleep(1)
                 break
             
@@ -139,8 +149,4 @@ if __name__ == "__main__":
     model = get_answer(doc_text)
     
     # Calls main
-    try:
-        main()
-    
-    except KeyboardInterrupt:
-        GPIO.cleanup() 
+    main()
