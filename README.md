@@ -80,9 +80,9 @@ The following diagram shows how the bot works:
 
 Currently, we are also testing some hardware additions that visually represent the Question-Answering process, such as a button to start the bot and some LEDs to represent which stage of answering the bot is currently is. When running led_stt.py (the complete project), this is what each LED represents:
 
-* Red: The Bot has finished set-up and is waiting for the user to start (press the button).
-* Yellow: The Bot is thinking (generating an answer) OR currently responding with an answer.
-* Green: The Bot listening for a question.
+* Red: The bot has finished set-up and is waiting for the user to start (press the button).
+* Yellow: The bot is thinking (generating an answer) OR currently responding with an answer.
+* Green: The bot is listening for a question.
 
 Pressing the button once will start the bot, and holding the button will have the bot exit.
 
@@ -140,7 +140,7 @@ This script also has the complete LED and button hardware implementation.
 
 ### Additional: Testing the Project with Wake-up Word
 
-This requires the external hardware (microphone and speaker) to be set up.
+This requires hardware (microphone and speaker) to be set up.
 
 To test the combined project (STT/TTS and Question-Answering Bot) integrated with a wake-up word activation rather thn a button, use this command:
 
