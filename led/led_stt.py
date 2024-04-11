@@ -1,5 +1,7 @@
 import os
 import time
+import select
+import sys
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -82,7 +84,6 @@ def get_answer(doc_text):
 
 # Asks and answers the questions
 def main():
-
     while True:
         # Waits until you press the button
         GPIO.output(red_pin, GPIO.HIGH)
@@ -104,6 +105,7 @@ def main():
             GPIO.output(green_pin, GPIO.HIGH)
             userSpeech = speech_recognizer.recognize_once()
             question = userSpeech.text
+
             print("\nUser: " + question + '\n')
 
             GPIO.output(green_pin, GPIO.LOW)
@@ -111,6 +113,7 @@ def main():
             if(question == ""):
                 print("Nothing asked. Exiting.")
                 speech_synthesizer.speak_text_async("Nothing asked. Exiting.").get()
+                GPIO.cleanup()
                 time.sleep(1)
                 break
             

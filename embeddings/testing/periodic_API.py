@@ -1,6 +1,6 @@
 import requests
-# import schedule
-import time
+import pathlib
+# import time
 from fpdf import FPDF
 from PyPDF2 import PdfReader, PdfMerger
 
@@ -9,7 +9,9 @@ StudioUrl = 'https://shiftr-api.colab.duke.edu/publicCalendars/digitalSign/curre
 StudentDevsUrl = 'https://shiftr-api.colab.duke.edu/publicCalendars/digitalSign/current/Colab%20Student%20Developer/TEC%20Office%20Hours'
 rootClasses = 'https://api.pathways.duke.edu/api/v1/signage_sync?location=1'
 
-base_dir = "/home/colabdev/Desktop/telephone-assistant/embeddings/files/"
+
+script_directory = pathlib.Path(__file__).parent.resolve()
+base_dir = str(script_directory) + "/../files/"
 
 # Gets the next 5 root classes
 def getRoots(url):
@@ -53,20 +55,22 @@ def main():
     studio = getInfo(StudioUrl)
     get("The studio workers can help anyone use the 3d printer, laser cutter, and other physical tools. \n These are the Current Studio Workers (part-time help with the studio and garage): \n", studio, "Current_Studio_Workers.pdf")
 
+    try: 
+        print("Collecting documents...")
+        filenames = [base_dir + "No_Questions.pdf", base_dir + "Upcoming_Roots.pdf", base_dir + "Current_Studio_Workers.pdf", base_dir + "Current_Student_Devs.pdf"]
+        
+        merger = PdfMerger()
+        for filename in filenames:
+            read = PdfReader(filename)
+            merger.append(read)
+        
+        merger.write(base_dir + "All_Info.pdf")
+        merger.close()
 
-    print("Collecting documents...")
-    filenames = ["../files/No_Questions.pdf", "../files/Upcoming_Roots.pdf", "../files/Current_Studio_Workers.pdf", "../files/Current_Student_Devs.pdf"]
-    
-    merger = PdfMerger()
-    for filename in filenames:
-        read = PdfReader(filename)
-        merger.append(read)
-    
-    merger.write("../files/All_Info.pdf")
-    merger.close()
+        print("Finished!")
 
-
-    print("Finished!")
+    except Exception as error:
+        print("All_Info.pdf not updated: ", error)
 
 if __name__ == "__main__":
     main()

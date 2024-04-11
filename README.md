@@ -72,13 +72,13 @@ As mentioned before, we are now building our own document-based question-answeri
 
 By using our OpenAI model as just a LLM and having embeddings be pre-generated and stored in a database, we significantly decrease the usage of our OpenAI model and subsequently its costs. LangChain integrates these embeddings to make a Retrieval Augmented Generation (RAG) application, which we use as our question-answering bot.
 
+This is the prompt we are currently using: <https://smith.langchain.com/hub/rngtang/colab-bot?organizationId=5ed40c29-8f7d-47af-ab9b-2c31f51d5ba3>.
+
 The following diagram shows how the bot works:
 
 [<img src="./media/bot-diagram.png" width="800" alt="LangChain framework"/>](./media/bot-diagram.png)
 
-In addition, this is the prompt we are currently using: <https://smith.langchain.com/hub/rngtang/colab-bot?organizationId=5ed40c29-8f7d-47af-ab9b-2c31f51d5ba3>.
-
-Currently, we are also testing some hardware additions that visually represent the Question-Answering proc*ess, such as a button to start the Bot and some LEDs to represent which stage of answering the Bot is currently is. When running led_stt.py (the complete project), this is what each LED represents:
+Currently, we are also testing some hardware additions that visually represent the Question-Answering process, such as a button to start the Bot and some LEDs to represent which stage of answering the Bot is currently is. When running led_stt.py (the complete project), this is what each LED represents:
 
 * Red: The Bot has finished set-up and is waiting for the user to start (press the button).
 * Yellow: The Bot is thinking (generating an answer) OR currently responding with an answer.

@@ -1,5 +1,7 @@
 import time
 import os
+import sys
+import select
 import RPi.GPIO as GPIO
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import OpenAIEmbeddings
@@ -15,6 +17,9 @@ from langchain import hub
 button_pin = 17
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(button_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+# GPIO.setmode(GPIO.BOARD)
+# GPIO.setup(button_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
 
 # Initializes LED
 red_pin = 18
@@ -67,6 +72,32 @@ def get_answer(doc_text):
     print("Model built.")
     return model
 
+def wait_input(): 
+    counter = 0
+    print("Ask me anything: ")
+
+    GPIO.output(green_pin, GPIO.HIGH)
+    GPIO.output(yellow_pin, GPIO.LOW)
+
+    try:
+        while True:
+            rlist, _, _ = select.select([sys.stdin], [], [], 0.1)
+            
+            for r in rlist:
+                if r == sys.stdin:
+                    question = input()
+                    return question
+
+            if GPIO.input(button_pin) == 0:  # exit if button is held
+                counter += 1
+                time.sleep(0.2)
+                if counter == 1 and GPIO.input(button_pin) == 0:
+                    GPIO.cleanup() 
+                    print("Leaving...")
+                    return ""
+    except KeyboardInterrupt:
+        GPIO.cleanup()
+
 # Asks and answers the questions
 def main():
     # Waits until you press the button
@@ -83,29 +114,11 @@ def main():
         time.sleep(0.1)
     GPIO.output(red_pin ,GPIO.LOW)
 
-    
     while True:
-        # Asks for a question
+        question = wait_input()
         
-        counter = 0
-        print("Hold button to exit.")
-
-        GPIO.output(green_pin, GPIO.HIGH)
-        GPIO.output(yellow_pin, GPIO.LOW)
-        # print("Ask me anything: " + '\n')
-
-        time.sleep(3)
-
-        if GPIO.input(button_pin) == 0: # if button is held
-            counter += 1
-            time.sleep(0.2)
-            if counter == 1 and GPIO.input(button_pin) == 0:
-                GPIO.cleanup() # turn all LEDs off 
-                print("Leaving...")
-                break 
-        
-        question = input("Ask me anything: " + '\n')
-        # question = input()
+        if question == "":
+            break
 
         print("\nUser: " + question + '\n')
         
@@ -121,6 +134,8 @@ def main():
 
 if __name__ == "__main__":
     # Initializes the vectors and LLM
+    print("Welcome to the Co-Lab Assistant!")
+
     doc_text = parse_doc() 
     model = get_answer(doc_text)
     
