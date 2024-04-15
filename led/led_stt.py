@@ -89,8 +89,8 @@ def main():
 
         # Waits until you press the button
         GPIO.output(red_pin, GPIO.HIGH)
-        speech_synthesizer.speak_text_async("Press the button when ready.")
-        print("Press the button when ready.")
+        speech_synthesizer.speak_text_async("Press the button to ask a question.")
+        print("Press the button to ask a question.")
 
         while True:
             button_state = GPIO.input(button_pin)
@@ -105,6 +105,7 @@ def main():
             if counter == 1 and GPIO.input(button_pin) == 0:
                 GPIO.cleanup() 
                 print("Button held, leaving...")
+                speech_synthesizer.speak_text_async("Button held, leaving...")
                 break 
 
         while True:
@@ -138,7 +139,8 @@ def main():
             speech_synthesizer.speak_text_async(response['result']).get()
 
 if __name__ == "__main__":
-
+            
+    GPIO.output(red_pin, GPIO.HIGH)
     speech_synthesizer.speak_text_async("Hello! Welcome to the Co-Lab Telephone Assistant.")
     print("Hello! Welcome to the Co-Lab Telephone Assistant.")
 

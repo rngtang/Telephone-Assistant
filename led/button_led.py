@@ -90,10 +90,10 @@ def wait_input():
 
             if GPIO.input(button_pin) == 0:  # exit if button is held
                 counter += 1
-                time.sleep(0.2)
+                time.sleep(0.5)
                 if counter == 1 and GPIO.input(button_pin) == 0:
                     GPIO.cleanup() 
-                    print("Leaving...")
+                    print("Button held. Leaving...")
                     return ""
     except KeyboardInterrupt:
         GPIO.cleanup()
@@ -103,7 +103,7 @@ def main():
     # Waits until you press the button
     try: 
         GPIO.output(red_pin, GPIO.HIGH)
-        print("Press button when ready.")
+        print("Press the button to ask a question.")
 
         while True:
             button_state = GPIO.input(button_pin)
@@ -131,13 +131,16 @@ def main():
 
             # Returns the answer
             print("\nBot: " + response['result'] + '\n')
+
     except KeyboardInterrupt:
+        print("Keyboard interrupt. Exiting.")
         GPIO.cleanup() 
 
 
 if __name__ == "__main__":
     # Initializes the vectors and LLM
     print("Welcome to the Co-Lab Assistant!")
+    GPIO.output(red_pin, GPIO.HIGH)
 
     doc_text = parse_doc() 
     model = get_answer(doc_text)
