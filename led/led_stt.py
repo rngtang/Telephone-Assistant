@@ -84,9 +84,9 @@ def get_answer(doc_text):
 
 # Asks and answers the questions
 def main():
-    counter = 0
-
     while True:
+        counter = 0
+
         # Waits until you press the button
         GPIO.output(red_pin, GPIO.HIGH)
         speech_synthesizer.speak_text_async("Press the button when ready.")

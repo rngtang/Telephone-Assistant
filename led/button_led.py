@@ -101,35 +101,38 @@ def wait_input():
 # Asks and answers the questions
 def main():
     # Waits until you press the button
-    GPIO.output(red_pin, GPIO.HIGH)
-    print("Press button when ready.")
+    try: 
+        GPIO.output(red_pin, GPIO.HIGH)
+        print("Press button when ready.")
 
-    while True:
-        button_state = GPIO.input(button_pin)
-        if button_state == False:
-            # print(button_state)
-            print('Button pressed!')
+        while True:
+            button_state = GPIO.input(button_pin)
+            if button_state == False:
+                # print(button_state)
+                print('Button pressed!')
 
-            break
-        time.sleep(0.1)
-    GPIO.output(red_pin ,GPIO.LOW)
+                break
+            time.sleep(0.1)
+        GPIO.output(red_pin ,GPIO.LOW)
 
-    while True:
-        question = wait_input()
-        
-        if question == "":
-            break
+        while True:
+            question = wait_input()
+            
+            if question == "":
+                break
 
-        print("\nUser: " + question + '\n')
-        
-        # Generates the answer
-        GPIO.output(green_pin, GPIO.LOW)
-        GPIO.output(yellow_pin, GPIO.HIGH)
-        print("Thinking...")
-        response = model.invoke(question)
+            print("\nUser: " + question + '\n')
+            
+            # Generates the answer
+            GPIO.output(green_pin, GPIO.LOW)
+            GPIO.output(yellow_pin, GPIO.HIGH)
+            print("Thinking...")
+            response = model.invoke(question)
 
-        # Returns the answer
-        print("\nBot: " + response['result'] + '\n')
+            # Returns the answer
+            print("\nBot: " + response['result'] + '\n')
+    except KeyboardInterrupt:
+        GPIO.cleanup() 
 
 
 if __name__ == "__main__":
@@ -140,10 +143,8 @@ if __name__ == "__main__":
     model = get_answer(doc_text)
     
     # Calls main
-    try:
-        main()
+    main()
     
-    except KeyboardInterrupt:
-        GPIO.cleanup() 
+    
 
 
