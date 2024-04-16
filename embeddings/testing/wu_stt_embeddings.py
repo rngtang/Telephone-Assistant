@@ -10,21 +10,25 @@ from langchain_openai import OpenAI
 from langchain import hub
 import azure.cognitiveservices.speech as speechsdk
 
-# STT configs
+# Azure Language STT configs
 speech_config = speechsdk.SpeechConfig(subscription=os.environ.get('COLAB_SPEECH_KEY'), region=os.environ.get('COLAB_SPEECH_REGION'))
 speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config)
-# TTS configs
+# Azure Language TTS configs
 audio_config = speechsdk.audio.AudioOutputConfig(use_default_speaker=True)
 speech_config.speech_synthesis_voice_name='en-US-AvaNeural'
 speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
 
-# recognizes wake-up word: "Hey CoLab"
+# Recognizes wake-up word: "Hey CoLab"
 def speech_recognize_keyword_locally_from_microphone():
+
+    # Uses Azure model to initialize wake-up word
     keyword_model = speechsdk.KeywordRecognitionModel("/home/colabdev/Desktop/telephone-assistant/models/high_accepts.table")
     keyword = "Hey CoLab"
+    # Set up keyword recognizer object
     keyword_recognizer = speechsdk.KeywordRecognizer()
     done = False
 
+    # Event if recognized keyword
     def recognized_cb(evt):
         result = evt.result
         if result.reason == speechsdk.ResultReason.RecognizedKeyword:
@@ -32,20 +36,21 @@ def speech_recognize_keyword_locally_from_microphone():
         nonlocal done
         done = True
 
+    # Connects model to recognizer
     keyword_recognizer.recognized.connect(recognized_cb)
-
     result_future = keyword_recognizer.recognize_once_async(keyword_model)
+
     print('Start by saying "{}"'.format(keyword))
     try: 
         result = result_future.get()
     except: 
         print("Error with getting result")
 
-    # If the word is recognized, then it goes to main
+    # If the word is recognized, then call main (QA loop)
     if result.reason == speechsdk.ResultReason.RecognizedKeyword:
         main()
 
-    # If active keyword recognition needs to be stopped before results, it can be done with
+    # If active keyword recognition needs to be exitted before results
     stop_future = keyword_recognizer.stop_recognition_async()
     print('Stopping...')
     stopped = stop_future.get()
@@ -67,7 +72,7 @@ def parse_doc():
 
     return doc_texts
 
-# Sets up up the Bot
+# Sets up the Bot
 def bot_setup(doc_text):
 
     print("Building model...")
@@ -91,7 +96,6 @@ def bot_setup(doc_text):
     speech_synthesizer.speak_text_async("Model built")
     print("Model built")
     return model
-
 
 # Asks and answers the questions
 def main():
@@ -121,10 +125,10 @@ def main():
 
 if __name__ == "__main__":
 
-    # parse doc
+    # Parse doc and set-up model
     doc_text = parse_doc() 
     model = bot_setup(doc_text)
 
-    # wait for wake-up word
-    speech_recognize_keyword_locally_from_microphone() # <- calls on main from inside there
+    # Wait for wake-up word. Calls on main (QA loop) if wake-up word is used
+    speech_recognize_keyword_locally_from_microphone() 
 

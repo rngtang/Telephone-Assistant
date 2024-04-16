@@ -1,3 +1,5 @@
+# Code to test with pressing the button, pressing the button will increase a counter as displayed on the LEDs. Counts up to 8 (3 LEDs).
+
 import RPi.GPIO as GPIO
 from time import sleep, time
 
