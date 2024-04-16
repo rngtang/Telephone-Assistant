@@ -50,11 +50,21 @@ python ./led/led_stt.py
 
 You should now be able to ask questions and recieve answers about anything related to the Co-Lab!
 
-### How Does the Question-Answering Work?
+## How Does the Question-Answering Work?
 
-This following chart represents how the Co-Lab assistant pipeline works. First, the question is translated from Speech-To-Text (STT) and converted into a vector. Then, a vector search is used to find a part of the text that has a close relationship with the question, which is then labeled as context. The context and question are sent to the large language model (OpenAI), which generates an answer. Finally, the answer is returned and the process is repeated.
+This following chart represents the Co-Lab assistant pipeline. First, the question is translated from Speech-To-Text (STT) and converted into a vector. Then, a vector search is used to find a part of the text that has a close relationship with the question, which is then labeled as context. The context and question are sent to the large language model (OpenAI), which generates an answer. Finally, the answer is returned and the process is repeated.
 
-[<img src="./media/diagram.png" width="800" alt="Program flowchart"/>](./media/diagram.png)
+Currently, we are also testing some hardware additions that visually represent the Question-Answering process, such as a button to start the bot and some LEDs to represent which stage of answering the bot is currently is. 
+
+[<img src="./media/taflowchart.png" width="800" alt="Program flowchart"/>](./media/taflowchart.png)
+
+When running led_stt.py (the complete project), this is what each LED represents:
+
+* Red: The bot has finished set-up and is waiting for the user to start (press the button).
+* Yellow: The bot is thinking (generating an answer) OR currently responding with an answer.
+* Green: The bot is listening for a question.
+
+Pressing the button once will start the bot, and holding the button will have the bot exit.
 
 ## Part 1: Azure AI Speech (Previous Testing)
 
@@ -74,17 +84,9 @@ By using our OpenAI model as just a LLM and having embeddings be pre-generated a
 
 This is our current prompt: <https://smith.langchain.com/hub/rngtang/colab-bot?organizationId=5ed40c29-8f7d-47af-ab9b-2c31f51d5ba3>.
 
-The following diagram shows how the bot works:
+The following diagram shows how the application works:
 
 [<img src="./media/bot-diagram.png" width="800" alt="LangChain framework"/>](./media/bot-diagram.png)
-
-Currently, we are also testing some hardware additions that visually represent the Question-Answering process, such as a button to start the bot and some LEDs to represent which stage of answering the bot is currently is. When running led_stt.py (the complete project), this is what each LED represents:
-
-* Red: The bot has finished set-up and is waiting for the user to start (press the button).
-* Yellow: The bot is thinking (generating an answer) OR currently responding with an answer.
-* Green: The bot is listening for a question.
-
-Pressing the button once will start the bot, and holding the button will have the bot exit.
 
 Finally, an introduction to LangChain and its complete possible functionalities can be found here: <https://python.langchain.com/docs/get_started/introduction>. Specifically, we are using LangChain's retrieval module.
 

@@ -216,3 +216,15 @@ Judy Chen, Hung Le
 Celine Wang
 Collecting documents...
 Finished!
+Checking APIs
+, Digitized Embroidery: 2024-04-15T13:30:00.000-04:00, Preparing a Web Project: 2024-04-16T10:00:00.000-04:00, Build a Computer: 2024-04-16T13:30:00.000-04:00, Introduction to Git: 2024-04-17T10:00:00.000-04:00, Flask Family Feud: 2024-04-17T13:30:00.000-04:00
+Hung Le, Raul Ng Tang
+
+Collecting documents...
+Finished!
+Checking APIs
+, Preparing a Web Project: 2024-04-16T10:00:00.000-04:00, Build a Computer: 2024-04-16T13:30:00.000-04:00, Introduction to Git: 2024-04-17T10:00:00.000-04:00, Flask Family Feud: 2024-04-17T13:30:00.000-04:00, Introduction to Sewing: Make a Totebag: 2024-04-18T13:30:00.000-04:00
+Hung Le, Raul Ng Tang, Johnny Cortez, Alice Hu
+
+Collecting documents...
+Finished!
