@@ -94,7 +94,7 @@ Finally, an introduction to LangChain and its complete possible functionalities 
 
 Currently, as laid out in the LangChain Retrieval interface, all of the external context the bot uses to generate answers comes from one PDF file: "/embeddings/files/All_Info.pdf". This PDF is regenerated through the python script "/embeddings/testing/periodic_API.py".
 
-By using Cron on the Co-Lab Raspberry Pi, we have schedule for this script to be continuously run every hour. The output of this script gets piped to "/embeddings/log.txt". This will ensure the knowledge base contains current information about which student workers are on shift and what the first five upcoming Roots classes are.
+By using Cron on the Co-Lab Raspberry Pi, we have schedule for this script to be continuously run every at XX:00. The output of this script gets piped to "/embeddings/log.txt". This will ensure the knowledge base contains current information about which student workers are on shift and what the first five upcoming Roots classes are.
 
 If you would like to add this job into your device's own cron, you can do so with the following commands. First, in a terminal, open cron:
 
@@ -150,7 +150,7 @@ To test the combined project (STT/TTS and Question-Answering Bot) integrated wit
 python ./embeddings/testing/wu_stt_embeddings.py
 ```
 
-The wake-up word is "Hey Colab". Before saying this phrase, the robot will be "awake", but will not respond to questions.
+The wake-up word is "Hey Colab". Before saying this phrase, the robot will be "awake", but will not respond to questions. This program is not integrated with the LEDs or button.
 
 ### Additional: Surprise!
 
