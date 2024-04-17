@@ -88,8 +88,8 @@ def main():
 
         # Waits until user presses the button
         GPIO.output(red_pin, GPIO.HIGH)
-        speech_synthesizer.speak_text_async("Press the button to ask a question.")
-        print("Press the button to ask a question.")
+        speech_synthesizer.speak_text_async("Press the button to ask a question. Hold the button to leave.")
+        print("Press the button to ask a question. Hold the button to leave.")
 
         while True:
             button_state = GPIO.input(button_pin)

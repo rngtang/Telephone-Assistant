@@ -27,7 +27,7 @@ cd /telephone-assistant
 From here, activate the virtual environment:
 
 ```bash
-source openai-env/bin/activate
+source ./openai-env/bin/activate
 ```
 
 ### Install Requirements
