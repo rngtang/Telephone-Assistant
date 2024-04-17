@@ -234,3 +234,15 @@ Judy Chen, Kelvin Bueno Gonzalez
 Pedro Navarro Guerra
 Collecting documents...
 Finished!
+Checking APIs
+, Flask Family Feud: 2024-04-17T13:30:00.000-04:00, Introduction to Sewing: Make a Totebag: 2024-04-18T13:30:00.000-04:00, Intro to Felting: 2024-04-22T10:00:00.000-04:00, Introduction to Git: 2024-04-23T10:00:00.000-04:00, Laser Cutting with Illustrator: 2024-04-24T13:30:00.000-04:00
+Alex Pieroni, Eileen Cai, Raul Ng Tang, Jonathan Reyes
+Celine Wang, Alanna Manfredini
+Collecting documents...
+Finished!
+Checking APIs
+, Introduction to Sewing: Make a Totebag: 2024-04-18T13:30:00.000-04:00, Intro to Felting: 2024-04-22T10:00:00.000-04:00, Introduction to Git: 2024-04-23T10:00:00.000-04:00, Laser Cutting with Illustrator: 2024-04-24T13:30:00.000-04:00, Co-Lab Wrapped: 2024-04-26T13:00:00.000-04:00
+Johnny Cortez, Judy Chen
+Connor Shovlin
+Collecting documents...
+Finished!

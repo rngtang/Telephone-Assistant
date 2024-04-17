@@ -110,10 +110,11 @@ From here, paste the following command, replacing "your-path-here" with your act
 
 Finally, save and exit the cron editor. Now, cron should be automatically running the "periodic_API.py" script every hour.
 
-## Previous issues
+## Previous Issues
 
-As mentioned before, using OpenAI assistants had a high cost per request. For instance, in the image, we can see that the cost of only making 19 requests.
-[<img src="./media/cost.png" width="800" alt="LangChain framework"/>](./media/cost.png)
+As mentioned before, before Embeddings and after Azure, we tested with OpenAI Assistants. However, Assistants had a high cost per request. The image below on the left shows the cost of making about 580 requests using Assistants. In contrast, the image on the right shows the cost of making about 760 requests using Embeddings.
+
+[<img src="./media/assistants.png" width="350" alt="Cost of using OpenAI Assistants"/>](./media/assistants.png) &nbsp; [<img src="./media/embeddings.png" width="350" alt="Cost of using OpenAI Embeddings"/>](./media/embeddings.png)
 
 ## Optional/Additional Testing
 
