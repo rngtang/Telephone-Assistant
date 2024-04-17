@@ -113,7 +113,7 @@ Finally, save and exit the cron editor. Now, cron should be automatically runnin
 ## Previous issues
 
 As mentioned before, using OpenAI assistants had a high cost per request. For instance, in the image, we can see that the cost of only making 19 requests.
-[<img src="./media/bot-diagram.png" width="800" alt="LangChain framework"/>](./media/cost.png)
+[<img src="./media/cost.png" width="800" alt="LangChain framework"/>](./media/cost.png)
 
 ## Optional/Additional Testing
 
