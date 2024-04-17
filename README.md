@@ -110,9 +110,10 @@ From here, paste the following command, replacing "your-path-here" with your act
 
 Finally, save and exit the cron editor. Now, cron should be automatically running the "periodic_API.py" script every hour.
 
-## Known Bugs
+## Previous issues
 
-* There are no known bugs, for now...
+As mentioned before, using OpenAI assistants had a high cost per request. For instance, in the image, we can see that the cost of only making 19 requests.
+[<img src="./media/bot-diagram.png" width="800" alt="LangChain framework"/>](./media/cost.png)
 
 ## Optional/Additional Testing
 
