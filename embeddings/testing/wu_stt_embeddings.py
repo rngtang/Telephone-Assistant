@@ -1,3 +1,6 @@
+# The purpose of this program is to test the Wake-up word feature and implement it with the Azure Language Services and embeddings question-answering bot
+
+
 import os
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import OpenAIEmbeddings

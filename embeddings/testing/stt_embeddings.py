@@ -1,3 +1,5 @@
+# This program test the new embeddings question-answering bot with the Azure Language Services
+
 import os
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import OpenAIEmbeddings

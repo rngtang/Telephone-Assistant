@@ -1,3 +1,6 @@
+# This is the first test using embeddings.
+# In this program, we are trying to test the embeddings and question answering by until taking one input
+
 import os
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import OpenAIEmbeddings

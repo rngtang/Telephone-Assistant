@@ -1,3 +1,6 @@
+# The purpose of this code is to test the led lights, button, Azure Language Services, and QnA bot all together
+# This program implements most of the elements of the project except for the wake up word.
+
 import os
 import time
 from langchain_community.vectorstores import Chroma

@@ -122,6 +122,7 @@ def main():
             # After button pressed, check for user input (continue) or button holding (exit)
             question = wait_input()
             
+            # if no question is asked, it breaks the loop
             if question == "":
                 break
 

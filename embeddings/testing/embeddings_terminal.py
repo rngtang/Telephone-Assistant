@@ -1,3 +1,6 @@
+# This program works as a proof of concept that we can use embeddings and vector databases to improve the quality and latency of answers
+# Specifically, this program takes an input from the terminal.
+
 import os
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import OpenAIEmbeddings

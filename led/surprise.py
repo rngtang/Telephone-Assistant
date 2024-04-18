@@ -1,3 +1,5 @@
+# This program is the same as led_stt.py with the exception that it was a surprise
+
 import os
 import random
 import time

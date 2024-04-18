@@ -1,3 +1,6 @@
+# This program updates the PDF file that we use as our knowledge base.
+# We implemented a cron job to run this program in the background and it starts automatically every time we turn on the Raspberry Pi
+
 import requests
 import pathlib
 from fpdf import FPDF
