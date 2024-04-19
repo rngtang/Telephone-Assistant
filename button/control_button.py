@@ -1,3 +1,6 @@
+# This file test the question-answering bot implementing a button to start asking questions to the bot. 
+# This file does not implements the STT and TTS features
+
 import time
 import RPi.GPIO as GPIO
 import os

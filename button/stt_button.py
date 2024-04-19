@@ -1,3 +1,6 @@
+# This file test the question-answering bot implementing a button to start asking questions to the bot. 
+# This file implements the STT and TTS features
+
 import os
 import time
 from langchain_community.vectorstores import Chroma

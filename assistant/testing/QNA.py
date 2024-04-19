@@ -1,3 +1,5 @@
+# This is a general purpose file that we used to test different endpoints of the API like thread and retrieving messages
+
 from openai import OpenAI
 import os
 import time

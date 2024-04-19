@@ -1,3 +1,5 @@
+# This file is just to test when the button was pressed twice or once
+
 from datetime import datetime, timedelta
 from gpiozero import Button
 from signal import pause

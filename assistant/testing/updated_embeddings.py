@@ -1,3 +1,4 @@
+# This file is just to test one single question using embeddings
 # Essentially same as embeddings.py, just with <invoke> instead of <run> and <RetrievalQA> instead of <VectorDBQA>
 # https://smith.langchain.com/hub/rlm/rag-prompt
 

@@ -1,3 +1,5 @@
+# Implements the assistant functions, STT, TTS, and wake up word
+
 from openai import OpenAI
 import time
 import os

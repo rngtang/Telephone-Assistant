@@ -1,3 +1,5 @@
+# This is just to test the status of the button
+
 from gpiozero import Button 
 # default library from pi, changed venv settings
 from signal import pause

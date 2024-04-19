@@ -1,3 +1,5 @@
+# Implements the assistant with its functions and also uses STT and TTS
+
 from openai import OpenAI
 import time
 import os

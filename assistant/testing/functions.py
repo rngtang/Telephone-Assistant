@@ -1,3 +1,5 @@
+# This code is to test the functions features of the assistant
+
 from openai import OpenAI
 import time
 import json

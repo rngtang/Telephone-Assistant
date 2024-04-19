@@ -1,3 +1,5 @@
+# The purpose of this file is to test how to ask and get the answer for a single question
+
 from openai import OpenAI
 import time
 import os

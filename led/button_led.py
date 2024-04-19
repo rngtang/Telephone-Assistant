@@ -1,3 +1,5 @@
+# This program implements QnA bot with embeddings, the button, and three LEDs to indicate the status of the bot
+
 import time
 import os
 import sys

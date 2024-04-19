@@ -1,3 +1,5 @@
+# This file is from early stages of the project. It just sends requests and tries to create a run
+
 from openai import OpenAI
 import os
 import time

@@ -1,3 +1,5 @@
+# This program is just to detect if the button was pressed
+
 import RPi.GPIO as GPIO
 import time
 

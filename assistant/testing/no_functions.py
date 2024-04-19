@@ -1,3 +1,6 @@
+# This file is to test only the question-answering capabilities of the OpenAI assistant. It doesn't implement functions
+# This file is able to answer multiple questions by typing them in the terminal
+
 from openai import OpenAI
 import time
 import os
